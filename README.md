@@ -1,2 +1,2 @@
 # Gruppe9
-Gruppeoppgaven til gruppe 9(2019) Heihei
+Gruppeoppgaven til gruppe 9(2019)

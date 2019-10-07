@@ -7,16 +7,12 @@ import no.hiof.gruppe9.Modell.Bruker;
 
 import java.time.LocalDate;
 
-public class RedigerFilmController {
+public class RedigerBrukerController {
     // Alle feltvariablene for komponenter definert i tilhørende .fxml
     @FXML
-    private TextField tittelTextField, spilletidTextField;
-    @FXML
-    private TextArea beskrivelseTextArea;
+    private TextField brukernavnTextField, passordTextField, klubbTextField, idTextField;
     @FXML
     private Label feilmeldingLabel;
-    @FXML
-    private DatePicker utgivelsesdatoDatePicker;
     @FXML
     private Button okButton;
 

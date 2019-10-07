@@ -1,3 +1,5 @@
+package no.hiof.gruppe9.Main;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

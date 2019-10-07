@@ -1,4 +1,4 @@
-package Data;
+package no.hiof.gruppe9.Data;
 
 import Modell.Bruker;
 import javafx.collections.FXCollections;
@@ -11,38 +11,38 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DataHandler {
-    private final static ObservableList<Bruker> valutaListe = FXCollections.observableArrayList();
-    public static ObservableList<Bruker> hentValutaData() {
-        if (valutaListe.isEmpty()) {
-            valutaListe.addAll(genererValutaData());
+    private final static ObservableList<Bruker> brukerListe = FXCollections.observableArrayList();
+    public static ObservableList<Bruker> hentBrukerData() {
+        if (brukerListe.isEmpty()) {
+            brukerListe.addAll(genererBrukerData());
         }
-        return valutaListe;
+        return brukerListe;
     }
 
-    private static ArrayList<Bruker> genererValutaData() {
+    private static ArrayList<Bruker> genererBrukerData() {
         File kilden = new File("src/brukere.csv");
 
-        ArrayList<Bruker> valutaerFraFiler = lesFraCSVFil(kilden);
+        ArrayList<Bruker> brukereFraFiler = lesFraCSVFil(kilden);
 
-        return valutaerFraFiler;
+        return brukereFraFiler;
     }
 
     private static ArrayList<Bruker> lesFraCSVFil(File filSomLesesFra) {
-        ArrayList<Bruker> valutaerFraFil = new ArrayList<>();
+        ArrayList<Bruker> brukereFraFil = new ArrayList<>();
         try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {
             String linje;
             while( (linje = bufretLeser.readLine()) != null ){
                 String[] deler = linje.split(";");
 
-                Bruker enValuta = new Bruker(deler[0], deler[1]);
+                Bruker enBruker = new Bruker(deler[0], deler[1]);
 
-                valutaerFraFil.add(enValuta);
+                brukereFraFil.add(enBruker);
             }
 
         } catch (IOException e) {
             System.out.println(e);
         }
 
-        return valutaerFraFil;
+        return brukereFraFil;
     }
 }

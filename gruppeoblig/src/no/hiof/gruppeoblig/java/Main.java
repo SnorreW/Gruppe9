@@ -1,4 +1,4 @@
-package no.hiof.gruppe9.Main;
+package no.hiof.gruppeoblig.java;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

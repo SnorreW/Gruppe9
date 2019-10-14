@@ -1,25 +1,23 @@
-package no.hiof.aleksaps.SE;
+package no.hiof.gruppe9.Main;
 
-import java.util.ArrayList;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 300, 300));
+        primaryStage.show();
+    }
+
 
     public static void main(String[] args) {
-
-        ArrayList<User> listeMedBrukere = new ArrayList<>();
-
-	    listeMedBrukere.add(new User(1, "Aleksander", "Passord123", "Passord123", "Skiforeningen"));
-
-
-
-        System.out.println("*********Brukere Sortert*************");
-        for (User enBruker : listeMedBrukere) {
-            System.out.println(enBruker);
-        }
-        System.out.println("*************************************");
-
-
-
-
+        launch(args);
     }
 }

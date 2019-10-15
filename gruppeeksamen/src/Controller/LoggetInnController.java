@@ -17,9 +17,6 @@ public class LoggetInnController {
     @FXML
     public void initialize() {
         //Dette skal bort
-
-        c
-
         c.setItems(DataHandler.hentData("src/arrangementer.csv", 0/*Brukernavn*/, listeArrangement));
     }
 }

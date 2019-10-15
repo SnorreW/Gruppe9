@@ -8,6 +8,8 @@ public class Bruker {
         this.passord = passord;
     }
 
+
+
     public String getBrukenavn() {
         return brukenavn;
     }

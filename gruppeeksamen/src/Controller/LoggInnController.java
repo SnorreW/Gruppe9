@@ -46,7 +46,7 @@ public class LoggInnController {
                 tja = "Det gikk";
                 Stage stage = (Stage) btnLoggInn.getScene().getWindow();
                 stage.close();
-                sendTilNyScene("../view/loggetInn.fxml");
+                DataHandler.sendTilNyScene("../view/loggetInn.fxml");
                 break;
             } else {
                 //Brukeren skal få en feilmelding
@@ -55,16 +55,6 @@ public class LoggInnController {
             }
         }
         return tja;
-    }
-
-    private void sendTilNyScene(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-
-        stage.setScene(new Scene(root1,500,500));
-        stage.setTitle("Logget Inn");
-        stage.showAndWait();
     }
 
     @FXML

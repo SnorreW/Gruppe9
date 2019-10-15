@@ -41,7 +41,7 @@ public class MainJavaFX extends Application {
         }
     }
 
-    public boolean visNyBrukerVindu(Bruker nyBruker) {
+    /*public boolean visNyBrukerVindu(Bruker nyBruker) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -76,7 +76,7 @@ public class MainJavaFX extends Application {
             visAlertFeilmelding("Feil 41\nFant ikke grensesnittdefinisjon", ise.getMessage());
         }
         return false;
-    }
+    }*/
 
     private void visAlertFeilmelding(String overskrift, String melding) {
         Alert exceptionAlert = new Alert(Alert.AlertType.ERROR);

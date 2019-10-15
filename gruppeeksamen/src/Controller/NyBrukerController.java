@@ -9,13 +9,9 @@ import java.time.LocalDate;
 
 public class NyBrukerController {
     @FXML
-    private TextField BrukernavnTextField, spilletidTextField;
-    @FXML
-    private TextArea beskrivelseTextArea;
+    private TextField BrukernavnTextField, PassordTextField, KlubbTextField;
     @FXML
     private Label feilmeldingLabel;
-    @FXML
-    private DatePicker utgivelsesdatoDatePicker;
     @FXML
     private Button okButton;
 
@@ -32,11 +28,30 @@ public class NyBrukerController {
         this.nyBruker = nyBruker;
 
         if (nyBruker != null) {
-            tittelTextField.setText(nyBruker.getTittel());
-            beskrivelseTextArea.setText(nyBruker.getBeskrivelse());
-            if (!nyBruker.getUtgivelsesdato().equals(LocalDate.MIN))
-                utgivelsesdatoDatePicker.setValue(nyBruker.getUtgivelsesdato());
-            spilletidTextField.setText(String.valueOf(nyBruker.getSpilletid()));
+            BrukernavnTextField.setText(nyBruker.getBrukenavn());
+            PassordTextField.setText(nyBruker.getPassord());
+            KlubbTextField.setText(nyBruker.getKlubb());
         }
     }
+
+    /*@FXML
+    private void okValgt() {
+        if (sjekkOmInputErGyldig()) {
+            // Hvis de er det, fyller vi opp filmobjektet vårt med den nye dataen fra feltene
+            filmSomRedigeres.setTittel(tittelTextField.getText());
+            filmSomRedigeres.setBeskrivelse(beskrivelseTextArea.getText());
+            if (utgivelsesdatoDatePicker.getValue() != null)
+                filmSomRedigeres.setUtgivelsesdato(utgivelsesdatoDatePicker.getValue());
+            filmSomRedigeres.setSpilletid(Integer.parseInt(spilletidTextField.getText()));
+
+            // Setter at vi avsluttet ved å trykke OK
+            okClicked = true;
+
+            // Henter ut en referanse til Stage (vinduet) ved hjelp av en av komponentene vi har i grensesnittet
+            dialogStage = (Stage)okButton.getScene().getWindow();
+            // Lukker vinduet
+            dialogStage.close();
+        }
+    }*/
+
 }

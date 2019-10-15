@@ -4,8 +4,48 @@ import java.time.LocalDate;
 
 public abstract class Aktivitet {
 
-private int tid;
-private LocalDate dato;
-private Bruker utover;
+    private String navnPaaAktivitet;
+    private int tid;
+    private LocalDate dato;
+    private Bruker utover;
+
+    public Aktivitet(String navnPaaAktivitet, int tid, LocalDate dato, Bruker utover){
+        this.navnPaaAktivitet = navnPaaAktivitet;
+        this.tid = tid;
+        this.dato = dato;
+        this.utover = utover;
+    }
+
+    public String getNavnPaaAktivitet() {
+        return navnPaaAktivitet;
+    }
+
+    public LocalDate getDato() {
+        return dato;
+    }
+
+    public Bruker getUtover() {
+        return utover;
+    }
+
+    public int getTid(){
+        return tid;
+    }
+
+    public void setNavnPaaAktivitet(String navnPaaAktivitet) {
+        this.navnPaaAktivitet = navnPaaAktivitet;
+    }
+
+    public void setTid(int tid) {
+        this.tid = tid;
+    }
+
+    public void setDato(LocalDate dato) {
+        this.dato = dato;
+    }
+
+    public void setUtover(Bruker utover) {
+        this.utover = utover;
+    }
 
 }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Modell/Aktivitet.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="lagt til aktivitet">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gruppeeksamen/MainJavaFX.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gruppeeksamen/MainJavaFX.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainJavaFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainJavaFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modell/Aktivitet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modell/Aktivitet.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,6 +82,7 @@
     <setting file="file://$PROJECT_DIR$/src/MainJavaFX.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/View/cup.fxml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Data/DataHandler.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Modell/Aktivitet.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectId" id="1RrxNY2UJETGPYZbhvxtceZxnqP" />
@@ -109,6 +108,8 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -284,6 +285,13 @@
       <workItem from="1571133226151" duration="58000" />
       <workItem from="1571133334622" duration="1385000" />
     </task>
+    <task id="LOCAL−00001" summary="lagt til aktivitet">
+      <created>1571141242513</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1571141242513</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,5 +313,7 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <MESSAGE value="lagt til aktivitet" />
+    <option name="LAST_COMMIT_MESSAGE" value="lagt til aktivitet" />
   </component>
 </project>

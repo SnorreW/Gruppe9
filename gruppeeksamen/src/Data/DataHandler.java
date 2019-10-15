@@ -20,11 +20,24 @@ public class DataHandler {
         }
         return liste;
     }
+    public static ObservableList<String> hentDataCupLag(String filnavn, int del, ObservableList liste, String cup) {
+        if (liste.isEmpty()) {
+            liste.addAll(genererDataCupLag(filnavn, del, cup));
+        }
+        return liste;
+    }
 
     private static ArrayList<String> genererData(String filnavn, int del) {
         File kilden = new File(filnavn);
 
         ArrayList<String> dataFraFil = lesFraCSVFil(kilden, del);
+
+        return dataFraFil;
+    }
+    private static ArrayList<String> genererDataCupLag(String filnavn, int del, String cup) {
+        File kilden = new File(filnavn);
+
+        ArrayList<String> dataFraFil = lesFraCSVFilCupLag(kilden, del, cup);
 
         return dataFraFil;
     }
@@ -38,6 +51,25 @@ public class DataHandler {
                 String[] deler = linje.split(";");
 
                 dataFraFil.add(deler[del]);
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+        return dataFraFil;
+    }
+    private static ArrayList<String> lesFraCSVFilCupLag(File filSomLesesFra, int del, String cup) {
+        ArrayList<String> dataFraFil = new ArrayList<>();
+
+        try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {
+            String linje;
+            while( (linje = bufretLeser.readLine()) != null ){
+                String[] deler = linje.split(";");
+
+                if (deler[0].equals(cup)) {
+                    dataFraFil.add(deler[del]);
+                }
             }
 
         } catch (IOException e) {

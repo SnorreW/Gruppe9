@@ -15,4 +15,5 @@ public class Arrangementer {
     public String toString() {
         return navn;
     }
+
 }

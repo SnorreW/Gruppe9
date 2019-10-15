@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/gruppeeksamen/Controller/LoggetInnController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gruppeeksamen/Controller/LoggetInnController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/gruppeeksamen/META-INF/gruppeeksamen.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/gruppeeksamen/Data/Arrangementer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gruppeeksamen/Data/Arrangementer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/gruppeeksamen/View/loggetInn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/gruppeeksamen/View/loggetInn.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/LoggetInnController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoggetInnController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Arrangementer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Arrangementer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/loggetInn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/loggetInn.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,15 +106,17 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Controller" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="Data" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="Controller" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\aleks\OneDrive - Østfold University College\kurs\var_2019\seot\gruppeeksamen\src\Main" />
-      <recent name="C:\Users\aleks\OneDrive - Østfold University College\kurs\var_2019\seot\gruppeeksamen\src\View" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -120,8 +124,9 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Controller" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="Controller" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\aleks\OneDrive - Østfold University College\kurs\var_2019\seot\gruppeeksamen\src\Main" />
+      <recent name="C:\Users\aleks\OneDrive - Østfold University College\kurs\var_2019\seot\gruppeeksamen\src\View" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -265,7 +270,12 @@
       <workItem from="1571061058131" duration="300000" />
       <workItem from="1571061383085" duration="28000" />
       <workItem from="1571061425154" duration="5260000" />
-      <workItem from="1571127435429" duration="58000" />
+      <workItem from="1571127435429" duration="494000" />
+      <workItem from="1571128055740" duration="621000" />
+      <workItem from="1571128706697" duration="32000" />
+      <workItem from="1571128771320" duration="448000" />
+      <workItem from="1571129239679" duration="106000" />
+      <workItem from="1571129393525" duration="492000" />
     </task>
     <servers />
   </component>
@@ -277,7 +287,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

@@ -1,8 +1,11 @@
+import Controller.NyBrukerController;
+import Modell.Bruker;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -36,6 +39,43 @@ public class MainJavaFX extends Application {
         catch (IllegalStateException ise) {
             visAlertFeilmelding("Feil 41\nFant ikke grensesnittdefinisjon", ise.getMessage());
         }
+    }
+
+    public boolean visNyBrukerVindu(Bruker nyBruker) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+
+            fxmlLoader.setLocation(getClass().getResource("View/nyBrukerVindu.fxml"));
+
+            Parent dialogLayout = fxmlLoader.load();
+
+            Stage dialogStage = new Stage();
+
+            dialogStage.setTitle("Legg Til Ny Bruker");
+
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+
+            dialogStage.initOwner(primaryStage);
+
+            Scene dialogScene = new Scene(dialogLayout);
+
+            dialogStage.setScene(dialogScene);
+
+            NyBrukerController nyBrukerController = fxmlLoader.getController();
+
+            nyBrukerController.setNyBruker(nyBruker);
+
+            dialogStage.showAndWait();
+
+            return NyBrukerController.erOkValgt();
+        }
+        catch (IOException ioe) {
+            visAlertFeilmelding("I/O feil: ", ioe.getMessage());
+        }
+        catch (IllegalStateException ise) {
+            visAlertFeilmelding("Feil 41\nFant ikke grensesnittdefinisjon", ise.getMessage());
+        }
+        return false;
     }
 
     private void visAlertFeilmelding(String overskrift, String melding) {

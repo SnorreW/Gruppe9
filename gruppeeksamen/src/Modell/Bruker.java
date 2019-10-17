@@ -24,6 +24,18 @@ public class Bruker {
 
     public String getKlubb() {return klubb;}
 
+    public void setBrukenavn(String brukenavn) {
+        this.brukenavn = brukenavn;
+    }
+
+    public void setPassord(String passord) {
+        this.passord = passord;
+    }
+
+    public void setKlubb(String klubb) {
+        this.klubb = klubb;
+    }
+
     @Override
     public String toString() {
         return "Brukernavn: " + brukenavn + ", Passord: " + passord;

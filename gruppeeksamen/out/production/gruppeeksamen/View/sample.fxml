@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoggInnController">
+<GridPane alignment="center" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoggInnController">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
@@ -24,17 +24,19 @@
       <AnchorPane prefHeight="500.0" prefWidth="500.0" GridPane.columnIndex="2">
          <children>
             <TextField fx:id="inputBrukernavn" layoutX="160.0" layoutY="233.0" text="admin1" />
-            <PasswordField fx:id="inputPassord" layoutX="184.0" layoutY="310.0" text="admin4" />
-            <Button fx:id="btnLoggInn" layoutX="232.0" layoutY="383.0" mnemonicParsing="false" onAction="#sjekkBruker" text="Button" />
+            <PasswordField fx:id="inputPassord" layoutX="160.0" layoutY="310.0" text="admin4" />
+            <Button fx:id="btnLoggInn" layoutX="232.0" layoutY="383.0" mnemonicParsing="false" onAction="#sjekkBruker" text="Logg Inn" />
             <TextField fx:id="tja" layoutX="299.0" layoutY="427.0" />
             <ListView fx:id="brukerListen" prefHeight="200.0" prefWidth="167.0" />
-            <Label layoutX="78.0" layoutY="237.0" text="Brukernavn:" />
-            <Label layoutX="121.0" layoutY="314.0" text="Passord:" />
+            <Label layoutX="90.0" layoutY="237.0" text="Brukernavn:" />
+            <Label layoutX="110.0" layoutY="314.0" text="Passord:" />
             <ListView fx:id="passordListen" layoutX="166.0" prefHeight="200.0" prefWidth="167.0" />
             <ListView fx:id="mailListen" layoutX="333.0" prefHeight="200.0" prefWidth="167.0" />
             <Label layoutX="54.0" layoutY="200.0" text="brukernavn" />
             <Label layoutX="229.0" layoutY="200.0" text="passord" />
             <Label layoutX="405.0" layoutY="200.0" text="mail" />
+            <Button layoutX="10.0" layoutY="450.0" mnemonicParsing="false" text="Ny Bruker" />
+            
          </children>
       </AnchorPane>
    </children>

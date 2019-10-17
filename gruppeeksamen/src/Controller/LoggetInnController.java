@@ -15,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Comparator;
 
 public class LoggetInnController {
     private static ObservableList<Arrangementer> listeCuperNavn = FXCollections.observableArrayList();
@@ -42,19 +43,19 @@ public class LoggetInnController {
         ObservableList<String> cuperDato = DataHandler.hentData("src/arrangementer.csv", 3/*Dato*/, listeCuperDato);
         for (int i=0; i < cuperNavn.size(); i++) {
             l = "";
-            l += cuperNavn.get(i) + " - " + cuperDato.get(i);
+            l += cuperDato.get(i) + ": " + cuperNavn.get(i);
             nyListe.add(l);
         }
         cup.setItems(nyListe);
     }
 
     private void sendTilNyScene(String fxml, String cup) throws IOException {
-        String[] li = cup.split(" - ");
-        setStagen(li[0]);
+        String[] li = cup.split(": ");
+        setStagen(li[1]);
         FXMLLoader fxmlLoader = new FXMLLoader(DataHandler.class.getResource(fxml));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
-        stage.setTitle(li[0]);
+        stage.setTitle(li[1]);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(root1,500,500));
         stage.show();

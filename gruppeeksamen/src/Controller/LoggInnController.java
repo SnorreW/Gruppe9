@@ -1,6 +1,8 @@
 package Controller;
 
 import Data.DataHandler;
+import Data.NyBrukerDataHandler;
+import Modell.Bruker;
 import com.sun.tools.javac.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,7 +26,7 @@ public class LoggInnController {
 
     @FXML
     //Dette skal bort
-    private ListView brukerListen, passordListen, mailListen;
+    private ListView brukerListen, passordListen, mailListen, brukerListView;
     @FXML
     private TextField inputBrukernavn, tja;
     @FXML
@@ -56,6 +58,17 @@ public class LoggInnController {
         }
         return tja;
     }
+
+    /*public void nyButtonClicked(ActionEvent actionEvent) {
+        Bruker enBruker = new Bruker();
+
+        boolean nyBrukerVellyket = MainJavaFX.getInstance().visNyBrukerVindu(enBruker);
+
+        if (nyBrukerVellyket) {
+            NyBrukerDataHandler.hentBrukerData().add(enBruker);
+            brukerListView.getSelectionModel().select(enBruker);
+        }
+    }*/
 
     @FXML
     public void initialize() {

@@ -34,7 +34,7 @@ public class MainJavaFX extends Application {
 
         try {
             FXMLLoader fxmlInnlaster = new FXMLLoader();
-            fxmlInnlaster.setLocation(getClass().getResource("view/sample.fxml"));
+            fxmlInnlaster.setLocation(getClass().getResource("View/sample.fxml"));
             Parent root = fxmlInnlaster.load();
             primaryStage.setTitle("Logg inn");
             primaryStage.setScene(new Scene(root, 500, 500));
@@ -48,7 +48,7 @@ public class MainJavaFX extends Application {
         }
     }
 
-    /*public boolean visNyBrukerVindu(Bruker nyBruker) {
+    public boolean visNyBrukerVindu(Bruker nyBruker) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -83,7 +83,7 @@ public class MainJavaFX extends Application {
             visAlertFeilmelding("Feil 41\nFant ikke grensesnittdefinisjon", ise.getMessage());
         }
         return false;
-    }*/
+    }
 
     private void visAlertFeilmelding(String overskrift, String melding) {
         Alert exceptionAlert = new Alert(Alert.AlertType.ERROR);

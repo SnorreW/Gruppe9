@@ -14,6 +14,9 @@ public class Bruker {
         this.klubb = klubb;
     }
 
+    public Bruker() {
+    }
+
     public String getBrukenavn() {
         return brukenavn;
     }

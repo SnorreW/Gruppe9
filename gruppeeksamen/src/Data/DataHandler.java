@@ -68,15 +68,32 @@ public class DataHandler {
                 String[] deler = linje.split(";");
 
                 if (deler[0].equals(cup)) {
-                    dataFraFil.add(deler[del]);
+                    String[] delerLag = deler[2].split("\\|");
+                    for (int i=0; i<delerLag.length; i++) {
+                        dataFraFil.add(delerLag[i]);
+                    }
                 }
             }
-
         } catch (IOException e) {
             System.out.println(e);
         }
-
         return dataFraFil;
+    }
+
+    public static String[] GetStringArray(ArrayList<String> arr)
+    {
+
+        // declaration and initialise String Array
+        String str[] = new String[arr.size()];
+
+        // ArrayList to Array Conversion
+        for (int j = 0; j < arr.size(); j++) {
+
+            // Assign each value to String array
+            str[j] = arr.get(j);
+        }
+
+        return str;
     }
 
     public static void sendTilNyScene(String fxml) throws IOException {

@@ -12,7 +12,7 @@ import java.io.IOException;
 
 
 public class MainJavaFX extends Application {
-    private Stage primaryStage;
+    private static Stage primaryStage;
     private static MainJavaFX minApplikasjon;
 
     public MainJavaFX() {
@@ -24,6 +24,10 @@ public class MainJavaFX extends Application {
         this.primaryStage = primaryStage;
 
         gaaTilHovedVisning();
+    }
+
+    public static Stage getStage() {
+        return primaryStage;
     }
 
     public void gaaTilHovedVisning() {

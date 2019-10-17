@@ -18,7 +18,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="500.0" prefWidth="500.0" GridPane.columnIndex="2">
+      <AnchorPane fx:id="ap" prefHeight="500.0" prefWidth="500.0" GridPane.columnIndex="2">
          <children>
             <Label fx:id="cupNavn" layoutX="138.0" layoutY="23.0" text="Lag som er med på cuppen:" />
             <ListView fx:id="lagSomErMed" layoutY="73.0" prefHeight="394.0" prefWidth="500.0" />

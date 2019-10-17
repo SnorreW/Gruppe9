@@ -27,6 +27,10 @@ public class CupController {
         listeMedLag.clear();
         listeMedLag = DataHandler.hentDataCupLag("src/arrangementer.csv",2/*lag*/,listeMedLag,cup);
         lagSomErMed.setItems(listeMedLag);
+
+        /*-----*/
+        
+        /*-----*/
     }
 
     @FXML

@@ -1,6 +1,8 @@
 package Data;
 
-public class Arrangementer {
+import java.util.Comparator;
+
+public class Arrangementer implements Comparable<Arrangementer> {
     String navn;
 
     public String getNavn() {
@@ -14,6 +16,11 @@ public class Arrangementer {
     @Override
     public String toString() {
         return navn;
+    }
+
+    @Override
+    public int compareTo(Arrangementer etArrangement) {
+        return getNavn().compareTo(etArrangement.getNavn());
     }
 
 }

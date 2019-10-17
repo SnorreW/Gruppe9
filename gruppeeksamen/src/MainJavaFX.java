@@ -12,7 +12,7 @@ import java.io.IOException;
 
 
 public class MainJavaFX extends Application {
-    private Stage primaryStage;
+    private static Stage primaryStage;
     private static MainJavaFX minApplikasjon;
 
     public MainJavaFX() {
@@ -26,12 +26,21 @@ public class MainJavaFX extends Application {
         gaaTilHovedVisning();
     }
 
+    public static Stage getStage() {
+        return primaryStage;
+    }
+
     public void gaaTilHovedVisning() {
+
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
+            FXMLLoader fxmlInnlaster = new FXMLLoader();
+            fxmlInnlaster.setLocation(getClass().getResource("view/sample.fxml"));
+            Parent root = fxmlInnlaster.load();
             primaryStage.setTitle("Logg inn");
             primaryStage.setScene(new Scene(root, 500, 500));
             primaryStage.show();
+
+
         }
         catch (IOException ioe) {
             visAlertFeilmelding("I/O feil: ", ioe.getMessage());

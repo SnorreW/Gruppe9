@@ -42,8 +42,6 @@ public class LoggInnController {
         ObservableList<String> passordListe = DataHandler.hentData("src/brukere.csv", 1/*Passord*/, listePassord);
         String tja = "";
         for (int i = 0; i < brukernavnListe.size(); i++) {
-            System.out.println("brukernavn: " + brukernavnListe.get(i));
-            System.out.println("passord: " + passordListe.get(i));
             if (brukernavnListe.get(i).equals(brukernavn) && passordListe.get(i).equals(passord)) {
                 tja = "Det gikk";
                 Stage stage = (Stage) btnLoggInn.getScene().getWindow();

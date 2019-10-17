@@ -17,14 +17,17 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoggetInnController {
-    private static ObservableList<Arrangementer> listeArrangement = FXCollections.observableArrayList();
+    private static ObservableList<Arrangementer> listeCuperNavn = FXCollections.observableArrayList();
+    private static ObservableList<Arrangementer> listeCuperDato = FXCollections.observableArrayList();
+    private static ObservableList<String> nyListe = FXCollections.observableArrayList();
+    private static String stagen = null;
 
     @FXML
-    private ListView<String> c;
+    private ListView<String> cup;
 
     @FXML
     public void initialize() {
-        c.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+        cup.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 try {
@@ -34,18 +37,34 @@ public class LoggetInnController {
                 }
             }
         });
-        //Dette skal bort
-        c.setItems(DataHandler.hentData("src/arrangementer.csv", 0/*Brukernavn*/, listeArrangement));
+        String l = "";
+        ObservableList<String> cuperNavn = DataHandler.hentData("src/arrangementer.csv", 0/*Navn*/, listeCuperNavn);
+        ObservableList<String> cuperDato = DataHandler.hentData("src/arrangementer.csv", 3/*Dato*/, listeCuperDato);
+        for (int i=0; i < cuperNavn.size(); i++) {
+            l = "";
+            l += cuperNavn.get(i) + " - " + cuperDato.get(i);
+            nyListe.add(l);
+        }
+        cup.setItems(nyListe);
     }
 
     private void sendTilNyScene(String fxml, String cup) throws IOException {
+        String[] li = cup.split(" - ");
+        setStagen(li[0]);
         FXMLLoader fxmlLoader = new FXMLLoader(DataHandler.class.getResource(fxml));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
-
+        stage.setTitle(li[0]);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(root1,500,500));
-        stage.setTitle(cup);
-        stage.showAndWait();
+        stage.show();
+    }
+
+    public static String getStagen() {
+        return stagen;
+    }
+
+    public void setStagen(String stagen) {
+        this.stagen = stagen;
     }
 }

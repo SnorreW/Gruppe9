@@ -31,8 +31,11 @@ public class MainJavaFX extends Application {
     }
 
     public void gaaTilHovedVisning() {
+
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
+            FXMLLoader fxmlInnlaster = new FXMLLoader();
+            fxmlInnlaster.setLocation(getClass().getResource("view/sample.fxml"));
+            Parent root = fxmlInnlaster.load();
             primaryStage.setTitle("Logg inn");
             primaryStage.setScene(new Scene(root, 500, 500));
             primaryStage.show();

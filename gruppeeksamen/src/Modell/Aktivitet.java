@@ -1,8 +1,10 @@
 package Modell;
 
-import java.time.LocalDate;
 
-public abstract class Aktivitet {
+import java.time.LocalDate;
+import java.util.Comparator;
+
+public class Aktivitet implements Comparable<Aktivitet>{
 
     private String navnPaaAktivitet;
     private int tid;
@@ -47,5 +49,17 @@ public abstract class Aktivitet {
     public void setUtover(Bruker utover) {
         this.utover = utover;
     }
+
+    @Override
+    public int compareTo(Aktivitet enTid) {
+
+        if ( this.tid == enTid.getTid()){
+            return this.tid - enTid.getTid();
+        }
+        else{
+            return this.tid - enTid.getTid();
+        }
+    }
+
 
 }

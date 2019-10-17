@@ -22,4 +22,5 @@ public class Arrangementer implements Comparable<Arrangementer> {
     public int compareTo(Arrangementer etArrangement) {
         return getNavn().compareTo(etArrangement.getNavn());
     }
+
 }

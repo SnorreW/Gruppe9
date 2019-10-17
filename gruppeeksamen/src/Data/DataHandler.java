@@ -96,14 +96,14 @@ public class DataHandler {
         return str;
     }
 
-    public static void sendTilNyScene(String fxml) throws IOException {
+    public static void sendTilNyScene(String fxml, String tittel) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DataHandler.class.getResource(fxml));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(root1,500,500));
-        stage.setTitle("Logget Inn");
+        stage.setTitle(tittel);
         stage.showAndWait();
     }
 }

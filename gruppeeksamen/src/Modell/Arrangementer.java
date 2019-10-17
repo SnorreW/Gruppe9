@@ -1,6 +1,4 @@
-package Data;
-
-import java.util.Comparator;
+package Modell;
 
 public class Arrangementer implements Comparable<Arrangementer> {
     String navn;
@@ -22,4 +20,5 @@ public class Arrangementer implements Comparable<Arrangementer> {
     public int compareTo(Arrangementer etArrangement) {
         return getNavn().compareTo(etArrangement.getNavn());
     }
+
 }

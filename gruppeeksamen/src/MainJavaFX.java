@@ -39,6 +39,8 @@ public class MainJavaFX extends Application {
             primaryStage.setTitle("Logg inn");
             primaryStage.setScene(new Scene(root, 500, 500));
             primaryStage.show();
+
+
         }
         catch (IOException ioe) {
             visAlertFeilmelding("I/O feil: ", ioe.getMessage());

@@ -46,7 +46,8 @@ public class LoggInnController {
                 tja = "Det gikk";
                 Stage stage = (Stage) btnLoggInn.getScene().getWindow();
                 stage.close();
-                DataHandler.sendTilNyScene("../view/loggetInn.fxml");
+
+                DataHandler.sendTilNyScene("../view/loggetInn.fxml", "Logget Inn");
                 break;
             } else {
                 //Brukeren skal få en feilmelding

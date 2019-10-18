@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DataHandler {
+
     public static ObservableList<String> hentData(String filnavn, int del, ObservableList liste) {
         if (liste.isEmpty()) {
             liste.addAll(genererData(filnavn, del));

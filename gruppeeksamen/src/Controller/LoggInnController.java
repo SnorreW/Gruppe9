@@ -34,6 +34,23 @@ public class LoggInnController {
     private PasswordField inputPassord;
     @FXML
     private Button btnLoggInn;
+    @FXML
+    private Button btnNyBruker;
+
+    @FXML
+    void nyttVindu(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/nyBrukerVindu.fxml"));
+            Parent hoved = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Lag en ny bruker");
+            stage.setScene(new Scene(hoved));
+            stage.show();
+        }
+        catch (Exception e) {
+            System.out.println("Det fungerer ikke");
+        }
+    }
 
     @FXML
     private void sjekkBruker(ActionEvent event) throws IOException {

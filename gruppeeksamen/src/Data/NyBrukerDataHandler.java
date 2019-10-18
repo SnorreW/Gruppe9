@@ -3,11 +3,27 @@ package Data;
 import Modell.Bruker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.ArrayList;
 
 public class NyBrukerDataHandler {
+    public static void sendTilOpprettBruker(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(NyBrukerDataHandler.class.getResource(fxml));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(new Scene(root,500,500));
+        stage.setTitle("Opprett ny bruker");
+        stage.showAndWait();
+    }
+
     public static ObservableList<Bruker> hentBrukerData() {
         File kilde = new File("brukere.csv");
 

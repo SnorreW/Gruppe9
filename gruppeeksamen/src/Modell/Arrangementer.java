@@ -3,6 +3,10 @@ package Modell;
 public class Arrangementer implements Comparable<Arrangementer> {
     String navn;
 
+    public Arrangementer(String navn) {
+        this.navn = navn;
+    }
+
     public String getNavn() {
         return navn;
     }

@@ -1,5 +1,6 @@
 package Data;
 
+import Modell.Arrangementer;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +27,12 @@ public class DataHandler {
         }
         return liste;
     }
+    public static ObservableList<String> hentDataCuper(String filnavn, int del, ObservableList liste, Arrangementer cup) {
+        if (liste.isEmpty()) {
+            liste.addAll(genererDataCuper(filnavn, del, cup));
+        }
+        return liste;
+    }
 
     private static ArrayList<String> genererData(String filnavn, int del) {
         File kilden = new File(filnavn);
@@ -38,6 +45,13 @@ public class DataHandler {
         File kilden = new File(filnavn);
 
         ArrayList<String> dataFraFil = lesFraCSVFilCupLag(kilden, del, cup);
+
+        return dataFraFil;
+    }
+    private static ArrayList<String> genererDataCuper(String filnavn, int del, Arrangementer cup) {
+        File kilden = new File(filnavn);
+
+        ArrayList<String> dataFraFil = lesFraCSVFilCuper(kilden, del, cup);
 
         return dataFraFil;
     }
@@ -72,6 +86,24 @@ public class DataHandler {
                     for (int i=0; i<delerLag.length; i++) {
                         dataFraFil.add(delerLag[i]);
                     }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return dataFraFil;
+    }
+    private static ArrayList<String> lesFraCSVFilCuper(File filSomLesesFra, int del, Arrangementer cup) {
+        ArrayList<String> dataFraFil = new ArrayList<>();
+        System.out.println("cup ---"+cup);
+
+        try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {
+            String linje;
+            while( (linje = bufretLeser.readLine()) != null ){
+                String[] deler = linje.split(";");
+
+                if (deler[4].equals(cup.toString())) {
+                    dataFraFil.add(deler[0]);
                 }
             }
         } catch (IOException e) {

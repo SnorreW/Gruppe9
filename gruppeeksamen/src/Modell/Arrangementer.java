@@ -1,6 +1,4 @@
-package Data;
-
-import java.util.Comparator;
+package Modell;
 
 public class Arrangementer implements Comparable<Arrangementer> {
     String navn;

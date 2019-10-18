@@ -1,11 +1,12 @@
 package Controller;
 
-import Data.Arrangementer;
+import Modell.Arrangementer;
 import Data.DataHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +16,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Comparator;
 
 public class LoggetInnController {
     private static ObservableList<Arrangementer> listeCuperNavn = FXCollections.observableArrayList();
@@ -59,6 +59,11 @@ public class LoggetInnController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(root1,500,500));
         stage.show();
+    }
+
+    @FXML
+    private void meldPaaLaget(ActionEvent event) throws IOException {
+        DataHandler.sendTilNyScene("../view/meldPaaLag.fxml", "Meld på laget ditt");
     }
 
     public static String getStagen() {

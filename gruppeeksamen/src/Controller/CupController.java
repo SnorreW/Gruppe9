@@ -1,6 +1,8 @@
 package Controller;
 
 import Data.DataHandler;
+import Modell.Aktivitet;
+import Modell.Bruker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +13,9 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class CupController {
     private static ObservableList<String> listeMedLag = FXCollections.observableArrayList();

@@ -61,5 +61,8 @@ public class Aktivitet implements Comparable<Aktivitet>{
         }
     }
 
-
+    @Override
+    public String toString() {
+        return navnPaaAktivitet + ": " + tid;
+    }
 }

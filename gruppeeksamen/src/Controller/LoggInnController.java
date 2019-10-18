@@ -47,12 +47,11 @@ public class LoggInnController {
                 Stage stage = (Stage) btnLoggInn.getScene().getWindow();
                 stage.close();
 
-                DataHandler.sendTilNyScene("../view/loggetInn.fxml");
+                DataHandler.sendTilNyScene("../view/loggetInn.fxml", "Logget Inn");
                 break;
             } else {
                 //Brukeren skal få en feilmelding
                 tja = "Dette gikk ikke så bra";
-                break;
             }
         }
         return tja;

@@ -20,6 +20,9 @@ public class MeldPaaLagController {
 
     @FXML
     public void initialize() {
+        if (idrettListe != null) {
+            idrettListe.clear();
+        }
         idrettListe.add(new Arrangementer("Ski"));
         idrettListe.add(new Arrangementer("Sykkel"));
         idrettListe.add(new Arrangementer("Loping"));
@@ -28,16 +31,19 @@ public class MeldPaaLagController {
 
     @FXML
     private void oppdaterCup(ActionEvent value) {
-        DataHandler.hentDataCuper("src/arrangementer.csv", 0/*CupNavn*/, cuperListe, idretter.getValue());
-        if (cup.getValue() != null) {
-            cup.getItems().clear();
+        if (cuperListe != null) {
+            cuperListe.clear();
         }
+        DataHandler.hentDataCuper("src/arrangementer.csv", 0/*CupNavn*/, cuperListe, idretter.getValue());
         cup.setItems(cuperListe);
     }
 
     @FXML
     private void sendTilFil(ActionEvent value) {
         sendTilFilen(idretter.getValue(), lag.getText());
+        System.out.println(idretter.getValue());
+        System.out.println(cup.getValue());
+        System.out.println(lag.getText());
     }
 
     private void sendTilFilen(Arrangementer idretten, String klubben) {

@@ -95,7 +95,6 @@ public class DataHandler {
     }
     private static ArrayList<String> lesFraCSVFilCuper(File filSomLesesFra, int del, Arrangementer cup) {
         ArrayList<String> dataFraFil = new ArrayList<>();
-        System.out.println("cup ---"+cup);
 
         try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {
             String linje;

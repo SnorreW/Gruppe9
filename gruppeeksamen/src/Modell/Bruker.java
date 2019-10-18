@@ -1,27 +1,37 @@
 package Modell;
 
 public abstract class Bruker {
-    private String brukenavn, passord, klubb, navn, etternavn;
+    private String brukenavn, passord, klubb, navn, etternavn, mail;
 
-    public Bruker(String brukenavn, String passord, String navn, String etternavn) {
+    public Bruker(String brukenavn, String passord, String navn, String etternavn, String mail) {
         this.brukenavn = brukenavn;
         this.passord = passord;
         this.navn = navn;
         this.etternavn = etternavn;
+        this.mail = mail;
     }
 
-    public Bruker(String brukenavn, String passord, String klubb,String navn, String etternavn) {
+    public Bruker(String brukenavn, String passord, String klubb,String navn, String etternavn, String mail) {
         this.brukenavn = brukenavn;
         this.passord = passord;
         this.klubb = klubb;
         this.navn = navn;
         this.etternavn = etternavn;
+        this.mail = mail;
     }
 
     public Bruker(String klubb, String navn, String etternavn) {
         this.klubb = klubb;
         this.navn = navn;
         this.etternavn = etternavn;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getBrukenavn() {

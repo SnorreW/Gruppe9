@@ -4,6 +4,7 @@ package Modell;
 import java.time.LocalDate;
 import java.util.Comparator;
 
+
 public class Aktivitet implements Comparable<Aktivitet>{
 
     private String navnPaaAktivitet;

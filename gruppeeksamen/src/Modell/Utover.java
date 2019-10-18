@@ -12,6 +12,7 @@ public class Utover extends Bruker {
 
     //Hvilke arragementer som brukeren har vært med i
 
+
     @Override
     public String toString(){
         return "Navn: " + getNavn() + ". Etternavn: " + getEtternavn() + ". Klubb: " + getKlubb() + ".";

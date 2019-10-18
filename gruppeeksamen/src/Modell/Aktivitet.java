@@ -2,7 +2,7 @@ package Modell;
 
 import java.time.LocalDate;
 
-public abstract class Aktivitet {
+public class Aktivitet {
 
 private int tid;
 private LocalDate dato;

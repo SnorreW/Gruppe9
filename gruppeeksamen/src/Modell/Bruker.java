@@ -1,6 +1,6 @@
 package Modell;
 
-public class Bruker {
+public abstract class Bruker {
     private String brukenavn, passord, klubb, fornavn, etternavn, mail;
 
     public Bruker(String brukenavn, String passord, String fornavn, String etternavn, String klubb, String mail) {

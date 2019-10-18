@@ -1,11 +1,15 @@
 package Modell;
 
 public class Bruker {
-    private String brukenavn, passord, klubb;
+    private String brukenavn, passord, klubb, fornavn, etternavn, mail;
 
-    public Bruker(String brukenavn, String passord) {
+    public Bruker(String brukenavn, String passord, String fornavn, String etternavn, String klubb, String mail) {
         this.brukenavn = brukenavn;
         this.passord = passord;
+        this.fornavn = fornavn;
+        this.etternavn = etternavn;
+        this.klubb = klubb;
+        this.mail = mail;
     }
 
     public Bruker(String brukenavn, String passord, String klubb) {
@@ -14,7 +18,35 @@ public class Bruker {
         this.klubb = klubb;
     }
 
-    public Bruker() {
+    public Bruker(String klubb, String fornavn, String etternavn, String mail) {
+        this.klubb = klubb;
+        this.fornavn = fornavn;
+        this.etternavn = etternavn;
+        this.mail = mail;
+    }
+
+    public String getFornavn() {
+        return fornavn;
+    }
+
+    public void setFornavn(String fornavn) {
+        this.fornavn = fornavn;
+    }
+
+    public String getEtternavn() {
+        return etternavn;
+    }
+
+    public void setEtternavn(String etternavn) {
+        this.etternavn = etternavn;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getBrukenavn() {

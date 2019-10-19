@@ -22,8 +22,9 @@
       <AnchorPane fx:id="ap" prefHeight="500.0" prefWidth="500.0" GridPane.columnIndex="2">
          <children>
             <Label fx:id="cupNavn" layoutX="138.0" layoutY="23.0" text="Lag som er med på cuppen:" />
-            <ListView fx:id="lagSomErMed" layoutY="73.0" prefHeight="394.0" prefWidth="500.0" />
+            <ListView fx:id="lagSomErMed" layoutY="73.0" prefHeight="213.0" prefWidth="500.0" />
             <Button fx:id="labelGaaTilbake" layoutX="20.0" layoutY="28.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
+            <Button layoutX="21.0" layoutY="308.0" mnemonicParsing="false" onAction="#slettLag" text="Slett" />
          </children>
       </AnchorPane>
    </children>

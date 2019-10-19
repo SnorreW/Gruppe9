@@ -47,6 +47,7 @@ public class LoggetInnController {
             nyListe.add(l);
         }
         cup.setItems(nyListe);
+        cup.getSelectionModel().select(null);
     }
 
     private void sendTilNyScene(String fxml, String cup) throws IOException {
@@ -63,7 +64,7 @@ public class LoggetInnController {
 
     @FXML
     private void meldPaaLaget(ActionEvent event) throws IOException {
-        DataHandler.sendTilNyScene("../view/meldPaaLag.fxml", "Meld på laget ditt");
+        DataHandler.sendTilNyScene("../view/meldPaaLag.fxml", "Meld på laget ditt", 500, 500);
     }
 
     public static String getStagen() {

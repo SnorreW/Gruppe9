@@ -12,8 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MeldPaaLagController {
     private static ObservableList<Arrangementer> idrettListe = FXCollections.observableArrayList();
@@ -72,13 +73,18 @@ public class MeldPaaLagController {
                 }
             }
         }
-        endreCSVFil("src/arrangementer.csv", gammelLinje, nyLinje);
+        System.out.println("idretter: "+idretter.getValue());
+        System.out.println("cup: "+cup.getValue());
+        System.out.println("lag: "+lag.getText());
+        if (!lag.getText().equals("") && idretter.getValue() != null && cup.getValue() != null) {
+            endreLinjeICSVFil("src/arrangementer.csv", gammelLinje, nyLinje);
 
-        Stage stage = (Stage) meldePaaKnapp.getScene().getWindow();
-        stage.close();
+            Stage stage = (Stage) meldePaaKnapp.getScene().getWindow();
+            stage.close();
+        }
     }
 
-    private static ArrayList<String> endreCSVFil(String filenSomLesesFra, String gammelLinje, String nylinje) throws IOException {
+    private static void endreLinjeICSVFil(String filenSomLesesFra, String gammelLinje, String nylinje) throws IOException {
         File filSomLesesFra = new File(filenSomLesesFra);
         ArrayList<String> dataFraFil = new ArrayList<>();
         String nyFil = "";
@@ -90,7 +96,17 @@ public class MeldPaaLagController {
                 String[] deler = linje.split(";");
                 linjen = deler[0] + ";" + deler[1] + ";" + deler[2] + ";" + deler[3] + ";" + deler[4];
                 if (linjen.equals(gammelLinje)) {
-                    nyFil += nylinje + "\n";
+                    String[] linjeArray = linjen.split(";");
+                    String[] linjeArrayLag = linjeArray[2].split("\\|");
+                    List<String> linjeListLag = Arrays.asList(linjeArrayLag);
+                    String[] nyLinjeArray = nylinje.split(";");
+                    String[] nyLinjeArrayLag = nyLinjeArray[2].split("\\|");
+                    String sisteINyLinjeArray = nyLinjeArrayLag[nyLinjeArrayLag.length-1];
+                    if (linjeListLag.contains(sisteINyLinjeArray)) {
+                        nyFil += gammelLinje + "\n";
+                    } else {
+                        nyFil += nylinje + "\n";
+                    }
                 } else {
                     nyFil += linjen + "\n";
                 }
@@ -105,6 +121,5 @@ public class MeldPaaLagController {
         skriv.flush();
         skriv.close();
 
-        return dataFraFil;
     }
 }

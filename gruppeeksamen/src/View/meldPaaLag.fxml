@@ -24,7 +24,7 @@
          <children>
             <TextField fx:id="lag" layoutX="191.0" layoutY="153.0" />
             <Label layoutX="116.0" layoutY="157.0" text="Lagnavn:" />
-            <Button layoutX="176.0" layoutY="211.0" mnemonicParsing="false" onAction="#sendTilFil" text="Button" />
+            <Button fx:id="meldePaaKnapp" layoutX="176.0" layoutY="211.0" mnemonicParsing="false" onAction="#sendVidereTilFil" text="Button" />
             <ComboBox fx:id="idretter" layoutX="175.0" layoutY="37.0" onAction="#oppdaterCup" prefWidth="150.0" promptText="Idrett" />
             <Label layoutX="111.0" layoutY="41.0" text="Idrett" />
             <ComboBox fx:id="cup" layoutX="190.0" layoutY="94.0" prefWidth="150.0" promptText="Cup" />

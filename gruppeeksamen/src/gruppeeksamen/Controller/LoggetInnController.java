@@ -18,11 +18,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class LoggetInnController {
-    private static ObservableList<Arrangementer> listeCuperNavn = FXCollections.observableArrayList();
-    private static ObservableList<Arrangementer> listeCuperDato = FXCollections.observableArrayList();
     private static ObservableList<String> nyListe = FXCollections.observableArrayList();
+    private static ObservableList<String> slettListe = FXCollections.observableArrayList();
     private static String stagen = null;
 
     @FXML
@@ -43,23 +44,29 @@ public class LoggetInnController {
                 }
             }
         });
-        String l = "";
-        ObservableList<String> cuperNavn = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv", 0/*Navn*/, listeCuperNavn);
-        ObservableList<String> cuperDato = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv", 3/*Dato*/, listeCuperDato);
-        for (int i=0; i < cuperNavn.size(); i++) {
-            l = "";
-            l += cuperDato.get(i) + ": " + cuperNavn.get(i);
-            nyListe.add(l);
+        cup.setItems(fyllListe());
+    }
+
+    private ObservableList<String> fyllListe() {
+        ArrayList loo = new ArrayList();
+        ObservableList<String> slettListen = DataHandler.hentDataHele("src/gruppeeksamen/arrangementer.csv", slettListe);
+        ArrayList l = new ArrayList<>(slettListen);
+        String utskrift;
+        for (int i=0; i<slettListen.size();i++) {
+            ArrayList lo = (ArrayList) l.get(i);
+            utskrift = lo.get(3) + ": " + lo.get(0);
+            loo.add(utskrift);
         }
-        cup.setItems(nyListe);
-        cup.getSelectionModel().select(null);
+        slettListen = FXCollections.observableArrayList(loo);
+
+        return slettListen;
     }
 
     private void sendTilNyScene(String fxml, String cup) throws IOException {
         String[] li = cup.split(": ");
         setStagen(li[1]);
         FXMLLoader fxmlLoader = new FXMLLoader(DataHandler.class.getResource(fxml));
-        Parent root1 = (Parent) fxmlLoader.load();
+        Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle(li[1]);
         stage.initModality(Modality.APPLICATION_MODAL);

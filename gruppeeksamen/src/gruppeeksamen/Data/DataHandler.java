@@ -21,9 +21,9 @@ public class DataHandler {
         }
         return liste;
     }
-    public static ObservableList<String> hentData(String filnavn, int del, ObservableList liste) {
+    public static ObservableList<String> hentDataDel(String filnavn, int del, ObservableList liste) {
         if (liste.isEmpty()) {
-            liste.addAll(genererData(filnavn, del));
+            liste.addAll(genererDataDel(filnavn, del));
         }
         return liste;
     }
@@ -47,10 +47,10 @@ public class DataHandler {
 
         return dataFraFil;
     }
-    private static ArrayList<String> genererData(String filnavn, int del) {
+    private static ArrayList<String> genererDataDel(String filnavn, int del) {
         File kilden = new File(filnavn);
 
-        ArrayList<String> dataFraFil = lesFraCSVFil(kilden, del);
+        ArrayList<String> dataFraFil = lesFraCSVFilDel(kilden, del);
 
         return dataFraFil;
     }
@@ -92,7 +92,7 @@ public class DataHandler {
 
         return dataFraFil;
     }
-    private static ArrayList<String> lesFraCSVFil(File filSomLesesFra, int del) {
+    private static ArrayList<String> lesFraCSVFilDel(File filSomLesesFra, int del) {
         ArrayList<String> dataFraFil = new ArrayList<>();
 
         try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {

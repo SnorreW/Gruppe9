@@ -18,6 +18,7 @@ import java.util.List;
 public class MeldPaaLagController {
     private static ObservableList<Arrangementer> idrettListe = FXCollections.observableArrayList();
     private static ObservableList<Arrangementer> cuperListe  = FXCollections.observableArrayList();
+    private static ObservableList<Arrangementer> slettListe  = FXCollections.observableArrayList();
     private static ObservableList<String> cupList  = FXCollections.observableArrayList();
     private static ObservableList<String> antallLagList  = FXCollections.observableArrayList();
     private static ObservableList<String> lagList  = FXCollections.observableArrayList();
@@ -25,7 +26,9 @@ public class MeldPaaLagController {
     private static ObservableList<String> typeList  = FXCollections.observableArrayList();
 
     @FXML
-    private ComboBox<Arrangementer> idretter, cup;
+    private ComboBox<Arrangementer> idretter;
+    @FXML
+    private ComboBox<Arrangementer> cup;
     @FXML
     private TextField lag;
     @FXML
@@ -53,11 +56,11 @@ public class MeldPaaLagController {
 
     @FXML
     private void sendVidereTilFil(ActionEvent value) throws IOException {
-        ObservableList<String> cupListen = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv", 0, cupList);
-        ObservableList<String> antallLagListen = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv",1, antallLagList);
-        ObservableList<String> lagListen = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv",2, lagList);
-        ObservableList<String> datoListen = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv",3, datoList);
-        ObservableList<String> typeListen = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv",4, typeList);
+        ObservableList<String> cupListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv", 0, cupList);
+        ObservableList<String> antallLagListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv",1, antallLagList);
+        ObservableList<String> lagListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv",2, lagList);
+        ObservableList<String> datoListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv",3, datoList);
+        ObservableList<String> typeListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv",4, typeList);
         String gammelLinje = "";
         String nyLinje = "";
         String lagene = "";

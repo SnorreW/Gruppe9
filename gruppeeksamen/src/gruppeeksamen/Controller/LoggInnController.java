@@ -16,13 +16,11 @@ import java.io.IOException;
 public class LoggInnController {
     private static ObservableList<String> listeBrukenavn = FXCollections.observableArrayList();
     private static ObservableList<String> listePassord = FXCollections.observableArrayList();
-    private static ObservableList<String> listeMail = FXCollections.observableArrayList();
     private static ObservableList<String> listeSlett = FXCollections.observableArrayList();
-    private static ObservableList<String> listeSlettOgsa = FXCollections.observableArrayList();
 
     @FXML
     //Dette skal bort
-    private ListView brukerListen, passordListen, mailListen;
+    private ListView brukerListen;
     @FXML
     private TextField inputBrukernavn, tja;
     @FXML
@@ -36,8 +34,8 @@ public class LoggInnController {
     }
 
     private String gaarGjennomListe(String brukernavn, String passord, ActionEvent event) throws IOException {
-        ObservableList<String> brukernavnListe = DataHandler.hentData("src/gruppeeksamen/brukere.csv", 0/*Brukernavn*/, listeBrukenavn);
-        ObservableList<String> passordListe = DataHandler.hentData("src/gruppeeksamen/brukere.csv", 1/*Passord*/, listePassord);
+        ObservableList<String> brukernavnListe = DataHandler.hentDataDel("src/gruppeeksamen/brukere.csv", 0/*Brukernavn*/, listeBrukenavn);
+        ObservableList<String> passordListe = DataHandler.hentDataDel("src/gruppeeksamen/brukere.csv", 1/*Passord*/, listePassord);
         String tja = "";
         for (int i = 0; i < brukernavnListe.size(); i++) {
             if (brukernavnListe.get(i).equals(brukernavn) && passordListe.get(i).equals(passord)) {
@@ -57,11 +55,7 @@ public class LoggInnController {
 
     @FXML
     public void initialize() {
-        System.out.println(DataHandler.hentDataHele("src/gruppeeksamen/brukere.csv",listeSlett));
-        System.out.println(DataHandler.hentDataHele("src/gruppeeksamen/arrangementer.csv",listeSlettOgsa));
         //Dette skal bort
-        brukerListen.setItems(DataHandler.hentData("src/gruppeeksamen/brukere.csv",0/*Brukernavn*/, listeBrukenavn));
-        passordListen.setItems(DataHandler.hentData("src/gruppeeksamen/brukere.csv",1/*Passord*/, listePassord));
-        mailListen.setItems(DataHandler.hentData("src/gruppeeksamen/brukere.csv",2/*Mail*/, listeMail));
+        brukerListen.setItems(DataHandler.hentDataHele("src/gruppeeksamen/brukere.csv", listeSlett));
     }
 }

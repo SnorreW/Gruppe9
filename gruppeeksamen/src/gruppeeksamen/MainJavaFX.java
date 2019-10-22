@@ -86,7 +86,7 @@ public class MainJavaFX extends Application {
         return false;
     }*/
 
-    private static void visAlertFeilmelding(String overskrift, String melding) {
+    public static void visAlertFeilmelding(String overskrift, String melding) {
         Alert exceptionAlert = new Alert(Alert.AlertType.ERROR);
         exceptionAlert.setTitle("Feil");
         exceptionAlert.setHeaderText(overskrift);

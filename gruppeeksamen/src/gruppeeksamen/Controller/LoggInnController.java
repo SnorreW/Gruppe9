@@ -1,6 +1,7 @@
 package gruppeeksamen.Controller;
 
 import gruppeeksamen.Data.DataHandler;
+import gruppeeksamen.MainJavaFX;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,12 +18,10 @@ public class LoggInnController {
     private static ObservableList<String> listeBrukenavn = FXCollections.observableArrayList();
     private static ObservableList<String> listePassord = FXCollections.observableArrayList();
     private static ObservableList<String> listeSlett = FXCollections.observableArrayList();
+    private boolean innlogginsFeil = false;
 
     @FXML
-    //Dette skal bort
-    private ListView brukerListen;
-    @FXML
-    private TextField inputBrukernavn, tja;
+    private TextField inputBrukernavn;
     @FXML
     private PasswordField inputPassord;
     @FXML
@@ -30,32 +29,26 @@ public class LoggInnController {
 
     @FXML
     private void sjekkBruker(ActionEvent event) throws IOException {
-        tja.setText(gaarGjennomListe(inputBrukernavn.getText(),inputPassord.getText(), event));
+        gaarGjennomListe(inputBrukernavn.getText(),inputPassord.getText(), event);
     }
 
-    private String gaarGjennomListe(String brukernavn, String passord, ActionEvent event) throws IOException {
+    private boolean gaarGjennomListe(String brukernavn, String passord, ActionEvent event) throws IOException {
         ObservableList<String> brukernavnListe = DataHandler.hentDataDel("src/gruppeeksamen/brukere.csv", 0/*Brukernavn*/, listeBrukenavn);
         ObservableList<String> passordListe = DataHandler.hentDataDel("src/gruppeeksamen/brukere.csv", 1/*Passord*/, listePassord);
-        String tja = "";
         for (int i = 0; i < brukernavnListe.size(); i++) {
             if (brukernavnListe.get(i).equals(brukernavn) && passordListe.get(i).equals(passord)) {
-                tja = "Det gikk";
+                innlogginsFeil = false;
                 Stage stage = (Stage) btnLoggInn.getScene().getWindow();
                 stage.close();
-
                 DataHandler.sendTilNyScene("../view/loggetInn.fxml", "Arrengementer", 500, 500);
                 break;
             } else {
-                //Brukeren skal få en feilmelding
-                tja = "Dette gikk ikke så bra";
+                innlogginsFeil = true;
             }
         }
-        return tja;
-    }
-
-    @FXML
-    public void initialize() {
-        //Dette skal bort
-        brukerListen.setItems(DataHandler.hentDataHele("src/gruppeeksamen/brukere.csv", listeSlett));
+        if (innlogginsFeil) {
+            MainJavaFX.visAlertFeilmelding("Feil ved innlogging", "Brukernavn eller passord er feil.");
+        }
+        return innlogginsFeil;
     }
 }

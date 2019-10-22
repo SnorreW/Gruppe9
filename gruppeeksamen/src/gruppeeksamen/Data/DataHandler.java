@@ -15,6 +15,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DataHandler {
+    public static ObservableList<String> hentDataHele(String filnavn, ObservableList liste) {
+        if (liste.isEmpty()) {
+            liste.addAll(genererDataHele(filnavn));
+        }
+        return liste;
+    }
     public static ObservableList<String> hentData(String filnavn, int del, ObservableList liste) {
         if (liste.isEmpty()) {
             liste.addAll(genererData(filnavn, del));
@@ -34,6 +40,13 @@ public class DataHandler {
         return liste;
     }
 
+    private static ArrayList<ArrayList<String>> genererDataHele(String filnavn) {
+        File kilden = new File(filnavn);
+
+        ArrayList<ArrayList<String>> dataFraFil = lesFraCSVFilHele(kilden);
+
+        return dataFraFil;
+    }
     private static ArrayList<String> genererData(String filnavn, int del) {
         File kilden = new File(filnavn);
 
@@ -56,6 +69,29 @@ public class DataHandler {
         return dataFraFil;
     }
 
+    private static ArrayList<ArrayList<String>> lesFraCSVFilHele(File filSomLesesFra) {
+        ArrayList<ArrayList<String>> dataFraFil = new ArrayList<>();
+
+        try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {
+            String linje;
+            while( (linje = bufretLeser.readLine()) != null ){
+                ArrayList<String> person = new ArrayList<>();
+                String[] deler = linje.split(";");
+
+                for (int i=0; i<deler.length;i++) {
+                    person.add(deler[i]);
+                }
+
+                dataFraFil.add(person);
+
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+        return dataFraFil;
+    }
     private static ArrayList<String> lesFraCSVFil(File filSomLesesFra, int del) {
         ArrayList<String> dataFraFil = new ArrayList<>();
 

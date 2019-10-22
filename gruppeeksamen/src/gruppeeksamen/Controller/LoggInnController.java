@@ -17,6 +17,8 @@ public class LoggInnController {
     private static ObservableList<String> listeBrukenavn = FXCollections.observableArrayList();
     private static ObservableList<String> listePassord = FXCollections.observableArrayList();
     private static ObservableList<String> listeMail = FXCollections.observableArrayList();
+    private static ObservableList<String> listeSlett = FXCollections.observableArrayList();
+    private static ObservableList<String> listeSlettOgsa = FXCollections.observableArrayList();
 
     @FXML
     //Dette skal bort
@@ -55,6 +57,8 @@ public class LoggInnController {
 
     @FXML
     public void initialize() {
+        System.out.println(DataHandler.hentDataHele("src/gruppeeksamen/brukere.csv",listeSlett));
+        System.out.println(DataHandler.hentDataHele("src/gruppeeksamen/arrangementer.csv",listeSlettOgsa));
         //Dette skal bort
         brukerListen.setItems(DataHandler.hentData("src/gruppeeksamen/brukere.csv",0/*Brukernavn*/, listeBrukenavn));
         passordListen.setItems(DataHandler.hentData("src/gruppeeksamen/brukere.csv",1/*Passord*/, listePassord));

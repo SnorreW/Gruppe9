@@ -13,19 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
 
 public class MeldPaaLagController {
-    private static ObservableList<Arrangementer> idrettListe = FXCollections.observableArrayList();
-    private static ObservableList<Arrangementer> cuperListe  = FXCollections.observableArrayList();
-    private static ObservableList<String> cupList  = FXCollections.observableArrayList();
-    private static ObservableList<String> antallLagList  = FXCollections.observableArrayList();
-    private static ObservableList<String> lagList  = FXCollections.observableArrayList();
-    private static ObservableList<String> datoList  = FXCollections.observableArrayList();
-    private static ObservableList<String> typeList  = FXCollections.observableArrayList();
-
     @FXML
     private ComboBox<Arrangementer> idretter;
     @FXML
@@ -37,6 +28,7 @@ public class MeldPaaLagController {
 
     @FXML
     public void initialize() {
+        ObservableList<Arrangementer> idrettListe = FXCollections.observableArrayList();
         if (idrettListe != null) {
             idrettListe.clear();
         }
@@ -48,6 +40,7 @@ public class MeldPaaLagController {
 
     @FXML
     private void oppdaterCup(ActionEvent value) {
+        ObservableList<Arrangementer> cuperListe  = FXCollections.observableArrayList();
         if (cuperListe != null) {
             cuperListe.clear();
         }
@@ -61,11 +54,13 @@ public class MeldPaaLagController {
     }
 
     private void leggTilLag() {
+        ObservableList<String> cupList  = FXCollections.observableArrayList();
+        ObservableList<String> antallLagList  = FXCollections.observableArrayList();
+        ObservableList<String> lagList  = FXCollections.observableArrayList();
+        ObservableList<String> datoList  = FXCollections.observableArrayList();
+        ObservableList<String> typeList  = FXCollections.observableArrayList();
         if (!lag.getText().equals("") && idretter.getValue() != null && cup.getValue() != null) {
-            ObservableList<String> nyLagList  = FXCollections.observableArrayList();
-            ObservableList<String> nyAntallLagList  = FXCollections.observableArrayList();
-            nyAntallLagList.clear();
-            nyLagList.clear();
+            //fyller div. lister
             ObservableList<String> cupListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv", 0, cupList);
             ObservableList<String> antallLagListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv",1, antallLagList);
             ObservableList<String> lagListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv",2, lagList);
@@ -89,19 +84,8 @@ public class MeldPaaLagController {
                         }
                         gammelLinje = cupListen.get(k) + ";" + antallLagListen.get(k) + ";" + lagListen.get(k) + ";" + datoListen.get(k) + ";" + typeListen.get(k);
                         nyLinje = cupListen.get(k) + ";" + nyeAntallLag + ";" + nyeLagene + ";" + datoListen.get(k) + ";" + typeListen.get(k);
-                        for(int i=0; i<lagListen.size();i++) {
-                            if (lagListen.get(i).equals(lagListen.get(k))){
-                                nyLagList.add(nyeLagene);
-                                nyAntallLagList.add(String.valueOf(nyeAntallLag));
-                            } else {
-                                nyLagList.add(lagListen.get(i));
-                                nyAntallLagList.add(antallLagListen.get(i));
-                            }
-                        }
                     }
                 }
-                lagList = nyLagList;
-                antallLagList = nyAntallLagList;
             }
             endreLinjeICSVFil("src/gruppeeksamen/arrangementer.csv", gammelLinje, nyLinje);
 

@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class DataHandler {
@@ -138,7 +139,7 @@ public class DataHandler {
                 String[] deler = linje.split(";");
 
                 if (deler[4].equals(cup.toString())) {
-                    dataFraFil.add(deler[0]);
+                    dataFraFil.add(deler[del]);
                 }
             }
         } catch (IOException e) {
@@ -163,14 +164,18 @@ public class DataHandler {
         return str;
     }
 
-    public static void sendTilNyScene(String fxml, String tittel, int bredde, int hoyde) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DataHandler.class.getResource(fxml));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
+    public static void sendTilNyScene(String fxml, String tittel, int bredde, int hoyde) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(DataHandler.class.getResource(fxml));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
 
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(new Scene(root1,bredde,hoyde));
-        stage.setTitle(tittel);
-        stage.showAndWait();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root1,bredde,hoyde));
+            stage.setTitle(tittel);
+            stage.showAndWait();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

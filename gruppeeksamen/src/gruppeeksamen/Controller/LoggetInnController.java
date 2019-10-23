@@ -18,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -37,11 +38,7 @@ public class LoggetInnController {
         cup.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                try {
-                    sendTilNyScene("../view/cup.fxml", newValue);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                sendTilNyScene("../view/cup.fxml", newValue);
             }
         });
         cup.setItems(fyllListe());
@@ -62,25 +59,34 @@ public class LoggetInnController {
         return slettListen;
     }
 
-    private void sendTilNyScene(String fxml, String cup) throws IOException {
-        String[] li = cup.split(": ");
-        setStagen(li[1]);
-        FXMLLoader fxmlLoader = new FXMLLoader(DataHandler.class.getResource(fxml));
-        Parent root1 = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setTitle(li[1]);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(new Scene(root1,500,500));
-        stage.show();
+    private void sendTilNyScene(String fxml, String cup) {
+        try {
+            String[] li = cup.split(": ");
+            setStagen(li[1]);
+            FXMLLoader fxmlLoader = new FXMLLoader(DataHandler.class.getResource(fxml));
+            Parent root1 = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle(li[1]);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root1,500,500));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
-    private void meldPaaLaget(ActionEvent event) throws IOException {
+    private void meldPaaLaget(ActionEvent event) {
         DataHandler.sendTilNyScene("../view/meldPaaLag.fxml", "Meld på laget ditt", 500, 500);
     }
 
     @FXML
-    private void loggUtBruker(ActionEvent event) throws IOException {
+    private void leggTilArrangement(ActionEvent event) {
+        DataHandler.sendTilNyScene("../view/leggTilArrangement.fxml", "Legg til arrangement", 500, 500);
+    }
+
+    @FXML
+    private void loggUtBruker(ActionEvent event) {
         Stage stage = (Stage) loggUt.getScene().getWindow();
         stage.close();
         MainJavaFX.gaaTilHovedVisning();

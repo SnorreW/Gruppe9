@@ -23,7 +23,7 @@
       <AnchorPane prefHeight="500.0" prefWidth="500.0" GridPane.columnIndex="2">
          <children>
             <TextField fx:id="lag" layoutX="211.0" layoutY="262.0" />
-            <Label layoutX="141.0" layoutY="266.0" text="Lagnavn:" />
+            <Label layoutX="154.0" layoutY="266.0" text="Utøver:" />
             <Button fx:id="meldePaaKnapp" layoutX="280.0" layoutY="312.0" mnemonicParsing="false" onAction="#sendVidereTilFil" text="Meld på lag" />
             <ComboBox fx:id="idretter" layoutX="210.0" layoutY="163.0" onAction="#oppdaterCup" prefWidth="150.0" promptText="Idrett" />
             <Label layoutX="157.0" layoutY="167.0" text="Idrett:" />

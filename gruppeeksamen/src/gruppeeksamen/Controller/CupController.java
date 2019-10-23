@@ -38,13 +38,13 @@ public class CupController {
     }
 
     @FXML
-    private void slettLag(ActionEvent event) throws IOException {
+    private void slettLag(ActionEvent event) {
         String cup = LoggetInnController.getStagen();
         String lagetSomSkalSlettes = lagSomErMed.getSelectionModel().getSelectedItem();
         slettBestemtLagICup("src/gruppeeksamen/arrangementer.csv", cup, lagetSomSkalSlettes);
     }
 
-    private void slettBestemtLagICup(String filenSomLesesFra, String cup, String lagetSomSkalSlettes) throws IOException {
+    private void slettBestemtLagICup(String filenSomLesesFra, String cup, String lagetSomSkalSlettes) {
         File filSomLesesFra = new File(filenSomLesesFra);
         String nyLag = "";
         String nyLagLinje = "";
@@ -72,10 +72,15 @@ public class CupController {
             System.out.println(e);
         }
 
-        FileWriter skriv = new FileWriter(filenSomLesesFra);
-        skriv.write(nyLagLinje);
-        skriv.flush();
-        skriv.close();
+        try {
+            FileWriter skriv = new FileWriter(filenSomLesesFra);
+            BufferedWriter skrive = new BufferedWriter(skriv);
+            skrive.write(nyLagLinje);
+            skrive.flush();
+            skrive.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
         listeMedLag.clear();
         listeMedLag = DataHandler.hentDataCupLag("src/gruppeeksamen/arrangementer.csv",2/*lag*/,listeMedLag,cup);

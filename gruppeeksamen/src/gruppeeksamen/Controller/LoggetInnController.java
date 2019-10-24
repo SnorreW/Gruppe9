@@ -1,7 +1,6 @@
 package gruppeeksamen.Controller;
 
 import gruppeeksamen.MainJavaFX;
-import gruppeeksamen.Modell.Arrangementer;
 import gruppeeksamen.Data.DataHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,9 +17,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Date;
 
 public class LoggetInnController {
     private static ObservableList<String> nyListe = FXCollections.observableArrayList();
@@ -30,7 +31,7 @@ public class LoggetInnController {
     @FXML
     private ListView<String> cup;
     @FXML
-    private Button loggUt;
+    private Button loggUt, leggTilArrangement;
 
     @FXML
     public void initialize() {
@@ -38,13 +39,16 @@ public class LoggetInnController {
         cup.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                Stage stagen = (Stage) leggTilArrangement.getScene().getWindow();
+                stagen.close();
                 sendTilNyScene("../view/cup.fxml", newValue);
             }
         });
         cup.setItems(fyllListe());
     }
 
-    private ObservableList<String> fyllListe() {
+    private static ObservableList<String> fyllListe() {
+        slettListe.clear();
         ArrayList loo = new ArrayList();
         ObservableList<String> slettListen = DataHandler.hentDataHele("src/gruppeeksamen/arrangementer.csv", slettListe);
         ArrayList l = new ArrayList<>(slettListen);
@@ -77,11 +81,15 @@ public class LoggetInnController {
 
     @FXML
     private void meldPaaLaget(ActionEvent event) {
+        Stage stagen = (Stage) leggTilArrangement.getScene().getWindow();
+        stagen.close();
         DataHandler.sendTilNyScene("../view/meldPaaLag.fxml", "Meld på laget ditt", 500, 500);
     }
 
     @FXML
     private void leggTilArrangement(ActionEvent event) {
+        Stage stagen = (Stage) leggTilArrangement.getScene().getWindow();
+        stagen.close();
         DataHandler.sendTilNyScene("../view/leggTilArrangement.fxml", "Legg til arrangement", 500, 500);
     }
 

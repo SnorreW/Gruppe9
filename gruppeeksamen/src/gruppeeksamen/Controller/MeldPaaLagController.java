@@ -24,7 +24,7 @@ public class MeldPaaLagController {
     @FXML
     private TextField lag;
     @FXML
-    private Button meldePaaKnapp;
+    private Button meldePaaKnapp, labelGaaTilbake;
 
     @FXML
     public void initialize() {
@@ -51,6 +51,13 @@ public class MeldPaaLagController {
     @FXML
     private void sendVidereTilFil(ActionEvent value) {
         leggTilLag();
+    }
+
+    @FXML
+    private void gaaTilbake(ActionEvent event) {
+        Stage stage = (Stage) labelGaaTilbake.getScene().getWindow();
+        stage.close();
+        DataHandler.sendTilNyScene("../view/loggetInn.fxml", "Arrengementer", 500, 500);
     }
 
     private void leggTilLag() {
@@ -91,6 +98,7 @@ public class MeldPaaLagController {
 
             Stage stage = (Stage) meldePaaKnapp.getScene().getWindow();
             stage.close();
+            DataHandler.sendTilNyScene("../view/loggetInn.fxml", "Arrengementer", 500, 500);
         } else {
             MainJavaFX.visAlertFeilmelding("Mangler idrett, cup eller utøver","Må fylle inn en av delene");
         }
@@ -106,13 +114,7 @@ public class MeldPaaLagController {
             while( (linjeSomSkalBliDeler = bufretLeser.readLine()) != null ){
                 String[] deler = linjeSomSkalBliDeler.split(";");
                 linjen = deler[0] + ";" + deler[1] + ";" + deler[2] + ";" + deler[3] + ";" + deler[4];
-                if (linjen.equals(gammelLinje) || linjen.equals(nylinje)) {
-                    String[] linjeArray = linjen.split(";");
-                    String[] linjeArrayLag = linjeArray[2].split("\\|");
-                    List<String> linjeListLag = Arrays.asList(linjeArrayLag);
-                    String[] nyLinjeArray = nylinje.split(";");
-                    String[] nyLinjeArrayLag = nyLinjeArray[2].split("\\|");
-                    String sisteINyLinjeArray = nyLinjeArrayLag[nyLinjeArrayLag.length-1];
+                if (linjen.equals(gammelLinje)) {
                     nyFil.append(nylinje).append("\n");
                 } else {
                     nyFil.append(linjen).append("\n");

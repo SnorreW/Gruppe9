@@ -173,7 +173,7 @@ public class DataHandler {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root1,bredde,hoyde));
             stage.setTitle(tittel);
-            stage.showAndWait();
+            stage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

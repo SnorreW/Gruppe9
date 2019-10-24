@@ -35,6 +35,7 @@ public class CupController {
     private void gaaTilbake(ActionEvent event) {
         Stage stage = (Stage) labelGaaTilbake.getScene().getWindow();
         stage.close();
+        DataHandler.sendTilNyScene("../view/loggetInn.fxml", "Arrengementer", 500, 500);
     }
 
     @FXML

@@ -25,10 +25,6 @@ public class MainJavaFX extends Application {
         gaaTilHovedVisning();
     }
 
-    public static Stage getStage() {
-        return primaryStage;
-    }
-
     public static void gaaTilHovedVisning() {
 
         try {
@@ -43,6 +39,7 @@ public class MainJavaFX extends Application {
         }
         catch (IOException ioe) {
             visAlertFeilmelding("I/O feil: ", ioe.getMessage());
+            System.out.println(ioe.getMessage());
         }
         catch (IllegalStateException ise) {
             visAlertFeilmelding("Feil 41\nFant ikke grensesnittdefinisjon", ise.getMessage());

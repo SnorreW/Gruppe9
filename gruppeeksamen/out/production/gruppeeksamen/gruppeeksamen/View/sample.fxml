@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppeeksamen.Controller.LoggInnController">
+<GridPane alignment="center" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppeeksamen.Controller.LoggInnController">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
@@ -27,6 +27,7 @@
             <Button fx:id="btnLoggInn" layoutX="315.0" layoutY="287.0" mnemonicParsing="false" onAction="#sjekkBruker" text="Button" />
             <Label layoutX="134.0" layoutY="191.0" text="Brukernavn:" />
             <Label layoutX="153.0" layoutY="241.0" text="Passord:" />
+            <Button fx:id="btnNyUtover" layoutX="10.0" layoutY="400.0" mnemonicParsing="false" onAction="#btnNyUtoverClicked" text="Ny Utover" />
          </children>
       </AnchorPane>
    </children>

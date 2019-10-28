@@ -1,10 +1,13 @@
 package gruppeeksamen;
 
+import gruppeeksamen.Controller.NyBrukerController;
+import gruppeeksamen.Modell.Utover;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,8 +37,6 @@ public class MainJavaFX extends Application {
             primaryStage.setTitle("Logg inn");
             primaryStage.setScene(new Scene(root, 500, 500));
             primaryStage.show();
-
-
         }
         catch (IOException ioe) {
             visAlertFeilmelding("I/O feil: ", ioe.getMessage());
@@ -46,7 +47,7 @@ public class MainJavaFX extends Application {
         }
     }
 
-    /*public boolean visNyBrukerVindu(Bruker nyBruker) {
+    public boolean visNyUtoverDialog(Utover nyUtover) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -68,7 +69,7 @@ public class MainJavaFX extends Application {
 
             NyBrukerController nyBrukerController = fxmlLoader.getController();
 
-            nyBrukerController.setNyBruker(nyBruker);
+            nyBrukerController.setNyUtover(nyUtover);
 
             dialogStage.showAndWait();
 
@@ -81,7 +82,7 @@ public class MainJavaFX extends Application {
             visAlertFeilmelding("Feil 41\nFant ikke grensesnittdefinisjon", ise.getMessage());
         }
         return false;
-    }*/
+    }
 
     public static void visAlertFeilmelding(String overskrift, String melding) {
         Alert exceptionAlert = new Alert(Alert.AlertType.ERROR);

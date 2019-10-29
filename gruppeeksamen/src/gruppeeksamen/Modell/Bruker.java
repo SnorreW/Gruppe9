@@ -26,6 +26,9 @@ public abstract class Bruker {
         this.etternavn = etternavn;
     }
 
+    public Bruker() {
+    }
+
     public String getMail() {
         return mail;
     }
@@ -38,7 +41,7 @@ public abstract class Bruker {
         return brukenavn;
     }
 
-    public void setBrukenavn(String brukenavn) {
+    public void setBrukernavn(String brukenavn) {
         this.brukenavn = brukenavn;
     }
 
@@ -73,6 +76,8 @@ public abstract class Bruker {
     public void setEtternavn(String etternavn) {
         this.etternavn = etternavn;
     }
+
+
 
     @Override
     public String toString() {

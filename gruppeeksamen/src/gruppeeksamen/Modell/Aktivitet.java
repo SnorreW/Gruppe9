@@ -18,6 +18,7 @@ public class Aktivitet implements Comparable<Aktivitet>{
         this.utover = utover;
     }
 
+
     public String getNavnPaaAktivitet() {
         return navnPaaAktivitet;
     }

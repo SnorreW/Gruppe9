@@ -1,7 +1,11 @@
 package gruppeeksamen.Controller;
 
 import gruppeeksamen.Data.DataHandler;
+import gruppeeksamen.Data.NyDataHandler;
 import gruppeeksamen.MainJavaFX;
+import gruppeeksamen.Modell.Aktivitet;
+import gruppeeksamen.Modell.Bruker;
+import gruppeeksamen.Modell.Utover;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +28,26 @@ public class LoggInnController {
     private PasswordField inputPassord;
     @FXML
     private Button btnLoggInn;
+    @FXML
+    private Button btnNyUtover;
+    @FXML
+    private ListView<Utover> utoverListView;
+
+    public void btnNyUtoverClicked(ActionEvent actionEvent) {
+        //Oppretter og instansierer et nytt brukerobjekt
+        Utover nyUtover = new Utover();
+
+        //Viser det nye vinduet, og sender objektet inn for å fylles med data, får tilbake true/false ettersom hvordan det gikk
+        boolean nyUtoverVellyket = MainJavaFX.getInstance().visNyUtoverDialog(nyUtover);
+
+        //Sjekker om den nye utoveren ble laget
+        if(nyUtoverVellyket) {
+            //Henter ut listen med utovere, og legger til den nye utoveren som ble laget
+            NyDataHandler.hentUtoverData().add(nyUtover);
+            //Setter at den nye utoveren er valgt
+            utoverListView.getSelectionModel().select(nyUtover);
+        }
+    }
 
     //Når man trykker på logg inn knappen sender den input (brukernav og passord) videre til en sjekk
     @FXML

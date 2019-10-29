@@ -10,6 +10,9 @@ public class Utover extends Bruker {
         super(klubb, navn, etternavn);
     }
 
+    public Utover() {
+    }
+
     //Hvilke arragementer som brukeren har vært med i
 
 

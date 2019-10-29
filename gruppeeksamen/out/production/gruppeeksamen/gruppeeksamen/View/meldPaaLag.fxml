@@ -27,7 +27,7 @@
             <Button fx:id="meldePaaKnapp" layoutX="280.0" layoutY="312.0" mnemonicParsing="false" onAction="#sendVidereTilFil" text="Meld på lag" />
             <ComboBox fx:id="idretter" layoutX="210.0" layoutY="163.0" onAction="#oppdaterCup" prefWidth="150.0" promptText="Idrett" />
             <Label layoutX="157.0" layoutY="167.0" text="Idrett:" />
-            <ComboBox fx:id="cup" layoutX="210.0" layoutY="213.0" prefWidth="150.0" promptText="Cup" />
+            <ComboBox fx:id="arrangementer" layoutX="210.0" layoutY="213.0" prefWidth="150.0" promptText="Cup" />
             <Label layoutX="165.0" layoutY="217.0" text="Cup:" />
             <Button fx:id="labelGaaTilbake" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
          </children></AnchorPane>

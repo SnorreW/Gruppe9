@@ -2,7 +2,6 @@ package gruppeeksamen.Controller;
 
 import gruppeeksamen.Data.DataHandler;
 import gruppeeksamen.MainJavaFX;
-import gruppeeksamen.Modell.Arrangementer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,10 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
 public class LeggTilArrangementController {
     @FXML
@@ -34,16 +30,16 @@ public class LeggTilArrangementController {
 
     @FXML
     public void initialize() {
-        ObservableList<Arrangementer> idrettListe = FXCollections.observableArrayList();
-        if (idrettListe != null) {
-            idrettListe.clear();
-        }
-        idrettListe.add(new Arrangementer("Ski"));
-        idrettListe.add(new Arrangementer("Sykkel"));
-        idrettListe.add(new Arrangementer("Loping"));
+        //lager liste og legger til aktiviteter
+        ObservableList<String> idrettListe = FXCollections.observableArrayList();
+        idrettListe.add("Ski");
+        idrettListe.add("Sykkel");
+        idrettListe.add("Loping");
+        //legger til aktivitetene i comboboxen
         idrettComboBox.setItems(idrettListe);
     }
 
+    //Går tilbake til forrige vindu
     @FXML
     private void gaaTilbake(ActionEvent event) {
         Stage stage = (Stage) labelGaaTilbake.getScene().getWindow();
@@ -51,13 +47,14 @@ public class LeggTilArrangementController {
         DataHandler.sendTilNyScene("../view/loggetInn.fxml", "Arrengementer", 500, 500);
     }
 
+    //legger til arrangement
     @FXML
     private void leggTilArrangement(ActionEvent event) {
-        /*Må gjøres*/
-            //slette selve arrangement fra csv-fil i loggetInn.fxml
-            //fjerne arrangementer som har vært fra csv-fil
+        //sjekker om alle "forhåndsregler" er gjort for å kunne legge til et arrangement
         if (sjekkOmAlleInputErFyltUt() && sjekkOmdagensDatoErMindreEnnDatePicker() && arrangementPaaSammeDatoIkkeFinnes()){
+            //lager en ny linje med navnet på arrangementet, antall lag (som fra start skal være 0), lagene (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
             String nyLinje = arrangementInput.getText() + ";0"/*antall lag*/ + ";" /*lag*/ + ";" + datoDatePicker.getValue().toString().replace("-",".") + ";" + idrettComboBox.getValue().toString() + "\n";
+            //prøver å legge til arrangementet på sisten av arrangementer.csv
             try {
                 FileWriter filen = new FileWriter("src/gruppeeksamen/arrangementer.csv", true);
                 filen.append(nyLinje);
@@ -66,18 +63,21 @@ public class LeggTilArrangementController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            //lukker nåværende vindu
             Stage stagen = (Stage) meldePaaKnapp.getScene().getWindow();
             stagen.close();
+            //åpner loggetinn.fxml
             DataHandler.sendTilNyScene("../view/loggetInn.fxml", "Arrengementer", 500, 500);
         } else {
             MainJavaFX.visAlertFeilmelding("Mangler arrangement, dato eller idrett","Må fylle inn en av delene");
         }
     }
 
+    //sjekker slik at man ikke kan legge til arrangement med samme dato (man kan legge til arrangement på forskjellige datoer)
     private boolean arrangementPaaSammeDatoIkkeFinnes() {
-        ObservableList<Arrangementer> listeMedCuper = FXCollections.observableArrayList();
-        ObservableList<Arrangementer> listeMedDatoer = FXCollections.observableArrayList();
-        ObservableList<Arrangementer> listeMedTyper = FXCollections.observableArrayList();
+        ObservableList<String> listeMedCuper = FXCollections.observableArrayList();
+        ObservableList<String> listeMedDatoer = FXCollections.observableArrayList();
+        ObservableList<String> listeMedTyper = FXCollections.observableArrayList();
         ObservableList fyltListeMedCuper = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv", 0,listeMedCuper);
         ObservableList fyltListeMedDatoer = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv", 3,listeMedDatoer);
         ObservableList fyltListeMedTyper = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv", 4,listeMedTyper);
@@ -90,6 +90,7 @@ public class LeggTilArrangementController {
         return true;
     }
 
+    //sjekker slik at man ikke skal kunne legge til et arrangement med en dato som har vært
     private boolean sjekkOmdagensDatoErMindreEnnDatePicker() {
         Date date = new Date();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -109,8 +110,8 @@ public class LeggTilArrangementController {
         return false;
     }
 
+    //sjekker om alle felter er fylt ut
     private boolean sjekkOmAlleInputErFyltUt() {
-        //sjekker om alle felter er fylt ut
         if (!arrangementInput.getText().isEmpty() && datoDatePicker.getValue() != null && idrettComboBox.getValue() != null) {
             return true;
         }

@@ -27,12 +27,12 @@ public class NyDataHandler {
     }
 
     private static void skrivTilCSVFil(ArrayList<Utover> utovere, File filSOmSkrivesTil) {
-        try (BufferedWriter bufretSkriver = new BufferedWriter(new FileWriter(filSOmSkrivesTil))) {
+        try (BufferedWriter bufretSkriver = new BufferedWriter(new FileWriter(filSOmSkrivesTil,true))) {
             //Går gjennom alle utovere i listen
             for(Utover enUtover: utovere) {
                 //Skriver alt til filen avskilt med ";"
                 bufretSkriver.write(enUtover.getBrukenavn() + ";" + enUtover.getPassord() + ";" +
-                        enUtover.getKlubb() + ";" + enUtover.getNavn() + ";" + enUtover.getEtternavn());
+                        enUtover.getNavn() + ";" + enUtover.getEtternavn() + ";" + enUtover.getAlder());
 
                 //Skriver et linjeskift
                 bufretSkriver.newLine();
@@ -60,13 +60,13 @@ public class NyDataHandler {
                 //Deler opp teksten med tegnet ";" -> dette resulterer i en array som heter deler
                 //Index 0 -> Brukernavn
                 //Index 1 -> Passord
-                //Index 2 -> Klubb
-                //Index 3 -> Navn
-                //Index 4 -> Etternavn
+                //Index 2 -> Navn
+                //Index 3 -> Etternavn
+                //Index 4 -> Alder
                 String[] deler = linje.split(";");
 
                 //Lager en ny utover med denne informasjonen
-                Utover enUtover = new Utover(deler[0], deler[1], deler[2], deler[3], deler[4]);
+                Utover enUtover = new Utover(deler[0], deler[1], deler[2], deler[3], Integer.parseInt(deler[4]));
 
                 //Legger til denne utoveren i listen
                 utoverFraFil.add(enUtover);

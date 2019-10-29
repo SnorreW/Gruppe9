@@ -2,6 +2,7 @@ package gruppeeksamen.Modell;
 
 public abstract class Bruker {
     private String brukenavn, passord, klubb, navn, etternavn, mail;
+    private int alder;
 
     public Bruker(String brukenavn, String passord, String navn, String etternavn, String mail) {
         this.brukenavn = brukenavn;
@@ -24,6 +25,14 @@ public abstract class Bruker {
         this.klubb = klubb;
         this.navn = navn;
         this.etternavn = etternavn;
+    }
+
+    public Bruker(String brukenavn, String passord, String navn, String etternavn, int alder) {
+        this.brukenavn = brukenavn;
+        this.passord = passord;
+        this.navn = navn;
+        this.etternavn = etternavn;
+        this.alder = alder;
     }
 
     public Bruker() {
@@ -77,7 +86,13 @@ public abstract class Bruker {
         this.etternavn = etternavn;
     }
 
+    public int getAlder() {
+        return alder;
+    }
 
+    public void setAlder(int alder) {
+        this.alder = alder;
+    }
 
     @Override
     public String toString() {

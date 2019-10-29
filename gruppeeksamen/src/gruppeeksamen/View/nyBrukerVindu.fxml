@@ -25,19 +25,19 @@
             <children>
                 <Label text="Brukernavn" />
                 <Label text="Passord" GridPane.rowIndex="1" />
-                <Label text="Klubb" GridPane.rowIndex="2" />
-                <Label text="Fornavn" GridPane.rowIndex="3" />
-                <Label text="Etternavn" GridPane.rowIndex="4" />
+                <Label text="Fornavn" GridPane.rowIndex="2" />
+                <Label text="Etternavn" GridPane.rowIndex="3" />
+                <Label text="Alder" GridPane.rowIndex="4" />
                 <TextField fx:id="BrukernavnTextField" GridPane.columnIndex="1" />
                 <TextField fx:id="PassordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField fx:id="KlubbTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField fx:id="NavnTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <TextField fx:id="EtternavnTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextField fx:id="NavnTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="EtternavnTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="AlderTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
         </GridPane>
         <HBox alignment="BOTTOM_RIGHT" layoutX="351.0" layoutY="125.0" prefHeight="40.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
             <children>
-                <Button mnemonicParsing="false" text="Avbryt" />
+                <Button mnemonicParsing="false" onAction="#avbrytValgt" text="Avbryt" />
                 <Button fx:id="okButton" mnemonicParsing="false" onAction="#okValgt" text="OK" />
             </children>
         </HBox>

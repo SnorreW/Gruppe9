@@ -1,6 +1,5 @@
 package gruppeeksamen.Controller;
 
-import gruppeeksamen.Modell.Bruker;
 import gruppeeksamen.Modell.Utover;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -8,7 +7,7 @@ import javafx.stage.Stage;
 
 public class NyBrukerController {
     @FXML
-    private TextField BrukernavnTextField, PassordTextField, KlubbTextField, NavnTextField, EtternavnTextField;
+    private TextField BrukernavnTextField, PassordTextField, NavnTextField, EtternavnTextField, AlderTextField;
     @FXML
     private Label feilmeldingLabel;
     @FXML
@@ -29,9 +28,9 @@ public class NyBrukerController {
         if (nyUtover != null) {
             BrukernavnTextField.setText(nyUtover.getBrukenavn());
             PassordTextField.setText(nyUtover.getPassord());
-            KlubbTextField.setText(nyUtover.getKlubb());
             NavnTextField.setText(nyUtover.getNavn());
             EtternavnTextField.setText(nyUtover.getEtternavn());
+            AlderTextField.setText(String.valueOf(nyUtover.getAlder()));
         }
     }
 
@@ -46,9 +45,9 @@ public class NyBrukerController {
             // Hvis de er det, fyller vi opp utoverobjektet vårt med den nye dataen fra feltene
             nyUtover.setBrukernavn(BrukernavnTextField.getText());
             nyUtover.setPassord(PassordTextField.getText());
-            nyUtover.setKlubb(KlubbTextField.getText());
             nyUtover.setNavn(NavnTextField.getText());
             nyUtover.setEtternavn(EtternavnTextField.getText());
+            nyUtover.setAlder(Integer.parseInt(AlderTextField.getText()));
 
             // Setter at vi avsluttet ved å trykke OK
             okClicked = true;
@@ -58,6 +57,14 @@ public class NyBrukerController {
             // Lukker vinduet
             dialogStage.close();
         }
+    }
+
+    @FXML
+    private void avbrytValgt() {
+        // Henter ut en referanse til Stage (vinduet) ved hjelp av en av komponentene vi har i grensesnittet
+        dialogStage = (Stage)okButton.getScene().getWindow();
+        // Lukker vinduet uten å gjøre noe mer (okClicked er fortsatt false)
+        dialogStage.close();
     }
 
     private boolean sjekkOmInputErGyldig() {
@@ -73,10 +80,6 @@ public class NyBrukerController {
             //Hvis det ikke var satt noe passord, legg til feilmelding
             feilmelding += "Passord må settes!\n";
         }
-        if (KlubbTextField.getText() == null || KlubbTextField.getText().length() == 0) {
-            //Hvis det ikke var satt noe klubb, legg til feilmelding
-            feilmelding += "Klubb må settes!\n";
-        }
         if (NavnTextField.getText() == null || NavnTextField.getText().length() == 0) {
             //Hvis det ikke var satt noe fornavn, legg til feilmelding
             feilmelding += "Fornavn må settes!\n";
@@ -84,6 +87,10 @@ public class NyBrukerController {
         if (EtternavnTextField.getText() == null || EtternavnTextField.getText().length() == 0) {
             //Hvis det ikke var satt noe etternavn, legg til feilmelding
             feilmelding += "Etternavn må settes!\n";
+        }
+        if (AlderTextField.getText() == null || AlderTextField.getText().length() == 0) {
+            //Hvis det ikke var satt noe alder, legg til feilmelding
+            feilmelding += "Alder må settes!\n";
         }
 
         // Sjekker om vi har noen feilmelding eller ikke

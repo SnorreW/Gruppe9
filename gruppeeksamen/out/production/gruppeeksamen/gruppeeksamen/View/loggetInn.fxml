@@ -30,6 +30,7 @@
             <Button layoutX="10.0" layoutY="284.0" mnemonicParsing="false" onAction="#meldPaaLaget" text="Meld på laget ditt" />
             <Button fx:id="loggUt" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#loggUtBruker" text="Logg Ut" />
             <Button fx:id="leggTilArrangement" layoutX="187.0" layoutY="284.0" mnemonicParsing="false" onAction="#leggTilArrangement" text="Legg til arrangement" />
+            <Button layoutX="262.0" layoutY="41.0" mnemonicParsing="false" onAction="#sorterePaaDato" text="Sorter på dato" />
          </children>
       </AnchorPane>
    </children>

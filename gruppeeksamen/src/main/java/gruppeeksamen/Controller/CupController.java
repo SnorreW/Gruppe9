@@ -27,7 +27,7 @@ public class CupController {
         String cup = LoggetInnController.getStagen();
 
         listeMedLag.clear();
-        listeMedLag = DataHandler.hentDataCupLag("src/gruppeeksamen/arrangementer.csv",2/*lag*/,listeMedLag,cup);
+        listeMedLag = DataHandler.hentDataCupLag("src/main/java/gruppeeksamen/arrangementer.csv",2/*lag*/,listeMedLag,cup);
         lagSomErMed.setItems(listeMedLag);
     }
 
@@ -41,7 +41,7 @@ public class CupController {
     private void slettLag(ActionEvent event) throws IOException {
         String cup = LoggetInnController.getStagen();
         String lagetSomSkalSlettes = lagSomErMed.getSelectionModel().getSelectedItem();
-        slettBestemtLagICup("src/gruppeeksamen/arrangementer.csv", cup, lagetSomSkalSlettes);
+        slettBestemtLagICup("src/main/java/gruppeeksamen/arrangementer.csv", cup, lagetSomSkalSlettes);
     }
 
     private void slettBestemtLagICup(String filenSomLesesFra, String cup, String lagetSomSkalSlettes) throws IOException {
@@ -78,7 +78,7 @@ public class CupController {
         skriv.close();
 
         listeMedLag.clear();
-        listeMedLag = DataHandler.hentDataCupLag("src/gruppeeksamen/arrangementer.csv",2/*lag*/,listeMedLag,cup);
+        listeMedLag = DataHandler.hentDataCupLag("src/main/java/gruppeeksamen/arrangementer.csv",2/*lag*/,listeMedLag,cup);
         lagSomErMed.setItems(listeMedLag);
     }
 }

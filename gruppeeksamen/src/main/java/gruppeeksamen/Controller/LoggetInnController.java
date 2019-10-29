@@ -37,15 +37,15 @@ public class LoggetInnController {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 try {
-                    sendTilNyScene("../view/cup.fxml", newValue);
+                    sendTilNyScene("../../view/cup.fxml", newValue);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
         String l = "";
-        ObservableList<String> cuperNavn = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv", 0/*Navn*/, listeCuperNavn);
-        ObservableList<String> cuperDato = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv", 3/*Dato*/, listeCuperDato);
+        ObservableList<String> cuperNavn = DataHandler.hentData("src/main/java/gruppeeksamen/arrangementer.csv", 0/*Navn*/, listeCuperNavn);
+        ObservableList<String> cuperDato = DataHandler.hentData("src/main/java/gruppeeksamen/arrangementer.csv", 3/*Dato*/, listeCuperDato);
         for (int i=0; i < cuperNavn.size(); i++) {
             l = "";
             l += cuperDato.get(i) + ": " + cuperNavn.get(i);
@@ -69,7 +69,7 @@ public class LoggetInnController {
 
     @FXML
     private void meldPaaLaget(ActionEvent event) throws IOException {
-        DataHandler.sendTilNyScene("../view/meldPaaLag.fxml", "Meld på laget ditt", 500, 500);
+        DataHandler.sendTilNyScene("../../view/meldPaaLag.fxml", "Meld på laget ditt", 500, 500);
     }
 
     @FXML

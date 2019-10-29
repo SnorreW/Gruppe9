@@ -47,17 +47,17 @@ public class MeldPaaLagController {
         if (cuperListe != null) {
             cuperListe.clear();
         }
-        DataHandler.hentDataCuper("src/gruppeeksamen/arrangementer.csv", 0/*CupNavn*/, cuperListe, idretter.getValue());
+        DataHandler.hentDataCuper("src/main/java/gruppeeksamen/arrangementer.csv", 0/*CupNavn*/, cuperListe, idretter.getValue());
         cup.setItems(cuperListe);
     }
 
     @FXML
     private void sendVidereTilFil(ActionEvent value) throws IOException {
-        ObservableList<String> cupListen = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv", 0, cupList);
-        ObservableList<String> antallLagListen = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv",1, antallLagList);
-        ObservableList<String> lagListen = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv",2, lagList);
-        ObservableList<String> datoListen = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv",3, datoList);
-        ObservableList<String> typeListen = DataHandler.hentData("src/gruppeeksamen/arrangementer.csv",4, typeList);
+        ObservableList<String> cupListen = DataHandler.hentData("src/main/java/gruppeeksamen/arrangementer.csv", 0, cupList);
+        ObservableList<String> antallLagListen = DataHandler.hentData("src/main/java/gruppeeksamen/arrangementer.csv",1, antallLagList);
+        ObservableList<String> lagListen = DataHandler.hentData("src/main/java/gruppeeksamen/arrangementer.csv",2, lagList);
+        ObservableList<String> datoListen = DataHandler.hentData("src/main/java/gruppeeksamen/arrangementer.csv",3, datoList);
+        ObservableList<String> typeListen = DataHandler.hentData("src/main/java/gruppeeksamen/arrangementer.csv",4, typeList);
         String gammelLinje = "";
         String nyLinje = "";
         String lagene = "";
@@ -73,7 +73,7 @@ public class MeldPaaLagController {
             }
         }
         if (!lag.getText().equals("") && idretter.getValue() != null && cup.getValue() != null) {
-            endreLinjeICSVFil("src/gruppeeksamen/arrangementer.csv", gammelLinje, nyLinje);
+            endreLinjeICSVFil("src/main/java/gruppeeksamen/arrangementer.csv", gammelLinje, nyLinje);
 
             Stage stage = (Stage) meldePaaKnapp.getScene().getWindow();
             stage.close();

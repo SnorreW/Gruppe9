@@ -23,13 +23,13 @@
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="500.0" GridPane.columnIndex="2">
          <children>
-            <TextField fx:id="arrangementInput" layoutX="211.0" layoutY="118.0" />
-            <DatePicker fx:id="datoDatePicker" layoutX="199.0" layoutY="160.0" />
-            <ComboBox fx:id="idrettComboBox" layoutX="210.0" layoutY="210.0" prefWidth="150.0" promptText="Idrett" />
-            <Button fx:id="meldePaaKnapp" layoutX="250.0" layoutY="278.0" mnemonicParsing="false" onAction="#leggTilArrangement" text="Lag arrangement" />
-            <Label layoutX="157.0" layoutY="214.0" text="Idrett:" />
-            <Label layoutX="135.0" layoutY="122.0" text="Arrangement" />
-            <Label layoutX="141.0" layoutY="164.0" text="Dato:" />
+            <TextField fx:id="arrangementInput" layoutX="208.0" layoutY="167.0" />
+            <DatePicker fx:id="datoDatePicker" layoutX="208.0" layoutY="218.0" />
+            <ComboBox fx:id="idrettComboBox" layoutX="207.0" layoutY="268.0" prefWidth="150.0" promptText="Idrett" />
+            <Button fx:id="meldePaaKnapp" layoutX="207.0" layoutY="320.0" mnemonicParsing="false" onAction="#leggTilArrangement" text="Legg til arrangement" />
+            <Label layoutX="161.0" layoutY="272.0" text="Idrett:" />
+            <Label layoutX="119.0" layoutY="171.0" text="Arrangement:" />
+            <Label layoutX="163.0" layoutY="222.0" text="Dato:" />
             <Button fx:id="labelGaaTilbake" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
          </children></AnchorPane>
    </children>

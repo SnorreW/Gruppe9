@@ -2,7 +2,6 @@ package gruppeeksamen.Controller;
 
 import gruppeeksamen.Data.DataHandler;
 import gruppeeksamen.MainJavaFX;
-import gruppeeksamen.Modell.Arrangementer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,14 +12,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 public class MeldPaaLagController {
     @FXML
-    private ComboBox<Arrangementer> idretter;
+    private ComboBox<String> idretter;
     @FXML
-    private ComboBox<Arrangementer> cup;
+    private ComboBox<String> arrangementer;
     @FXML
     private TextField lag;
     @FXML
@@ -28,31 +26,42 @@ public class MeldPaaLagController {
 
     @FXML
     public void initialize() {
-        ObservableList<Arrangementer> idrettListe = FXCollections.observableArrayList();
-        if (idrettListe != null) {
-            idrettListe.clear();
-        }
-        idrettListe.add(new Arrangementer("Ski"));
-        idrettListe.add(new Arrangementer("Sykkel"));
-        idrettListe.add(new Arrangementer("Loping"));
+        //lager liste og legger til aktiviteter
+        ObservableList<String> idrettListe = FXCollections.observableArrayList();
+        idrettListe.add("Ski");
+        idrettListe.add("Sykkel");
+        idrettListe.add("Loping");
+        //legger til aktivitetene i comboboxen
         idretter.setItems(idrettListe);
     }
 
+    //oppdaterer combobox med arrangementer som er av typen valgt i første combobox
     @FXML
     private void oppdaterCup(ActionEvent value) {
-        ObservableList<Arrangementer> cuperListe  = FXCollections.observableArrayList();
-        if (cuperListe != null) {
-            cuperListe.clear();
+        ObservableList<String> cuperListe  = FXCollections.observableArrayList();
+        ObservableList<String> nyCuperListe  = FXCollections.observableArrayList();
+        ObservableList<String> typeListe  = FXCollections.observableArrayList();
+        //fyller typeListe og cuperListe
+        DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv", 4/*CupNavn*/, typeListe);
+        DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv", 0/*CupNavn*/, cuperListe);
+        //fyller nyCuperListe med arrangementene som er av samme type valgt i første combobox i arrangement comboboxen
+        for (int i=0;i<cuperListe.size();i++) {
+            if (typeListe.get(i).equals(idretter.getValue())) {
+                nyCuperListe.add(cuperListe.get(i));
+            }
         }
-        DataHandler.hentDataCuper("src/gruppeeksamen/arrangementer.csv", 0/*CupNavn*/, cuperListe, idretter.getValue());
-        cup.setItems(cuperListe);
+
+        //legger til alle relevante arrangementer i
+        arrangementer.setItems(nyCuperListe);
     }
 
+    //sender videre til å legge til lag
     @FXML
     private void sendVidereTilFil(ActionEvent value) {
         leggTilLag();
     }
 
+    //Går tilbake til forrige vindu
     @FXML
     private void gaaTilbake(ActionEvent event) {
         Stage stage = (Stage) labelGaaTilbake.getScene().getWindow();
@@ -60,40 +69,43 @@ public class MeldPaaLagController {
         DataHandler.sendTilNyScene("../view/loggetInn.fxml", "Arrengementer", 500, 500);
     }
 
+    //denne må nok refaktoreres
     private void leggTilLag() {
-        ObservableList<String> cupList  = FXCollections.observableArrayList();
-        ObservableList<String> antallLagList  = FXCollections.observableArrayList();
-        ObservableList<String> lagList  = FXCollections.observableArrayList();
-        ObservableList<String> datoList  = FXCollections.observableArrayList();
-        ObservableList<String> typeList  = FXCollections.observableArrayList();
-        if (!lag.getText().equals("") && idretter.getValue() != null && cup.getValue() != null) {
-            //fyller div. lister
-            ObservableList<String> cupListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv", 0, cupList);
-            ObservableList<String> antallLagListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv",1, antallLagList);
-            ObservableList<String> lagListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv",2, lagList);
-            ObservableList<String> datoListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv",3, datoList);
-            ObservableList<String> typeListen = DataHandler.hentDataDel("src/gruppeeksamen/arrangementer.csv",4, typeList);
+        ObservableList<String> heleList  = FXCollections.observableArrayList();
+        if (!lag.getText().equals("") && idretter.getValue() != null && arrangementer.getValue() != null) {
+            //fyller listen
+            ObservableList<String> heleListen = DataHandler.hentDataHele("src/gruppeeksamen/arrangementer.csv",heleList);
+            //gjør om observablelist til arraylist
+            ArrayList l = new ArrayList<>(heleListen);
+            String utskrift;
             String gammelLinje = "";
             String nyLinje = "";
             String nyeLagene = "";
-            int nyeAntallLag = 0;
-            if (cup.getValue() != null) {
-                for (int k=0; k < cupListen.size(); k++) {
-                    //hvis cupnavnet fra listen stemmer med det man har valgt i gui
-                    if (cupListen.get(k).equals(String.valueOf(cup.getValue()))) {
-                        //legger til +1 på antall lag
-                        nyeAntallLag = Integer.parseInt(antallLagListen.get(k)) + 1;
-                        //leger til lag i laglisten
-                        if (lagListen.get(k).isEmpty()) {
-                            nyeLagene = lag.getText();
-                        } else {
-                            nyeLagene = lagListen.get(k) + "|" + lag.getText();
+            for (int i=0; i<heleListen.size();i++) {
+                //Legger til dato, navn på arrangement og type arrangement i array
+                ArrayList lo = (ArrayList) l.get(i);
+                int nyeAntallLag = 0;
+                if (arrangementer.getValue() != null) {
+                    for (int k=0; k < heleListen.size(); k++) {
+                        //hvis cupnavnet fra listen stemmer med det man har valgt i gui
+                        if (lo.get(0).equals(String.valueOf(arrangementer.getValue()))) {
+                            //legger til +1 på antall lag
+                            nyeAntallLag = Integer.parseInt((String) lo.get(1)) + 1;
+                            //leger til lag i laglisten
+                            if (lo.get(2).toString().isEmpty()) {
+                                nyeLagene = lag.getText();
+                            } else {
+                                nyeLagene = lo.get(2) + "|" + lag.getText();
+                            }
+                            gammelLinje = lo.get(0) + ";" + lo.get(1) + ";" + lo.get(2) + ";" + lo.get(3) + ";" + lo.get(4);
+                            nyLinje = lo.get(0) + ";" + nyeAntallLag + ";" + nyeLagene + ";" + lo.get(3) + ";" + lo.get(4);
                         }
-                        gammelLinje = cupListen.get(k) + ";" + antallLagListen.get(k) + ";" + lagListen.get(k) + ";" + datoListen.get(k) + ";" + typeListen.get(k);
-                        nyLinje = cupListen.get(k) + ";" + nyeAntallLag + ";" + nyeLagene + ";" + datoListen.get(k) + ";" + typeListen.get(k);
                     }
                 }
+                utskrift = lo.get(0) + ";" + lo.get(1) + ";" + lo.get(2) + ";" + lo.get(3) + ";" + lo.get(4);
+                System.out.println(utskrift);
             }
+
             endreLinjeICSVFil("src/gruppeeksamen/arrangementer.csv", gammelLinje, nyLinje);
 
             Stage stage = (Stage) meldePaaKnapp.getScene().getWindow();
@@ -104,6 +116,7 @@ public class MeldPaaLagController {
         }
     }
 
+    //komentar kommer
     private static void endreLinjeICSVFil(String filenSomLesesFra, String gammelLinje, String nylinje) {
         File filSomLesesFra = new File(filenSomLesesFra);
         StringBuilder nyFil = new StringBuilder();

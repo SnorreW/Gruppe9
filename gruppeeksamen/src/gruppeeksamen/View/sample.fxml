@@ -22,8 +22,8 @@
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="500.0" GridPane.columnIndex="2">
          <children>
-            <TextField fx:id="inputBrukernavn" layoutX="218.0" layoutY="187.0" text="admin1" />
-            <PasswordField fx:id="inputPassord" layoutX="218.0" layoutY="237.0" text="admin4" />
+            <TextField fx:id="inputBrukernavn" layoutX="218.0" layoutY="187.0" promptText="brukernavn" text="admin1" />
+            <PasswordField fx:id="inputPassord" layoutX="218.0" layoutY="237.0" promptText="passord" text="admin4" />
             <Button fx:id="btnLoggInn" layoutX="315.0" layoutY="287.0" mnemonicParsing="false" onAction="#sjekkBruker" text="Button" />
             <Label layoutX="134.0" layoutY="191.0" text="Brukernavn:" />
             <Label layoutX="153.0" layoutY="241.0" text="Passord:" />

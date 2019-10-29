@@ -1,6 +1,5 @@
 package gruppeeksamen.Data;
 
-import gruppeeksamen.Modell.Arrangementer;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,31 +11,20 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class DataHandler {
+    //henter alle deler fra csv fil
     public static ObservableList<String> hentDataHele(String filnavn, ObservableList liste) {
         if (liste.isEmpty()) {
             liste.addAll(genererDataHele(filnavn));
         }
         return liste;
     }
+    //henter en del fra csv fil
     public static ObservableList<String> hentDataDel(String filnavn, int del, ObservableList liste) {
         if (liste.isEmpty()) {
             liste.addAll(genererDataDel(filnavn, del));
-        }
-        return liste;
-    }
-    public static ObservableList<String> hentDataCupLag(String filnavn, int del, ObservableList liste, String cup) {
-        if (liste.isEmpty()) {
-            liste.addAll(genererDataCupLag(filnavn, del, cup));
-        }
-        return liste;
-    }
-    public static ObservableList<String> hentDataCuper(String filnavn, int del, ObservableList liste, Arrangementer cup) {
-        if (liste.isEmpty()) {
-            liste.addAll(genererDataCuper(filnavn, del, cup));
         }
         return liste;
     }
@@ -55,20 +43,6 @@ public class DataHandler {
 
         return dataFraFil;
     }
-    private static ArrayList<String> genererDataCupLag(String filnavn, int del, String cup) {
-        File kilden = new File(filnavn);
-
-        ArrayList<String> dataFraFil = lesFraCSVFilCupLag(kilden, del, cup);
-
-        return dataFraFil;
-    }
-    private static ArrayList<String> genererDataCuper(String filnavn, int del, Arrangementer cup) {
-        File kilden = new File(filnavn);
-
-        ArrayList<String> dataFraFil = lesFraCSVFilCuper(kilden, del, cup);
-
-        return dataFraFil;
-    }
 
     private static ArrayList<ArrayList<String>> lesFraCSVFilHele(File filSomLesesFra) {
         ArrayList<ArrayList<String>> dataFraFil = new ArrayList<>();
@@ -82,9 +56,7 @@ public class DataHandler {
                 for (int i=0; i<deler.length;i++) {
                     person.add(deler[i]);
                 }
-
                 dataFraFil.add(person);
-
             }
 
         } catch (IOException e) {
@@ -108,43 +80,6 @@ public class DataHandler {
             System.out.println(e);
         }
 
-        return dataFraFil;
-    }
-    private static ArrayList<String> lesFraCSVFilCupLag(File filSomLesesFra, int del, String cup) {
-        ArrayList<String> dataFraFil = new ArrayList<>();
-
-        try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {
-            String linje;
-            while( (linje = bufretLeser.readLine()) != null ){
-                String[] deler = linje.split(";");
-
-                if (deler[0].equals(cup)) {
-                    String[] delerLag = deler[2].split("\\|");
-                    for (int i=0; i<delerLag.length; i++) {
-                        dataFraFil.add(delerLag[i]);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-        return dataFraFil;
-    }
-    private static ArrayList<String> lesFraCSVFilCuper(File filSomLesesFra, int del, Arrangementer cup) {
-        ArrayList<String> dataFraFil = new ArrayList<>();
-
-        try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {
-            String linje;
-            while( (linje = bufretLeser.readLine()) != null ){
-                String[] deler = linje.split(";");
-
-                if (deler[4].equals(cup.toString())) {
-                    dataFraFil.add(deler[del]);
-                }
-            }
-        } catch (IOException e) {
-            System.out.println(e);
-        }
         return dataFraFil;
     }
 

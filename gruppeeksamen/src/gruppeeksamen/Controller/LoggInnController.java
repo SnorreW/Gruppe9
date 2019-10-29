@@ -30,7 +30,13 @@ public class LoggInnController {
     @FXML
     private Button btnNyUtover;
     @FXML
-    private ListView<Utover> utoverListView;
+    private ListView<String> utoverListView;
+
+    @FXML
+    private void initialize() {
+        ObservableList<String> listeMedBrukenavn = FXCollections.observableArrayList();
+        utoverListView.setItems(DataHandler.hentDataHele("src/gruppeeksamen/brukere.csv", listeMedBrukenavn));
+    }
 
     public void btnNyUtoverClicked(ActionEvent actionEvent) {
         //Oppretter og instansierer et nytt brukerobjekt
@@ -41,10 +47,11 @@ public class LoggInnController {
 
         //Sjekker om den nye utoveren ble laget
         if(nyUtoverVellyket) {
+            ObservableList<Utover> listeMedBrukenavn = FXCollections.observableArrayList();
             //Henter ut listen med utovere, og legger til den nye utoveren som ble laget
             NyDataHandler.hentUtoverData().add(nyUtover);
             //Setter at den nye utoveren er valgt
-            utoverListView.getSelectionModel().select(nyUtover);
+            utoverListView.setItems(DataHandler.hentDataHele("src/gruppeeksamen/brukere.csv", listeMedBrukenavn));
         }
     }
 

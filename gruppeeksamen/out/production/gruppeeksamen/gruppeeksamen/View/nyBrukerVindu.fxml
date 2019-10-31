@@ -39,6 +39,8 @@
             <children>
                 <Button mnemonicParsing="false" onAction="#avbrytValgt" text="Avbryt" />
                 <Button fx:id="okButton" mnemonicParsing="false" onAction="#okValgt" text="OK" />
+                <Button fx:id="leggTilButton" mnemonicParsing="false" text="OK2" />
+                
             </children>
         </HBox>
         <Label fx:id="feilmeldingLabel" layoutX="14.0" layoutY="228.0" prefHeight="100.0" prefWidth="300.0" textFill="#c31818" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" />

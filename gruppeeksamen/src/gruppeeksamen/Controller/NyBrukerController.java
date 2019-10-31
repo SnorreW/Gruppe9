@@ -1,9 +1,15 @@
 package gruppeeksamen.Controller;
 
+import gruppeeksamen.Data.DataHandler;
+import gruppeeksamen.MainJavaFX;
 import gruppeeksamen.Modell.Utover;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
+import java.awt.event.ActionEvent;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class NyBrukerController {
     @FXML
@@ -12,6 +18,8 @@ public class NyBrukerController {
     private Label feilmeldingLabel;
     @FXML
     private Button okButton;
+    @FXML
+    private Button leggTilUtover;
 
     private Stage dialogStage;
     private Utover nyUtover;
@@ -20,6 +28,30 @@ public class NyBrukerController {
     @FXML
     private void initialize() {
         okButton.setDefaultButton(true);
+    }
+
+    @FXML
+    private void leggTilUtover(ActionEvent actionEvent) {
+        if(sjekkOmInputErGyldig()) {
+            String linje = BrukernavnTextField.getText() + PassordTextField.getText() + NavnTextField.getText() +
+                    EtternavnTextField.getText() + Integer.parseInt(AlderTextField.getText()) + "\n";
+
+            try {
+                FileWriter file = new FileWriter("src/gruppeeksamen/brukere.csv", true);
+                file.append(linje);
+                file.flush();
+                file.close();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            Stage stage = (Stage) leggTilUtover.getScene().getWindow();
+            stage.close();
+            DataHandler.sendTilNyScene("../view/sample.fxml", "Logg Inn", 500, 500);
+        }
+        else {
+            MainJavaFX.visAlertFeilmelding("Fuck", "u");
+        }
     }
 
     public void setNyUtover(Utover nyUtover) {

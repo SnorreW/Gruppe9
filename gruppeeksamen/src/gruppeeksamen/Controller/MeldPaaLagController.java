@@ -20,7 +20,7 @@ public class MeldPaaLagController {
     @FXML
     private ComboBox<String> arrangementer;
     @FXML
-    private TextField lag;
+    private TextField fornavn, etternavn;
     @FXML
     private Button meldePaaKnapp, labelGaaTilbake;
 
@@ -72,7 +72,7 @@ public class MeldPaaLagController {
     //denne må nok refaktoreres
     private void leggTilLag() {
         ObservableList<String> heleList  = FXCollections.observableArrayList();
-        if (!lag.getText().equals("") && idretter.getValue() != null && arrangementer.getValue() != null) {
+        if (!fornavn.getText().equals("") && !etternavn.getText().equals("") && idretter.getValue() != null && arrangementer.getValue() != null) {
             //fyller listen
             ObservableList<String> heleListen = DataHandler.hentDataHele("src/gruppeeksamen/arrangementer.csv",heleList);
             //gjør om observablelist til arraylist
@@ -93,9 +93,9 @@ public class MeldPaaLagController {
                             nyeAntallLag = Integer.parseInt((String) lo.get(1)) + 1;
                             //leger til lag i laglisten
                             if (lo.get(2).toString().isEmpty()) {
-                                nyeLagene = lag.getText();
+                                nyeLagene = fornavn.getText() + " " + etternavn.getText();
                             } else {
-                                nyeLagene = lo.get(2) + "|" + lag.getText();
+                                nyeLagene = lo.get(2) + "|" + fornavn.getText() + " " + etternavn.getText();
                             }
                             gammelLinje = lo.get(0) + ";" + lo.get(1) + ";" + lo.get(2) + ";" + lo.get(3) + ";" + lo.get(4);
                             nyLinje = lo.get(0) + ";" + nyeAntallLag + ";" + nyeLagene + ";" + lo.get(3) + ";" + lo.get(4);
@@ -103,7 +103,6 @@ public class MeldPaaLagController {
                     }
                 }
                 utskrift = lo.get(0) + ";" + lo.get(1) + ";" + lo.get(2) + ";" + lo.get(3) + ";" + lo.get(4);
-                System.out.println(utskrift);
             }
 
             endreLinjeICSVFil("src/gruppeeksamen/arrangementer.csv", gammelLinje, nyLinje);

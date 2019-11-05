@@ -82,7 +82,7 @@ public class CupController {
                     //hvis if statmenten stemmer, lager string array fra deler[2]/lagene i arrangementet, hvor den blir splittet opp
                     String[] lagene = deler[2].split("\\|");
                     //lager en liste av string arrayen
-                    List<String> lageneList = Arrays.asList(lagene);
+                    List<String> lageneList = new ArrayList<String>(Arrays.asList(lagene));
                     //sletter laget som skal slettes
                     lageneList.remove(lagetSomSkalSlettes);
                     lagene = lageneList.toArray(new String[0]);

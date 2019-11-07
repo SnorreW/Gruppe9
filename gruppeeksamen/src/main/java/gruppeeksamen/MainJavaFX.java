@@ -32,7 +32,7 @@ public class MainJavaFX extends Application {
 
         try {
             FXMLLoader fxmlInnlaster = new FXMLLoader();
-            fxmlInnlaster.setLocation(MainJavaFX.class.getResource("../View/sample.fxml"));
+            fxmlInnlaster.setLocation(MainJavaFX.class.getResource("../View/loggInn.fxml"));
             Parent root = fxmlInnlaster.load();
             primaryStage.setTitle("Logg inn");
             primaryStage.setScene(new Scene(root, 500, 500));

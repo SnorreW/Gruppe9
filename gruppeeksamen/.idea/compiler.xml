@@ -19,7 +19,7 @@
         <module name="gruppeeksamen" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11">
+    <bytecodeTargetLevel target="13">
       <module name="gruppeeksamen" target="1.8" />
     </bytecodeTargetLevel>
   </component>

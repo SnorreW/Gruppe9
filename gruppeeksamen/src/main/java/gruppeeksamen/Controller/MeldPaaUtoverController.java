@@ -14,15 +14,15 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 
-public class MeldPaaLagController {
+public class MeldPaaUtoverController {
     @FXML
-    private ComboBox<String> idretter;
+    private ComboBox<String> idretterComboBox;
     @FXML
-    private ComboBox<String> arrangementer;
+    private ComboBox<String> arrangementerComboBox;
     @FXML
-    private TextField fornavn, etternavn;
+    private TextField fornavnInput, etternavnInput;
     @FXML
-    private Button meldePaaKnapp, labelGaaTilbake;
+    private Button meldePaaKnapp, btnGaaTilbake;
 
     @FXML
     public void initialize() {
@@ -32,47 +32,47 @@ public class MeldPaaLagController {
         idrettListe.add("Sykkel");
         idrettListe.add("Loping");
         //legger til aktivitetene i comboboxen
-        idretter.setItems(idrettListe);
+        idretterComboBox.setItems(idrettListe);
     }
 
     //oppdaterer combobox med arrangementer som er av typen valgt i første combobox
     @FXML
     private void oppdaterCup(ActionEvent value) {
-        ObservableList<String> cuperListe  = FXCollections.observableArrayList();
-        ObservableList<String> nyCuperListe  = FXCollections.observableArrayList();
-        ObservableList<String> typeListe  = FXCollections.observableArrayList();
+        ObservableList<String> arrangementListe  = FXCollections.observableArrayList();
+        ObservableList<String> arrangementerMedRiktigTypeIdrettListe  = FXCollections.observableArrayList();
+        ObservableList<String> typeIdrettListe  = FXCollections.observableArrayList();
         //fyller typeListe og cuperListe
-        DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 4/*CupNavn*/, typeListe);
-        DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 0/*CupNavn*/, cuperListe);
+        DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 4/*CupNavn*/, typeIdrettListe);
+        DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 0/*CupNavn*/, arrangementListe);
         //fyller nyCuperListe med arrangementene som er av samme type valgt i første combobox i arrangement comboboxen
-        for (int i=0;i<cuperListe.size();i++) {
-            if (typeListe.get(i).equals(idretter.getValue())) {
-                nyCuperListe.add(cuperListe.get(i));
+        for (int i=0;i<arrangementListe.size();i++) {
+            if (typeIdrettListe.get(i).equals(idretterComboBox.getValue())) {
+                arrangementerMedRiktigTypeIdrettListe.add(arrangementListe.get(i));
             }
         }
 
         //legger til alle relevante arrangementer i
-        arrangementer.setItems(nyCuperListe);
+        arrangementerComboBox.setItems(arrangementerMedRiktigTypeIdrettListe);
     }
 
-    //sender videre til å legge til lag
+    //sender videre til å legge til utøver
     @FXML
     private void sendVidereTilFil(ActionEvent value) {
-        leggTilLag();
+        leggTilUtover();
     }
 
     //Går tilbake til forrige vindu
     @FXML
     private void gaaTilbake(ActionEvent event) {
-        Stage stage = (Stage) labelGaaTilbake.getScene().getWindow();
+        Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
         DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
     }
 
     //denne må nok refaktoreres
-    private void leggTilLag() {
+    private void leggTilUtover() {
         ObservableList<String> heleList  = FXCollections.observableArrayList();
-        if (!fornavn.getText().equals("") && !etternavn.getText().equals("") && idretter.getValue() != null && arrangementer.getValue() != null) {
+        if (!fornavnInput.getText().equals("") && !etternavnInput.getText().equals("") && idretterComboBox.getValue() != null && arrangementerComboBox.getValue() != null) {
             //fyller listen
             ObservableList<String> heleListen = DataHandler.hentDataHele("src/main/java/gruppeeksamen/arrangementer.csv",heleList);
             //gjør om observablelist til arraylist
@@ -85,17 +85,17 @@ public class MeldPaaLagController {
                 //Legger til dato, navn på arrangement og type arrangement i array
                 ArrayList lo = (ArrayList) l.get(i);
                 int nyeAntallLag = 0;
-                if (arrangementer.getValue() != null) {
+                if (arrangementerComboBox.getValue() != null) {
                     for (int k=0; k < heleListen.size(); k++) {
                         //hvis cupnavnet fra listen stemmer med det man har valgt i gui
-                        if (lo.get(0).equals(String.valueOf(arrangementer.getValue()))) {
+                        if (lo.get(0).equals(String.valueOf(arrangementerComboBox.getValue()))) {
                             //legger til +1 på antall lag
                             nyeAntallLag = Integer.parseInt((String) lo.get(1)) + 1;
                             //leger til lag i laglisten
                             if (lo.get(2).toString().isEmpty()) {
-                                nyeLagene = fornavn.getText() + " " + etternavn.getText();
+                                nyeLagene = fornavnInput.getText() + " " + etternavnInput.getText();
                             } else {
-                                nyeLagene = lo.get(2) + "|" + fornavn.getText() + " " + etternavn.getText();
+                                nyeLagene = lo.get(2) + "|" + fornavnInput.getText() + " " + etternavnInput.getText();
                             }
                             gammelLinje = lo.get(0) + ";" + lo.get(1) + ";" + lo.get(2) + ";" + lo.get(3) + ";" + lo.get(4);
                             nyLinje = lo.get(0) + ";" + nyeAntallLag + ";" + nyeLagene + ";" + lo.get(3) + ";" + lo.get(4);

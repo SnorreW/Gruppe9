@@ -19,7 +19,7 @@ import java.io.IOException;
 public class LoggInnController {
     private static ObservableList<String> listeBrukenavn = FXCollections.observableArrayList();
     private static ObservableList<String> listePassord = FXCollections.observableArrayList();
-    private boolean innlogginsFeil = false;
+    private boolean innlogginsFeil = true;
 
     @FXML
     private TextField inputBrukernavn;

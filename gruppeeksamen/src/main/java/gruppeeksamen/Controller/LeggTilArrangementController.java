@@ -26,7 +26,7 @@ public class LeggTilArrangementController {
     @FXML
     private ComboBox idrettComboBox;
     @FXML
-    private Button meldePaaKnapp, labelGaaTilbake;
+    private Button btnLeggTilArrangement, btnGaaTilbake;
 
     @FXML
     public void initialize() {
@@ -42,7 +42,7 @@ public class LeggTilArrangementController {
     //Går tilbake til forrige vindu
     @FXML
     private void gaaTilbake(ActionEvent event) {
-        Stage stage = (Stage) labelGaaTilbake.getScene().getWindow();
+        Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
         DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
     }
@@ -52,21 +52,20 @@ public class LeggTilArrangementController {
     private void leggTilArrangement(ActionEvent event) {
         //sjekker om alle "forhåndsregler" er gjort for å kunne legge til et arrangement
         if (sjekkOmAlleInputErFyltUt() && sjekkOmdagensDatoErMindreEnnDatePicker() && arrangementPaaSammeDatoIkkeFinnes()){
-            //lager en ny linje med navnet på arrangementet, antall lag (som fra start skal være 0), lagene (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
-            String nyLinje = arrangementInput.getText() + ";0"/*antall lag*/ + ";" /*lag*/ + ";" + datoDatePicker.getValue().toString().replace("-",".") + ";" + idrettComboBox.getValue().toString() + "\n";
+            //lager en ny linje med navnet på arrangementet, antall utøvere (som fra start skal være 0), utøvere (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
+            String nyttArrangement = arrangementInput.getText() + ";0"/*antall utøvere*/ + ";" /*utøvere*/ + ";" + datoDatePicker.getValue().toString().replace("-",".") + ";" + idrettComboBox.getValue().toString() + "\n";
             //prøver å legge til arrangementet på sisten av arrangementer.csv
             try {
-                FileWriter filen = new FileWriter("src/main/java/gruppeeksamen/arrangementer.csv", true);
-                filen.append(nyLinje);
-                filen.flush();
-                filen.close();
+                FileWriter filenSomSkalSkrivesTil = new FileWriter("src/main/java/gruppeeksamen/arrangementer.csv", true);
+                filenSomSkalSkrivesTil.append(nyttArrangement);
+                filenSomSkalSkrivesTil.flush();
+                filenSomSkalSkrivesTil.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
             //lukker nåværende vindu
-            Stage stagen = (Stage) meldePaaKnapp.getScene().getWindow();
+            Stage stagen = (Stage) btnLeggTilArrangement.getScene().getWindow();
             stagen.close();
-            //åpner loggetinn.fxml
             DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
         } else {
             MainJavaFX.visAlertFeilmelding("Mangler arrangement, dato eller idrett","Må fylle inn en av delene");
@@ -75,15 +74,14 @@ public class LeggTilArrangementController {
 
     //sjekker slik at man ikke kan legge til arrangement med samme dato (man kan legge til arrangement på forskjellige datoer)
     private boolean arrangementPaaSammeDatoIkkeFinnes() {
-        ObservableList<String> listeMedCuper = FXCollections.observableArrayList();
+        ObservableList<String> listeMedArrangementer = FXCollections.observableArrayList();
         ObservableList<String> listeMedDatoer = FXCollections.observableArrayList();
-        ObservableList<String> listeMedTyper = FXCollections.observableArrayList();
-        ObservableList fyltListeMedCuper = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 0,listeMedCuper);
+        ObservableList<String> listeMedTypeIdretter = FXCollections.observableArrayList();
+        ObservableList fyltListeMedArrangementer = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 0,listeMedArrangementer);
         ObservableList fyltListeMedDatoer = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 3,listeMedDatoer);
-        ObservableList fyltListeMedTyper = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 4,listeMedTyper);
-        for (int i=0;i<fyltListeMedCuper.size();i++) {
-            if (fyltListeMedCuper.get(i).equals(arrangementInput.getText()) && fyltListeMedDatoer.get(i).equals(datoDatePicker.getValue().toString().replace("-",".")) && fyltListeMedTyper.get(i).equals(idrettComboBox.getValue().toString())) {
-                System.out.println("hah");
+        ObservableList fyltListeMedTypeIdretter = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 4,listeMedTypeIdretter);
+        for (int i=0;i<fyltListeMedArrangementer.size();i++) {
+            if (fyltListeMedArrangementer.get(i).equals(arrangementInput.getText()) && fyltListeMedDatoer.get(i).equals(datoDatePicker.getValue().toString().replace("-",".")) && fyltListeMedTypeIdretter.get(i).equals(idrettComboBox.getValue().toString())) {
                 return false;
             }
         }
@@ -92,12 +90,12 @@ public class LeggTilArrangementController {
 
     //sjekker slik at man ikke skal kunne legge til et arrangement med en dato som har vært
     private boolean sjekkOmdagensDatoErMindreEnnDatePicker() {
-        Date date = new Date();
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        int year = localDate.getYear();
-        int month = localDate.getMonthValue();
-        int day = localDate.getDayOfMonth();
-        String dagensDato = year+"."+month+"."+day;
+        Date iDag = new Date();
+        LocalDate iDagLokal = iDag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int aar = iDagLokal.getYear();
+        int maaned = iDagLokal.getMonthValue();
+        int dag = iDagLokal.getDayOfMonth();
+        String dagensDato = aar+"."+maaned+"."+dag;
         String datePicker = datoDatePicker.getValue().toString().replace("-",".");
         String[] dagensDatoArray = dagensDato.split("\\.");
         String[] datePickerArray = datePicker.split("\\.");

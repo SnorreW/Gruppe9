@@ -22,13 +22,13 @@
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="500.0" GridPane.columnIndex="2">
          <children>
-            <ListView fx:id="cup" layoutX="10.0" layoutY="84.0" prefHeight="200.0" prefWidth="480.0" />
+            <ListView fx:id="listeMedArrangementer" layoutX="10.0" layoutY="84.0" prefHeight="200.0" prefWidth="480.0" />
             <Label layoutX="10.0" layoutY="54.0" text="Arrengementer:">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Label>
-            <Button layoutX="10.0" layoutY="284.0" mnemonicParsing="false" onAction="#meldPaaLaget" text="Meld på laget ditt" />
-            <Button fx:id="loggUt" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#loggUtBruker" text="Logg Ut" />
+            <Button layoutX="10.0" layoutY="284.0" mnemonicParsing="false" onAction="#meldPaaUtover" text="Meld på utøver" />
+            <Button fx:id="btnGaaTilbake" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Logg Ut" />
             <Button fx:id="leggTilArrangement" layoutX="187.0" layoutY="284.0" mnemonicParsing="false" onAction="#leggTilArrangement" text="Legg til arrangement" />
          </children>
       </AnchorPane>

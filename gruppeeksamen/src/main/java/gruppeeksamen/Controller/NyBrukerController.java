@@ -47,7 +47,7 @@ public class NyBrukerController {
             }
             Stage stage = (Stage) leggTilUtover.getScene().getWindow();
             stage.close();
-            DataHandler.sendTilNyScene("../../view/sample.fxml", "Logg Inn", 500, 500);
+            DataHandler.sendTilNyScene("../../view/loggInn.fxml", "Logg Inn", 500, 500);
         }
         else {
             MainJavaFX.visAlertFeilmelding("Fuck", "u");

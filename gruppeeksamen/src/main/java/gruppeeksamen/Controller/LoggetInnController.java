@@ -18,14 +18,14 @@ public class LoggetInnController {
     private static String stagen = null;
 
     @FXML
-    private ListView<String> cup;
+    private ListView<String> listeMedArrangementer;
     @FXML
-    private Button loggUt, leggTilArrangement;
+    private Button btnGaaTilbake, leggTilArrangement;
 
     @FXML
     public void initialize() {
         //Sjekker om man trykker på en av elementene i listen
-        cup.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+        listeMedArrangementer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             //Ser hvilket element man trykker på og sender med parametere til senTilNyScene
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -41,36 +41,36 @@ public class LoggetInnController {
             }
         });
         //Fyller listen med elementer den får fra fyllListe metoden
-        cup.setItems(fyllListe());
+        listeMedArrangementer.setItems(fyllListe());
     }
 
     private static ObservableList<String> fyllListe() {
-        ObservableList<String> slettListe = FXCollections.observableArrayList();
-        ArrayList loo = new ArrayList();
+        ObservableList<String> listeSomSkalFylles = FXCollections.observableArrayList();
+        ArrayList arrayListeSomSkalBliObservable = new ArrayList();
         //fyller listen med hele arrangementer.csv filen
-        ObservableList<String> slettListen = DataHandler.hentDataHele("src/main/java/gruppeeksamen/arrangementer.csv", slettListe);
+        ObservableList<String> listeMedDataFraCSVFil = DataHandler.hentDataHele("src/main/java/gruppeeksamen/arrangementer.csv", listeSomSkalFylles);
         //gjør om observablelist til arraylist
-        ArrayList l = new ArrayList<>(slettListen);
+        ArrayList arrayListeMedAltOmEtArrangement = new ArrayList<>(listeMedDataFraCSVFil);
         String utskrift;
-        for (int i=0; i<slettListen.size();i++) {
+        for (int i=0; i<listeMedDataFraCSVFil.size();i++) {
             //Legger til dato, navn på arrangement og type arrangement i array
-            ArrayList lo = (ArrayList) l.get(i);
-            utskrift = lo.get(3) + ": " + lo.get(0) + " (" + lo.get(4) + ")";
-            loo.add(utskrift);
+            ArrayList arraListeMedEnTingOmEtArrangement = (ArrayList) arrayListeMedAltOmEtArrangement.get(i);
+            utskrift = arraListeMedEnTingOmEtArrangement.get(3) + ": " + arraListeMedEnTingOmEtArrangement.get(0) + " (" + arraListeMedEnTingOmEtArrangement.get(4) + ")";
+            arrayListeSomSkalBliObservable.add(utskrift);
         }
         //setter observablelisten lik arraylisten
-        slettListen = FXCollections.observableArrayList(loo);
+        listeMedDataFraCSVFil = FXCollections.observableArrayList(arrayListeSomSkalBliObservable);
 
         //returnerere listen som skriver ut listen i listviewet
-        return slettListen;
+        return listeMedDataFraCSVFil;
     }
 
     @FXML
-    private void meldPaaLaget(ActionEvent event) {
-        //Lukker nåværende vindu og sender til påmeding av lag
+    private void meldPaaUtover(ActionEvent event) {
+        //Lukker nåværende vindu og sender til påmeding av utøver
         Stage stagen = (Stage) leggTilArrangement.getScene().getWindow();
         stagen.close();
-        DataHandler.sendTilNyScene("../../view/meldPaaLag.fxml", "Meld på laget ditt", 500, 500);
+        DataHandler.sendTilNyScene("../../view/meldPaaUtover.fxml", "Meld på utøver", 500, 500);
     }
 
     @FXML
@@ -82,9 +82,9 @@ public class LoggetInnController {
     }
 
     @FXML
-    private void loggUtBruker(ActionEvent event) {
+    private void gaaTilbake(ActionEvent event) {
         //Lukker nåværende vindu og logger brukeren ut. Sender brukeren til innloggingen
-        Stage stage = (Stage) loggUt.getScene().getWindow();
+        Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
         MainJavaFX.gaaTilHovedVisning();
     }

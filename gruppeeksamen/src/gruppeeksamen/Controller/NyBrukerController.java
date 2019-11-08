@@ -27,14 +27,14 @@ public class NyBrukerController {
 
     @FXML
     private void initialize() {
-        okButton.setDefaultButton(true);
+        leggTilButton.setDefaultButton(true);
     }
 
     @FXML
-    public void leggTilUtover(ActionEvent actionEvent) {
+        public void leggTilUtover(ActionEvent event) {
         if(sjekkOmInputErGyldig()) {
-            String linje = BrukernavnTextField.getText() + PassordTextField.getText() + NavnTextField.getText() +
-                    EtternavnTextField.getText() + Integer.parseInt(AlderTextField.getText()) + "\n";
+            String linje = BrukernavnTextField.getText() + ";" + PassordTextField.getText() + ";" + NavnTextField.getText() + ";" +
+                    EtternavnTextField.getText() + ";" + Integer.parseInt(AlderTextField.getText()) + "\n";
 
             try {
                 FileWriter file = new FileWriter("src/gruppeeksamen/brukere.csv", true);
@@ -50,7 +50,7 @@ public class NyBrukerController {
             DataHandler.sendTilNyScene("../view/sample.fxml", "Logg Inn", 500, 500);
         }
         else {
-            MainJavaFX.visAlertFeilmelding("e", "e");
+            MainJavaFX.visAlertFeilmelding("Mangler Brukernavn, passord, navn, etternavn eller alder","Må fylle inn en av delene");
         }
     }
 

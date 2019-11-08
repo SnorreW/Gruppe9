@@ -38,6 +38,7 @@ public class LoggInnController {
         utoverListView.setItems(DataHandler.hentDataHele("src/gruppeeksamen/brukere.csv", listeMedBrukenavn));
     }
 
+    @FXML
     public void btnNyUtoverClicked(ActionEvent actionEvent) {
         //Oppretter og instansierer et nytt brukerobjekt
         Utover nyUtover = new Utover();

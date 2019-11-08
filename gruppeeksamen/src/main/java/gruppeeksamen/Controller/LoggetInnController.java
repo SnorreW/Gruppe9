@@ -35,9 +35,9 @@ public class LoggetInnController {
                 String[] datoArrangementOgType = newValue.split(": ");
                 String[] arrangementOgType = datoArrangementOgType[1].split(" \\(");
                 String scenen = arrangementOgType[0];
-                //setter stagen som blir hentet i cup.fxml
+                //setter stagen som blir hentet i arrangement.fxml
                 setStagen(arrangementOgType[0]);
-                DataHandler.sendTilNyScene("../../view/cup.fxml",scenen, 500,500);
+                DataHandler.sendTilNyScene("../../view/arrangement.fxml",scenen, 500,500);
             }
         });
         //Fyller listen med elementer den får fra fyllListe metoden

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CupController {
+public class ArrangementController {
     private static ObservableList<String> listeMedUtovere = FXCollections.observableArrayList();
 
     @FXML

@@ -52,6 +52,8 @@ public class LoggInnController {
             //Henter ut listen med utovere, og legger til den nye utoveren som ble laget
             NyDataHandler.hentUtoverData().add(nyUtover);
             //Setter at den nye utoveren er valgt
+            Stage stagen = (Stage) btnNyUtover.getScene().getWindow();
+            stagen.close();
             utoverListView.setItems(DataHandler.hentDataHele("src/main/java/gruppeeksamen/brukere.csv", listeMedBrukenavn));
         }
     }
@@ -71,6 +73,7 @@ public class LoggInnController {
             gaarGjennomListe(inputBrukernavn.getText(),inputPassord.getText(), event);
         }
     }
+
     //Sjekke om brukernavn og passord stemmer
     private boolean gaarGjennomListe(String brukernavn, String passord, ActionEvent event) throws IOException {
         //Fyller to lister. En med brukernavn og en med passord

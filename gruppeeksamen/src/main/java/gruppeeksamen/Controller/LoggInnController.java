@@ -86,7 +86,7 @@ public class LoggInnController {
                 innlogginsFeil = false;
                 Stage stage = (Stage) btnLoggInn.getScene().getWindow();
                 stage.close();
-                DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
+                DataHandler.sendTilNyScene("../../View/loggetInn.fxml", "Arrengementer", 500, 500);
                 break;
             } else {
                 //Hvis brukernavn og passord ikke stemmer overens, blir innloggingsfeil satt til true

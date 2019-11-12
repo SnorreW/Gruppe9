@@ -44,7 +44,7 @@ public class LeggTilArrangementController {
     private void gaaTilbake(ActionEvent event) {
         Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
-        DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
+        DataHandler.sendTilNyScene("../../View/loggetInn.fxml", "Arrengementer", 500, 500);
     }
 
     //legger til arrangement
@@ -66,7 +66,7 @@ public class LeggTilArrangementController {
             //lukker nåværende vindu
             Stage stagen = (Stage) btnLeggTilArrangement.getScene().getWindow();
             stagen.close();
-            DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
+            DataHandler.sendTilNyScene("../../View/loggetInn.fxml", "Arrengementer", 500, 500);
         } else {
             MainJavaFX.visAlertFeilmelding("Mangler arrangement, dato eller idrett","Må fylle inn en av delene");
         }

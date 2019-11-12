@@ -37,7 +37,7 @@ public class NyBrukerController {
                     EtternavnTextField.getText() + ";" + Integer.parseInt(AlderTextField.getText()) + "\n";
 
             try {
-                FileWriter file = new FileWriter("src/gruppeeksamen/brukere.csv", true);
+                FileWriter file = new FileWriter("src/main/java/gruppeeksamen/brukere.csv", true);
                 file.append(linje);
                 file.flush();
                 file.close();
@@ -47,7 +47,7 @@ public class NyBrukerController {
             }
             Stage stage = (Stage) leggTilButton.getScene().getWindow();
             stage.close();
-            DataHandler.sendTilNyScene("../view/sample.fxml", "Logg Inn", 500, 500);
+            DataHandler.sendTilNyScene("src/main/resources/view/sample.fxml", "Logg Inn", 500, 500);
         }
         else {
             MainJavaFX.visAlertFeilmelding("Mangler Brukernavn, passord, navn, etternavn eller alder","Må fylle inn en av delene");

@@ -87,11 +87,11 @@ public class MeldPaaUtoverController {
                 int nyeAntallLag = 0;
                 if (arrangementerComboBox.getValue() != null) {
                     for (int k=0; k < heleListen.size(); k++) {
-                        //hvis cupnavnet fra listen stemmer med det man har valgt i gui
+                        //hvis aktivitets-navnet fra listen stemmer med det man har valgt i gui
                         if (lo.get(0).equals(String.valueOf(arrangementerComboBox.getValue()))) {
-                            //legger til +1 på antall lag
+                            //legger til +1 på antall utøvere
                             nyeAntallLag = Integer.parseInt((String) lo.get(1)) + 1;
-                            //leger til lag i laglisten
+                            //leger til utøver i utøverlistenlisten
                             if (lo.get(2).toString().isEmpty()) {
                                 nyeLagene = fornavnInput.getText() + " " + etternavnInput.getText();
                             } else {

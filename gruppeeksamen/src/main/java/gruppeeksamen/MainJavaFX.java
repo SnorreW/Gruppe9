@@ -51,7 +51,7 @@ public class MainJavaFX extends Application {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
 
-            fxmlLoader.setLocation(getClass().getResource("View/nyBrukerVindu.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("../View/nyBrukerVindu.fxml"));
 
             Parent dialogLayout = fxmlLoader.load();
 

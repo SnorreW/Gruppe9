@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CupController {
+public class ArrangementController {
     private static ObservableList<String> listeMedUtovere = FXCollections.observableArrayList();
 
     @FXML
@@ -54,7 +54,7 @@ public class CupController {
     private void gaaTilbake(ActionEvent event) {
         Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
-        DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
+        DataHandler.sendTilNyScene("../../View/loggetInn.fxml", "Arrengementer", 500, 500);
     }
 
     @FXML

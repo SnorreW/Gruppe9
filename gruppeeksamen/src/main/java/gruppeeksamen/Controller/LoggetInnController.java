@@ -35,9 +35,9 @@ public class LoggetInnController {
                 String[] datoArrangementOgType = newValue.split(": ");
                 String[] arrangementOgType = datoArrangementOgType[1].split(" \\(");
                 String scenen = arrangementOgType[0];
-                //setter stagen som blir hentet i cup.fxml
+                //setter stagen som blir hentet i arrangement.fxml
                 setStagen(arrangementOgType[0]);
-                DataHandler.sendTilNyScene("../../view/cup.fxml",scenen, 500,500);
+                DataHandler.sendTilNyScene("../../View/arrangement.fxml",scenen, 500,500);
             }
         });
         //Fyller listen med elementer den får fra fyllListe metoden
@@ -70,7 +70,7 @@ public class LoggetInnController {
         //Lukker nåværende vindu og sender til påmeding av utøver
         Stage stagen = (Stage) leggTilArrangement.getScene().getWindow();
         stagen.close();
-        DataHandler.sendTilNyScene("../../view/meldPaaUtover.fxml", "Meld på utøver", 500, 500);
+        DataHandler.sendTilNyScene("../../View/meldPaaUtover.fxml", "Meld på utøver", 500, 500);
     }
 
     @FXML
@@ -78,7 +78,7 @@ public class LoggetInnController {
         //Lukker nåværende vindu og sender til scenen hvor man kan legge til arrangement
         Stage stagen = (Stage) leggTilArrangement.getScene().getWindow();
         stagen.close();
-        DataHandler.sendTilNyScene("../../view/leggTilArrangement.fxml", "Legg til arrangement", 500, 500);
+        DataHandler.sendTilNyScene("../../View/leggTilArrangement.fxml", "Legg til arrangement", 500, 500);
     }
 
     @FXML

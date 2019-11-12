@@ -44,14 +44,14 @@ public class LeggTilArrangementController {
     private void gaaTilbake(ActionEvent event) {
         Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
-        DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
+        DataHandler.sendTilNyScene("../../View/loggetInn.fxml", "Arrengementer", 500, 500);
     }
 
     //legger til arrangement
     @FXML
     private void leggTilArrangement(ActionEvent event) {
         //sjekker om alle "forhåndsregler" er gjort for å kunne legge til et arrangement
-        if (sjekkOmAlleInputErFyltUt() && sjekkOmdagensDatoErMindreEnnDatePicker() && arrangementPaaSammeDatoIkkeFinnes()){
+        if (sjekkOmAlleInputErFyltUt(arrangementInput, datoDatePicker, idrettComboBox) && sjekkOmdagensDatoErMindreEnnDatePicker() && arrangementPaaSammeDatoIkkeFinnes()){
             //lager en ny linje med navnet på arrangementet, antall utøvere (som fra start skal være 0), utøvere (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
             String nyttArrangement = arrangementInput.getText() + ";0"/*antall utøvere*/ + ";" /*utøvere*/ + ";" + datoDatePicker.getValue().toString().replace("-",".") + ";" + idrettComboBox.getValue().toString() + "\n";
             //prøver å legge til arrangementet på sisten av arrangementer.csv
@@ -66,7 +66,7 @@ public class LeggTilArrangementController {
             //lukker nåværende vindu
             Stage stagen = (Stage) btnLeggTilArrangement.getScene().getWindow();
             stagen.close();
-            DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
+            DataHandler.sendTilNyScene("../../View/loggetInn.fxml", "Arrengementer", 500, 500);
         } else {
             MainJavaFX.visAlertFeilmelding("Mangler arrangement, dato eller idrett","Må fylle inn en av delene");
         }
@@ -104,13 +104,12 @@ public class LeggTilArrangementController {
         if ((Integer.parseInt(dagensDatoArray[0]) <= Integer.parseInt(datePickerArray[0])) && (Integer.parseInt(dagensDatoArray[1]) <= Integer.parseInt(datePickerArray[1])) && (Integer.parseInt(dagensDatoArray[2]) <= Integer.parseInt(datePickerArray[2]))) {
             return true;
         }
-
         return false;
     }
 
     //sjekker om alle felter er fylt ut
-    private boolean sjekkOmAlleInputErFyltUt() {
-        if (!arrangementInput.getText().isEmpty() && datoDatePicker.getValue() != null && idrettComboBox.getValue() != null) {
+    public boolean sjekkOmAlleInputErFyltUt(TextField arrangement, DatePicker dato, ComboBox idrett) {
+        if (!arrangement.getText().isEmpty() && dato.getValue() != null && idrett.getValue() != null) {
             return true;
         }
         return false;

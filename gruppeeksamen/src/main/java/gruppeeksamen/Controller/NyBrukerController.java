@@ -3,11 +3,11 @@ package gruppeeksamen.Controller;
 import gruppeeksamen.Data.DataHandler;
 import gruppeeksamen.MainJavaFX;
 import gruppeeksamen.Modell.Utover;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ public class NyBrukerController {
     @FXML
     private Button okButton;
     @FXML
-    private Button leggTilUtover;
+    private Button leggTilButton;
 
     private Stage dialogStage;
     private Utover nyUtover;
@@ -27,14 +27,14 @@ public class NyBrukerController {
 
     @FXML
     private void initialize() {
-        okButton.setDefaultButton(true);
+        leggTilButton.setDefaultButton(true);
     }
 
     @FXML
-    private void leggTilUtover(ActionEvent actionEvent) {
+    public void leggTilUtover(ActionEvent event) {
         if(sjekkOmInputErGyldig()) {
-            String linje = BrukernavnTextField.getText() + PassordTextField.getText() + NavnTextField.getText() +
-                    EtternavnTextField.getText() + Integer.parseInt(AlderTextField.getText()) + "\n";
+            String linje = BrukernavnTextField.getText() + ";" + PassordTextField.getText() + ";" + NavnTextField.getText() + ";" +
+                    EtternavnTextField.getText() + ";" + Integer.parseInt(AlderTextField.getText()) + "\n";
 
             try {
                 FileWriter file = new FileWriter("src/main/java/gruppeeksamen/brukere.csv", true);
@@ -45,12 +45,12 @@ public class NyBrukerController {
             catch (IOException e) {
                 e.printStackTrace();
             }
-            Stage stage = (Stage) leggTilUtover.getScene().getWindow();
-            stage.close();
-            DataHandler.sendTilNyScene("../../view/loggInn.fxml", "Logg Inn", 500, 500);
+            Stage stagen = (Stage) leggTilButton.getScene().getWindow();
+            stagen.close();
+            DataHandler.sendTilNyScene("../../View/loggInn.fxml", "Logg Inn", 500, 500);
         }
         else {
-            MainJavaFX.visAlertFeilmelding("Fuck", "u");
+            MainJavaFX.visAlertFeilmelding("Mangler Brukernavn, passord, navn, etternavn eller alder","Må fylle inn en av delene");
         }
     }
 

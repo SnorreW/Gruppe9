@@ -19,7 +19,7 @@ import java.io.IOException;
 public class LoggInnController {
     private static ObservableList<String> listeBrukenavn = FXCollections.observableArrayList();
     private static ObservableList<String> listePassord = FXCollections.observableArrayList();
-    private boolean innlogginsFeil = true;
+    private boolean innlogginsFeil = false;
 
     @FXML
     private TextField inputBrukernavn;
@@ -38,6 +38,7 @@ public class LoggInnController {
         utoverListView.setItems(DataHandler.hentDataHele("src/main/java/gruppeeksamen/brukere.csv", listeMedBrukenavn));
     }
 
+    @FXML
     public void btnNyUtoverClicked(ActionEvent actionEvent) {
         //Oppretter og instansierer et nytt brukerobjekt
         Utover nyUtover = new Utover();
@@ -51,6 +52,8 @@ public class LoggInnController {
             //Henter ut listen med utovere, og legger til den nye utoveren som ble laget
             NyDataHandler.hentUtoverData().add(nyUtover);
             //Setter at den nye utoveren er valgt
+            Stage stagen = (Stage) btnNyUtover.getScene().getWindow();
+            stagen.close();
             utoverListView.setItems(DataHandler.hentDataHele("src/main/java/gruppeeksamen/brukere.csv", listeMedBrukenavn));
         }
     }
@@ -70,6 +73,7 @@ public class LoggInnController {
             gaarGjennomListe(inputBrukernavn.getText(),inputPassord.getText(), event);
         }
     }
+
     //Sjekke om brukernavn og passord stemmer
     private boolean gaarGjennomListe(String brukernavn, String passord, ActionEvent event) throws IOException {
         //Fyller to lister. En med brukernavn og en med passord
@@ -82,7 +86,7 @@ public class LoggInnController {
                 innlogginsFeil = false;
                 Stage stage = (Stage) btnLoggInn.getScene().getWindow();
                 stage.close();
-                DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
+                DataHandler.sendTilNyScene("../../View/loggetInn.fxml", "Arrengementer", 500, 500);
                 break;
             } else {
                 //Hvis brukernavn og passord ikke stemmer overens, blir innloggingsfeil satt til true

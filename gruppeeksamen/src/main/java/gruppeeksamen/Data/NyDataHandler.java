@@ -12,7 +12,7 @@ public class NyDataHandler {
         ArrayList<Utover> utoverTilFil = new ArrayList<>();
 
         //Definerer filen vi skal skrive til
-        File kilden = new File("src/gruppeeksamen/brukere.csv");
+        File kilden = new File("src/main/java/gruppeeksamen/brukere.csv");
 
         //Når jeg inkluderer denne delen så blir listen på venstresiden overskrevet med ingenting.
 

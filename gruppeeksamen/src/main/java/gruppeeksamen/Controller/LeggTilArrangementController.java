@@ -109,7 +109,7 @@ public class LeggTilArrangementController {
     }
 
     //sjekker om alle felter er fylt ut
-    private boolean sjekkOmAlleInputErFyltUt() {
+    public boolean sjekkOmAlleInputErFyltUt() {
         if (!arrangementInput.getText().isEmpty() && datoDatePicker.getValue() != null && idrettComboBox.getValue() != null) {
             return true;
         }

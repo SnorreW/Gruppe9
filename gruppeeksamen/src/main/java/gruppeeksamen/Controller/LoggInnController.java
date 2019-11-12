@@ -35,7 +35,7 @@ public class LoggInnController {
     @FXML
     private void initialize() {
         ObservableList<String> listeMedBrukenavn = FXCollections.observableArrayList();
-        utoverListView.setItems(DataHandler.hentDataHele("src/gruppeeksamen/brukere.csv", listeMedBrukenavn));
+        utoverListView.setItems(DataHandler.hentDataHele("src/main/java/gruppeeksamen/brukere.csv", listeMedBrukenavn));
     }
 
     @FXML
@@ -52,7 +52,9 @@ public class LoggInnController {
             //Henter ut listen med utovere, og legger til den nye utoveren som ble laget
             NyDataHandler.hentUtoverData().add(nyUtover);
             //Setter at den nye utoveren er valgt
-            utoverListView.setItems(DataHandler.hentDataHele("src/gruppeeksamen/brukere.csv", listeMedBrukenavn));
+            Stage stagen = (Stage) btnNyUtover.getScene().getWindow();
+            stagen.close();
+            utoverListView.setItems(DataHandler.hentDataHele("src/main/java/gruppeeksamen/brukere.csv", listeMedBrukenavn));
         }
     }
 
@@ -71,11 +73,12 @@ public class LoggInnController {
             gaarGjennomListe(inputBrukernavn.getText(),inputPassord.getText(), event);
         }
     }
+
     //Sjekke om brukernavn og passord stemmer
     private boolean gaarGjennomListe(String brukernavn, String passord, ActionEvent event) throws IOException {
         //Fyller to lister. En med brukernavn og en med passord
-        ObservableList<String> brukernavnListe = DataHandler.hentDataDel("src/gruppeeksamen/brukere.csv", 0/*Brukernavn*/, listeBrukenavn);
-        ObservableList<String> passordListe = DataHandler.hentDataDel("src/gruppeeksamen/brukere.csv", 1/*Passord*/, listePassord);
+        ObservableList<String> brukernavnListe = DataHandler.hentDataDel("src/main/java/gruppeeksamen/brukere.csv", 0/*Brukernavn*/, listeBrukenavn);
+        ObservableList<String> passordListe = DataHandler.hentDataDel("src/main/java/gruppeeksamen/brukere.csv", 1/*Passord*/, listePassord);
         //Går gjennom listene for å sjekke om brukernavn og passord stemmer med hverandre
         for (int i = 0; i < brukernavnListe.size(); i++) {
             if (brukernavnListe.get(i).equals(brukernavn) && passordListe.get(i).equals(passord)) {
@@ -83,7 +86,7 @@ public class LoggInnController {
                 innlogginsFeil = false;
                 Stage stage = (Stage) btnLoggInn.getScene().getWindow();
                 stage.close();
-                DataHandler.sendTilNyScene("../view/loggetInn.fxml", "Arrengementer", 500, 500);
+                DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
                 break;
             } else {
                 //Hvis brukernavn og passord ikke stemmer overens, blir innloggingsfeil satt til true

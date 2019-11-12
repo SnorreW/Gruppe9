@@ -34,13 +34,11 @@
                 <TextField fx:id="EtternavnTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="AlderTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
-        </GridPane>
-        <HBox alignment="BOTTOM_RIGHT" layoutX="351.0" layoutY="125.0" prefHeight="40.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
-            <children>
+        </GridPane >
+        <HBox alignment="BOTTOM_RIGHT" layoutX="351.0" layoutY="125.0" prefHeight="40.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" >
+            <children >
                 <Button mnemonicParsing="false" onAction="#avbrytValgt" text="Avbryt" />
-                <Button fx:id="okButton" mnemonicParsing="false" onAction="#okValgt" text="OK" />
-                <Button fx:id="leggTilButton" mnemonicParsing="false" text="OK2" />
-
+                <Button fx:id="leggTilButton" mnemonicParsing="false" onAction="#leggTilUtover" text="Legg Til Utover" />
             </children>
         </HBox>
         <Label fx:id="feilmeldingLabel" layoutX="14.0" layoutY="228.0" prefHeight="100.0" prefWidth="300.0" textFill="#c31818" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" />

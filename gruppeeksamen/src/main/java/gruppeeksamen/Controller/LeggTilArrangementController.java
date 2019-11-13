@@ -51,7 +51,7 @@ public class LeggTilArrangementController {
     @FXML
     private void leggTilArrangement(ActionEvent event) {
         //sjekker om alle "forhåndsregler" er gjort for å kunne legge til et arrangement
-        if (sjekkOmAlleInputErFyltUt(arrangementInput, datoDatePicker, idrettComboBox) && sjekkOmdagensDatoErMindreEnnDatePicker() && arrangementPaaSammeDatoIkkeFinnes()){
+        if (sjekkOmAlleInputErFyltUt(arrangementInput.getText(), String.valueOf(datoDatePicker.getValue()), String.valueOf(idrettComboBox.getValue())) && sjekkOmdagensDatoErMindreEnnDatePicker() && arrangementPaaSammeDatoIkkeFinnes()){
             //lager en ny linje med navnet på arrangementet, antall utøvere (som fra start skal være 0), utøvere (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
             String nyttArrangement = arrangementInput.getText() + ";0"/*antall utøvere*/ + ";" /*utøvere*/ + ";" + datoDatePicker.getValue().toString().replace("-",".") + ";" + idrettComboBox.getValue().toString() + "\n";
             //prøver å legge til arrangementet på sisten av arrangementer.csv
@@ -108,8 +108,8 @@ public class LeggTilArrangementController {
     }
 
     //sjekker om alle felter er fylt ut
-    public boolean sjekkOmAlleInputErFyltUt(TextField arrangement, DatePicker dato, ComboBox idrett) {
-        if (!arrangement.getText().isEmpty() && dato.getValue() != null && idrett.getValue() != null) {
+    public boolean sjekkOmAlleInputErFyltUt(String arrangement, String dato, String idrett) {
+        if (!arrangement.isEmpty() && dato != null && idrett != null) {
             return true;
         }
         return false;

@@ -26,4 +26,5 @@ class LeggTilArrangementControllerTest {
         LeggTilArrangementController leggTilArrangementController = new LeggTilArrangementController();
         assertTrue(leggTilArrangementController.sjekkOmAlleInputErFyltUt(arrangementInput, datoDatePicker, idrettComboBox));
     }
+
 }

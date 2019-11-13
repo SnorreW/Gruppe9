@@ -66,7 +66,7 @@ public class MeldPaaUtoverController {
     private void gaaTilbake(ActionEvent event) {
         Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
-        DataHandler.sendTilNyScene("../../View/loggetInn.fxml", "Arrengementer", 500, 500);
+        DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
     }
 
     //denne må nok refaktoreres
@@ -87,11 +87,11 @@ public class MeldPaaUtoverController {
                 int nyeAntallLag = 0;
                 if (arrangementerComboBox.getValue() != null) {
                     for (int k=0; k < heleListen.size(); k++) {
-                        //hvis aktivitets-navnet fra listen stemmer med det man har valgt i gui
+                        //hvis cupnavnet fra listen stemmer med det man har valgt i gui
                         if (lo.get(0).equals(String.valueOf(arrangementerComboBox.getValue()))) {
-                            //legger til +1 på antall utøvere
+                            //legger til +1 på antall lag
                             nyeAntallLag = Integer.parseInt((String) lo.get(1)) + 1;
-                            //leger til utøver i utøverlistenlisten
+                            //leger til lag i laglisten
                             if (lo.get(2).toString().isEmpty()) {
                                 nyeLagene = fornavnInput.getText() + " " + etternavnInput.getText();
                             } else {

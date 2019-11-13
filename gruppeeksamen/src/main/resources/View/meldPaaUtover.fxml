@@ -22,15 +22,15 @@
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="500.0" GridPane.columnIndex="2">
          <children>
-            <TextField fx:id="fornavnInput" layoutX="211.0" layoutY="262.0" />
-            <Label layoutX="154.0" layoutY="266.0" text="Fornavn:" />
-            <Button fx:id="meldePaaKnapp" layoutX="262.0" layoutY="359.0" mnemonicParsing="false" onAction="#sendVidereTilFil" text="Meld på utøver" />
             <ComboBox fx:id="idretterComboBox" layoutX="210.0" layoutY="163.0" onAction="#oppdaterCup" prefWidth="150.0" promptText="Idrett" />
-            <Label layoutX="161.0" layoutY="167.0" text="Idrett:" />
             <ComboBox fx:id="arrangementerComboBox" layoutX="210.0" layoutY="213.0" prefWidth="150.0" promptText="Arrangement" />
+            <TextField fx:id="fornavnInput" layoutX="211.0" layoutY="262.0" />
+            <TextField fx:id="etternavnInput" layoutX="211.0" layoutY="312.0" />
+            <Button fx:id="meldePaaKnapp" layoutX="262.0" layoutY="359.0" mnemonicParsing="false" onAction="#sendVidereTilFil" text="Meld på utøver" />
+            <Label layoutX="154.0" layoutY="266.0" text="Fornavn:" />
+            <Label layoutX="161.0" layoutY="167.0" text="Idrett:" />
             <Label layoutX="129.0" layoutY="217.0" text="Arrangement" />
             <Button fx:id="btnGaaTilbake" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
-            <TextField fx:id="etternavnInput" layoutX="211.0" layoutY="312.0" />
             <Label layoutX="146.0" layoutY="316.0" text="Etternavn:" />
          </children></AnchorPane>
    </children>

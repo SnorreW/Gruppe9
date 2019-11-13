@@ -1,6 +1,5 @@
 package gruppeeksamen.Controller;
 
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 

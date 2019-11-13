@@ -28,8 +28,8 @@
                   <Font name="System Bold" size="20.0" />
                </font></Label>
             <Button layoutX="10.0" layoutY="284.0" mnemonicParsing="false" onAction="#meldPaaUtover" text="Meld på utøver" />
-            <Button fx:id="btnGaaTilbake" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Logg Ut" />
             <Button fx:id="leggTilArrangement" layoutX="187.0" layoutY="284.0" mnemonicParsing="false" onAction="#leggTilArrangement" text="Legg til arrangement" />
+            <Button fx:id="btnGaaTilbake" mnemonicParsing="false" onAction="#gaaTilbake" text="Logg Ut" />
          </children>
       </AnchorPane>
    </children>

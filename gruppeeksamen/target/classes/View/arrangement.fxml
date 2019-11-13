@@ -27,8 +27,8 @@
                   <Font name="System Bold" size="20.0" />
                </font></Label>
             <ListView fx:id="listeMedUtovereSomErMed" layoutX="10.0" layoutY="84.0" prefHeight="200.0" prefWidth="480.0" />
-            <Button fx:id="btnGaaTilbake" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
             <Button layoutX="10.0" layoutY="284.0" mnemonicParsing="false" onAction="#slettUtover" text="Slett" />
+            <Button fx:id="btnGaaTilbake" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#gaaTilbake" text="Tilbake" />
          </children>
       </AnchorPane>
    </children>

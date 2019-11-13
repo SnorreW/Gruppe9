@@ -51,7 +51,7 @@ public class LeggTilArrangementController {
     @FXML
     private void leggTilArrangement(ActionEvent event) {
         //sjekker om alle "forhåndsregler" er gjort for å kunne legge til et arrangement
-        if (sjekkOmAlleInputErFyltUt(arrangementInput.getText(), String.valueOf(datoDatePicker.getValue()), String.valueOf(idrettComboBox.getValue())) && sjekkOmdagensDatoErMindreEnnDatePicker() && arrangementPaaSammeDatoIkkeFinnes()){
+        if (sjekkOmAlleInputErFyltUt(arrangementInput.getText(), datoDatePicker.getValue().toString(), idrettComboBox.getValue().toString()) && sjekkOmdagensDatoErMindreEnnDatePicker() && arrangementPaaSammeDatoIkkeFinnes()){
             //lager en ny linje med navnet på arrangementet, antall utøvere (som fra start skal være 0), utøvere (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
             String nyttArrangement = arrangementInput.getText() + ";0"/*antall utøvere*/ + ";" /*utøvere*/ + ";" + datoDatePicker.getValue().toString().replace("-",".") + ";" + idrettComboBox.getValue().toString() + "\n";
             //prøver å legge til arrangementet på sisten av arrangementer.csv

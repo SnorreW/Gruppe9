@@ -28,13 +28,13 @@ public class ArrangementController {
     public void initialize() {
         //Henter stagen som blir satt fra elementet man trykker på i listviewet i loggetinn.fxml
         String arrangementSomErValgt = LoggetInnController.getStagen();
-
         //sender til metode som fyller listview
         fyllListen(listeMedUtovereSomErMed, arrangementSomErValgt);
+
     }
 
     private void fyllListen(ListView<String> utovereSomErMed, String arrangement) {
-        //Tømmer listen, før den fyller listen med utøvere som er med i cupen
+        //Tømmer listen, før den fyller listen med utøvere som er med i arrangementet
         listeMedUtovere.clear();
         listeMedUtovere = DataHandler.hentDataHele(filstiArrangementerCSV, listeMedUtovere);
         ArrayList listeMedUtoverene = new ArrayList(listeMedUtovere);
@@ -71,7 +71,7 @@ public class ArrangementController {
         File filSomLesesFra = new File(filstiArrangementerCSV);
         String nyUtover = "";
         String nyUtoverLinje = "";
-        int antallUtovere = 0;
+        int antallUtovere;
 
         //leser fra listen
         try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {

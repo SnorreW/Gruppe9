@@ -18,6 +18,7 @@ public class LoggetInnController {
     private static String stagen = null;
     String filStiTilLeggTilArrangementFXML = "../../view/leggTilArrangement.fxml";
     String filStiTilMeldPaaUtoverFXML = "../../view/meldPaaUtover.fxml";
+    String filstiTilArrangementCsv = "../../view/arrangement.fxml";
 
     @FXML
     private ListView<String> listeMedArrangementer;
@@ -39,7 +40,7 @@ public class LoggetInnController {
                 String scenen = arrangementOgType[0];
                 //setter stagen som blir hentet i arrangement.fxml
                 setStagen(arrangementOgType[0]);
-                DataHandler.sendTilNyScene(filStiTilLeggTilArrangementFXML,scenen, 500,500);
+                DataHandler.sendTilNyScene(filstiTilArrangementCsv,scenen, 500,500);
             }
         });
         //Fyller listen med elementer den får fra fyllListe metoden

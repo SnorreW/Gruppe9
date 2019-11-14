@@ -116,9 +116,9 @@ public class LeggTilArrangementController {
         }
         return false;
     }
-    private void leggTilIdrett(ObservableList<String> liste){
+private void leggTilIdrett(ObservableList<String> liste){
         liste.add("Ski");
         liste.add("Sykkel");
         liste.add("Loping");
-    }
-}
+        }
+        }

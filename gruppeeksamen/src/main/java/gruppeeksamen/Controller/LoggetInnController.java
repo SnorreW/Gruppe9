@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 public class LoggetInnController {
     private static String stagen = null;
+    String filStiTilLeggTilArrangementFXML = "../../view/leggTilArrangement.fxml";
+    String filStiTilMeldPaaUtoverFXML = "../../view/meldPaaUtover.fxml";
 
     @FXML
     private ListView<String> listeMedArrangementer;
@@ -37,7 +39,7 @@ public class LoggetInnController {
                 String scenen = arrangementOgType[0];
                 //setter stagen som blir hentet i arrangement.fxml
                 setStagen(arrangementOgType[0]);
-                DataHandler.sendTilNyScene("../../view/arrangement.fxml",scenen, 500,500);
+                DataHandler.sendTilNyScene(filStiTilLeggTilArrangementFXML,scenen, 500,500);
             }
         });
         //Fyller listen med elementer den får fra fyllListe metoden
@@ -70,7 +72,7 @@ public class LoggetInnController {
         //Lukker nåværende vindu og sender til påmeding av utøver
         Stage stagen = (Stage) leggTilArrangement.getScene().getWindow();
         stagen.close();
-        DataHandler.sendTilNyScene("../../view/meldPaaUtover.fxml", "Meld på utøver", 500, 500);
+        DataHandler.sendTilNyScene(filStiTilMeldPaaUtoverFXML, "Meld på utøver", 500, 500);
     }
 
     @FXML
@@ -78,7 +80,7 @@ public class LoggetInnController {
         //Lukker nåværende vindu og sender til scenen hvor man kan legge til arrangement
         Stage stagen = (Stage) leggTilArrangement.getScene().getWindow();
         stagen.close();
-        DataHandler.sendTilNyScene("../../view/leggTilArrangement.fxml", "Legg til arrangement", 500, 500);
+        DataHandler.sendTilNyScene(filStiTilLeggTilArrangementFXML, "Legg til arrangement", 500, 500);
     }
 
     @FXML

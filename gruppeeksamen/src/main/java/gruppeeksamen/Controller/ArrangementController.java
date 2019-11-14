@@ -16,6 +16,8 @@ import java.util.List;
 
 public class ArrangementController {
     private static ObservableList<String> listeMedUtovere = FXCollections.observableArrayList();
+    String filstiArrangementerCSV = "src/main/java/gruppeeksamen/arrangementer.csv";
+    String filstiLoggetInnFXML = "../../view/loggetInn.fxml";
 
     @FXML
     private ListView<String> listeMedUtovereSomErMed;
@@ -34,14 +36,14 @@ public class ArrangementController {
     private void fyllListen(ListView<String> utovereSomErMed, String arrangement) {
         //Tømmer listen, før den fyller listen med utøvere som er med i cupen
         listeMedUtovere.clear();
-        listeMedUtovere = DataHandler.hentDataHele("src/main/java/gruppeeksamen/arrangementer.csv", listeMedUtovere);
+        listeMedUtovere = DataHandler.hentDataHele(filstiArrangementerCSV, listeMedUtovere);
         ArrayList listeMedUtoverene = new ArrayList(listeMedUtovere);
-        for (int i = 0; i< listeMedUtovere.size(); i++){
+        for (int i = 0; i < listeMedUtovere.size(); i++) {
             ArrayList arrayListeMedUtoverene = (ArrayList) listeMedUtoverene.get(i);
             if (arrayListeMedUtoverene.get(0).equals(arrangement)) {
                 String[] utoverene = arrayListeMedUtoverene.get(2).toString().split("\\|");
                 listeMedUtovere.clear();
-                for (int o=0;o<utoverene.length;o++) {
+                for (int o = 0; o < utoverene.length; o++) {
                     listeMedUtovere.add(utoverene[o]);
                 }
             }
@@ -54,7 +56,7 @@ public class ArrangementController {
     private void gaaTilbake(ActionEvent event) {
         Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
-        DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
+        DataHandler.sendTilNyScene(filstiLoggetInnFXML, "Arrengementer", 500, 500);
     }
 
     @FXML
@@ -66,10 +68,10 @@ public class ArrangementController {
     }
 
     private void slettBestemtUtoverIArrangement(String arrangement, String utoverenSomSkalSlettes) {
-        File filSomLesesFra = new File("src/main/java/gruppeeksamen/arrangementer.csv");
+        File filSomLesesFra = new File(filstiArrangementerCSV);
         String nyUtover = "";
         String nyUtoverLinje = "";
-        int antallUtovere;
+        int antallUtovere = 0;
 
         //leser fra listen
         try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {
@@ -92,10 +94,12 @@ public class ArrangementController {
                     antallUtovere = Integer.parseInt(deler[1]) - 1;
                     //legger til den nye linjen
                     nyUtoverLinje += deler[0] + ";" + antallUtovere + ";" + nyUtover + ";" + deler[3] + ";" + deler[4] + "\n";
+
                 } else {
                     //hvis if statmenten ikke stemmer, legg til linje som var fra før
                     nyUtoverLinje += deler[0] + ";" + deler[1] + ";" + deler[2] + ";" + deler[3] + ";" + deler[4] + "\n";
                 }
+
             }
 
         } catch (IOException e) {
@@ -104,7 +108,7 @@ public class ArrangementController {
 
         try {
             //skriver til arrangement filen med en oppdatert liste etter å ha fjernet utøveren
-            FileWriter skriver = new FileWriter("src/main/java/gruppeeksamen/arrangementer.csv");
+            FileWriter skriver = new FileWriter(filstiArrangementerCSV);
             BufferedWriter skrive = new BufferedWriter(skriver);
             skrive.write(nyUtoverLinje);
             skrive.flush();
@@ -116,4 +120,5 @@ public class ArrangementController {
         //oppdaterer listview
         fyllListen(listeMedUtovereSomErMed, arrangement);
     }
+
 }

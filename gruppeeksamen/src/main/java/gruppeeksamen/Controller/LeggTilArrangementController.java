@@ -19,6 +19,9 @@ import java.time.ZoneId;
 import java.util.Date;
 
 public class LeggTilArrangementController {
+    String filStiTilLoggetInn = "../../View/loggetInn.fxml";
+    String filStiTilArrangementer = "src/main/java/gruppeeksamen/arrangementer.csv";
+
     @FXML
     private TextField arrangementInput;
     @FXML
@@ -32,9 +35,7 @@ public class LeggTilArrangementController {
     public void initialize() {
         //lager liste og legger til aktiviteter
         ObservableList<String> idrettListe = FXCollections.observableArrayList();
-        idrettListe.add("Ski");
-        idrettListe.add("Sykkel");
-        idrettListe.add("Loping");
+        leggTilIdrett(idrettListe);
         //legger til aktivitetene i comboboxen
         idrettComboBox.setItems(idrettListe);
     }
@@ -44,7 +45,7 @@ public class LeggTilArrangementController {
     private void gaaTilbake(ActionEvent event) {
         Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
-        DataHandler.sendTilNyScene("../../View/loggetInn.fxml", "Arrengementer", 500, 500);
+        DataHandler.sendTilNyScene(filStiTilLoggetInn, "Arrengementer", 500, 500);
     }
 
     //legger til arrangement
@@ -56,7 +57,7 @@ public class LeggTilArrangementController {
             String nyttArrangement = arrangementInput.getText() + ";0"/*antall utøvere*/ + ";" /*utøvere*/ + ";" + datoDatePicker.getValue().toString().replace("-",".") + ";" + idrettComboBox.getValue().toString() + "\n";
             //prøver å legge til arrangementet på sisten av arrangementer.csv
             try {
-                FileWriter filenSomSkalSkrivesTil = new FileWriter("src/main/java/gruppeeksamen/arrangementer.csv", true);
+                FileWriter filenSomSkalSkrivesTil = new FileWriter(filStiTilArrangementer, true);
                 filenSomSkalSkrivesTil.append(nyttArrangement);
                 filenSomSkalSkrivesTil.flush();
                 filenSomSkalSkrivesTil.close();
@@ -66,7 +67,7 @@ public class LeggTilArrangementController {
             //lukker nåværende vindu
             Stage stagen = (Stage) btnLeggTilArrangement.getScene().getWindow();
             stagen.close();
-            DataHandler.sendTilNyScene("../../View/loggetInn.fxml", "Arrengementer", 500, 500);
+            DataHandler.sendTilNyScene(filStiTilLoggetInn, "Arrengementer", 500, 500);
         } else {
             MainJavaFX.visAlertFeilmelding("Mangler arrangement, dato eller idrett","Må fylle inn en av delene");
         }
@@ -77,9 +78,9 @@ public class LeggTilArrangementController {
         ObservableList<String> listeMedArrangementer = FXCollections.observableArrayList();
         ObservableList<String> listeMedDatoer = FXCollections.observableArrayList();
         ObservableList<String> listeMedTypeIdretter = FXCollections.observableArrayList();
-        ObservableList fyltListeMedArrangementer = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 0,listeMedArrangementer);
-        ObservableList fyltListeMedDatoer = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 3,listeMedDatoer);
-        ObservableList fyltListeMedTypeIdretter = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 4,listeMedTypeIdretter);
+        ObservableList fyltListeMedArrangementer = DataHandler.hentDataDel(filStiTilArrangementer, 0,listeMedArrangementer);
+        ObservableList fyltListeMedDatoer = DataHandler.hentDataDel(filStiTilArrangementer, 3,listeMedDatoer);
+        ObservableList fyltListeMedTypeIdretter = DataHandler.hentDataDel(filStiTilArrangementer, 4,listeMedTypeIdretter);
         for (int i=0;i<fyltListeMedArrangementer.size();i++) {
             if (fyltListeMedArrangementer.get(i).equals(arrangementInput.getText()) && fyltListeMedDatoer.get(i).equals(datoDatePicker.getValue().toString().replace("-",".")) && fyltListeMedTypeIdretter.get(i).equals(idrettComboBox.getValue().toString())) {
                 return false;
@@ -113,5 +114,10 @@ public class LeggTilArrangementController {
             return true;
         }
         return false;
+    }
+    private void leggTilIdrett(ObservableList<String> liste){
+        liste.add("Ski");
+        liste.add("Sykkel");
+        liste.add("Loping");
     }
 }

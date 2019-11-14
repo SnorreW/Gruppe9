@@ -58,6 +58,7 @@ public class NyBrukerController {
         this.nyUtover = nyUtover;
 
         if (nyUtover != null) {
+
             BrukernavnTextField.setText(nyUtover.getBrukenavn());
             PassordTextField.setText(nyUtover.getPassord());
             NavnTextField.setText(nyUtover.getNavn());
@@ -75,20 +76,22 @@ public class NyBrukerController {
     private void okValgt() {
         if (sjekkOmInputErGyldig()) {
             // Hvis de er det, fyller vi opp utoverobjektet vårt med den nye dataen fra feltene
-            nyUtover.setBrukernavn(BrukernavnTextField.getText());
-            nyUtover.setPassord(PassordTextField.getText());
-            nyUtover.setNavn(NavnTextField.getText());
-            nyUtover.setEtternavn(EtternavnTextField.getText());
-            nyUtover.setAlder(Integer.parseInt(AlderTextField.getText()));
-
+            lagUtover();
             // Setter at vi avsluttet ved å trykke OK
             okClicked = true;
-
             // Henter ut en referanse til Stage (vinduet) ved hjelp av en av komponentene vi har i grensesnittet
             dialogStage = (Stage)okButton.getScene().getWindow();
             // Lukker vinduet
             dialogStage.close();
         }
+    }
+
+    private void lagUtover(){
+        nyUtover.setBrukernavn(BrukernavnTextField.getText());
+        nyUtover.setPassord(PassordTextField.getText());
+        nyUtover.setNavn(NavnTextField.getText());
+        nyUtover.setEtternavn(EtternavnTextField.getText());
+        nyUtover.setAlder(Integer.parseInt(AlderTextField.getText()));
     }
 
     @FXML

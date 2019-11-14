@@ -31,9 +31,7 @@ public class MeldPaaUtoverController {
     public void initialize() {
         //lager liste og legger til aktiviteter
         ObservableList<String> idrettListe = FXCollections.observableArrayList();
-        idrettListe.add("Ski");
-        idrettListe.add("Sykkel");
-        idrettListe.add("Loping");
+        leggTilIdrett(idrettListe);
         //legger til aktivitetene i comboboxen
         idretterComboBox.setItems(idrettListe);
     }
@@ -50,18 +48,6 @@ public class MeldPaaUtoverController {
 
         //Fyller inn arrangementer
         fyllNyttArrangement(arrangementListe, arrangementerMedRiktigTypeIdrettListe, typeIdrettListe);
-    }
-
-    private void fyllNyttArrangement(ObservableList<String> arrListe, ObservableList<String> riktigIdrett,ObservableList<String> typeIdrettListe ){
-
-        for (int i=0;i<arrListe.size();i++) {
-
-            if (typeIdrettListe.get(i).equals(idretterComboBox.getValue())) {
-                riktigIdrett.add(arrListe.get(i));
-            }
-        }
-        //legger til alle relevante arrangementer i
-        arrangementerComboBox.setItems(riktigIdrett);
     }
 
     //sender videre til å legge til utøver
@@ -95,9 +81,26 @@ public class MeldPaaUtoverController {
             MainJavaFX.visAlertFeilmelding("Mangler idrett, cup eller utøver","Må fylle inn en av delene");
         }
     }
+
+    private void leggTilIdrett(ObservableList<String> liste){
+        liste.add("Ski");
+        liste.add("Sykkel");
+        liste.add("Loping");
+    }
+
+    private void fyllNyttArrangement(ObservableList<String> arrListe, ObservableList<String> riktigIdrett,ObservableList<String> typeIdrettListe ){
+
+        for (int i=0;i<arrListe.size();i++) {
+
+            if (typeIdrettListe.get(i).equals(idretterComboBox.getValue())) {
+                riktigIdrett.add(arrListe.get(i));
+            }
+        }
+        //legger til alle relevante arrangementer i
+        arrangementerComboBox.setItems(riktigIdrett);
+    }
     private void leggerTilUtovereIArrangement(ObservableList<String> heleListenMedArrangementer){
         ArrayList ArrayListMedArrangmenter = new ArrayList<>(heleListenMedArrangementer);
-        String utskrift;
         String gammelLinje = "";
         String nyLinje = "";
         String nyeUtover = "";
@@ -123,7 +126,6 @@ public class MeldPaaUtoverController {
                     }
                 }
             }
-            utskrift = nyListeMedAlleArrangementer.get(0) + ";" + nyListeMedAlleArrangementer.get(1) + ";" + nyListeMedAlleArrangementer.get(2) + ";" + nyListeMedAlleArrangementer.get(3) + ";" + nyListeMedAlleArrangementer.get(4);
         }
         endreLinjeICSVFil(filStiTilArrangementer, gammelLinje, nyLinje);
     }

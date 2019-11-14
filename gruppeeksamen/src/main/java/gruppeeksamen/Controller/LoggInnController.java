@@ -20,6 +20,8 @@ public class LoggInnController {
     private static ObservableList<String> listeBrukenavn = FXCollections.observableArrayList();
     private static ObservableList<String> listePassord = FXCollections.observableArrayList();
     private boolean innlogginsFeil = false;
+    String filstiBrukereCSV = "src/main/java/gruppeeksamen/brukere.csv";
+    String filstiLoggetInnFXML = "../../view/loggetInn.fxml";
 
     @FXML
     private TextField inputBrukernavn;
@@ -54,7 +56,7 @@ public class LoggInnController {
             //Setter at den nye utoveren er valgt
             Stage stagen = (Stage) btnNyUtover.getScene().getWindow();
             stagen.close();
-            utoverListView.setItems(DataHandler.hentDataHele("src/main/java/gruppeeksamen/brukere.csv", listeMedBrukenavn));
+            utoverListView.setItems(DataHandler.hentDataHele(filstiBrukereCSV, listeMedBrukenavn));
         }
     }
 
@@ -77,8 +79,8 @@ public class LoggInnController {
     //Sjekke om brukernavn og passord stemmer
     private boolean gaarGjennomListe(String brukernavn, String passord, ActionEvent event) throws IOException {
         //Fyller to lister. En med brukernavn og en med passord
-        ObservableList<String> brukernavnListe = DataHandler.hentDataDel("src/main/java/gruppeeksamen/brukere.csv", 0/*Brukernavn*/, listeBrukenavn);
-        ObservableList<String> passordListe = DataHandler.hentDataDel("src/main/java/gruppeeksamen/brukere.csv", 1/*Passord*/, listePassord);
+        ObservableList<String> brukernavnListe = DataHandler.hentDataDel(filstiBrukereCSV, 0/*Brukernavn*/, listeBrukenavn);
+        ObservableList<String> passordListe = DataHandler.hentDataDel(filstiBrukereCSV, 1/*Passord*/, listePassord);
         //Går gjennom listene for å sjekke om brukernavn og passord stemmer med hverandre
         for (int i = 0; i < brukernavnListe.size(); i++) {
             if (brukernavnListe.get(i).equals(brukernavn) && passordListe.get(i).equals(passord)) {
@@ -86,7 +88,7 @@ public class LoggInnController {
                 innlogginsFeil = false;
                 Stage stage = (Stage) btnLoggInn.getScene().getWindow();
                 stage.close();
-                DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
+                DataHandler.sendTilNyScene(filstiLoggetInnFXML, "Arrengementer", 500, 500);
                 break;
             } else {
                 //Hvis brukernavn og passord ikke stemmer overens, blir innloggingsfeil satt til true

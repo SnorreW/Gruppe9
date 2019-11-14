@@ -16,6 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class LeggTilArrangementController {
@@ -52,7 +53,7 @@ public class LeggTilArrangementController {
     @FXML
     private void leggTilArrangement(ActionEvent event) {
         //sjekker om alle "forhåndsregler" er gjort for å kunne legge til et arrangement
-        if (sjekkOmAlleInputErFyltUt(arrangementInput.getText(), datoDatePicker.getValue().toString(), idrettComboBox.getValue().toString()) && sjekkOmdagensDatoErMindreEnnDatePicker() && arrangementPaaSammeDatoIkkeFinnes()){
+        if (sjekkOmAlleInputErFyltUt(arrangementInput.getText(), String.valueOf(datoDatePicker.getValue()), String.valueOf(idrettComboBox.getValue())) && sjekkOmdagensDatoErMindreEnnDatePicker(datoDatePicker.getValue().toString()) && arrangementPaaSammeDatoIkkeFinnes()){
             //lager en ny linje med navnet på arrangementet, antall utøvere (som fra start skal være 0), utøvere (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
             String nyttArrangement = arrangementInput.getText() + ";0"/*antall utøvere*/ + ";" /*utøvere*/ + ";" + datoDatePicker.getValue().toString().replace("-",".") + ";" + idrettComboBox.getValue().toString() + "\n";
             //prøver å legge til arrangementet på sisten av arrangementer.csv
@@ -90,22 +91,22 @@ public class LeggTilArrangementController {
     }
 
     //sjekker slik at man ikke skal kunne legge til et arrangement med en dato som har vært
-    private boolean sjekkOmdagensDatoErMindreEnnDatePicker() {
+    public boolean sjekkOmdagensDatoErMindreEnnDatePicker(String dato) {
         Date iDag = new Date();
         LocalDate iDagLokal = iDag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         int aar = iDagLokal.getYear();
         int maaned = iDagLokal.getMonthValue();
         int dag = iDagLokal.getDayOfMonth();
-        String dagensDato = aar+"."+maaned+"."+dag;
-        String datePicker = datoDatePicker.getValue().toString().replace("-",".");
-        String[] dagensDatoArray = dagensDato.split("\\.");
-        String[] datePickerArray = datePicker.split("\\.");
+        String dagensDato = aar+"-"+maaned+"-"+dag;
+        LocalDate dagensDatoLocal = LocalDate.parse(dagensDato);
+        LocalDate datePickerLocal = LocalDate.parse(dato);
 
         //sjekker om dagens dato er mindre eller lik datepicker dato
-        if ((Integer.parseInt(dagensDatoArray[0]) <= Integer.parseInt(datePickerArray[0])) && (Integer.parseInt(dagensDatoArray[1]) <= Integer.parseInt(datePickerArray[1])) && (Integer.parseInt(dagensDatoArray[2]) <= Integer.parseInt(datePickerArray[2]))) {
+        if (dagensDatoLocal.compareTo(datePickerLocal) >= 0) {
+            return false;
+        } else {
             return true;
         }
-        return false;
     }
 
     //sjekker om alle felter er fylt ut

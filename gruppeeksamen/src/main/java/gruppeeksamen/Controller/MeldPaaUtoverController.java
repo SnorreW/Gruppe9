@@ -24,6 +24,9 @@ public class MeldPaaUtoverController {
     @FXML
     private Button meldePaaKnapp, btnGaaTilbake;
 
+    String filStiTilArrangementer = "src/main/java/gruppeeksamen/arrangementer.csv";
+    String filStiTilLoggetInn = "../../View/loggetInn.fxml";
+
     @FXML
     public void initialize() {
         //lager liste og legger til aktiviteter
@@ -42,15 +45,15 @@ public class MeldPaaUtoverController {
         ObservableList<String> arrangementerMedRiktigTypeIdrettListe  = FXCollections.observableArrayList();
         ObservableList<String> typeIdrettListe  = FXCollections.observableArrayList();
         //fyller typeListe og cuperListe
-        DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 4/*CupNavn*/, typeIdrettListe);
-        DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 0/*CupNavn*/, arrangementListe);
+        DataHandler.hentDataDel(filStiTilArrangementer, 4/*CupNavn*/, typeIdrettListe);
+        DataHandler.hentDataDel(filStiTilArrangementer, 0/*CupNavn*/, arrangementListe);
         //fyller nyCuperListe med arrangementene som er av samme type valgt i første combobox i arrangement comboboxen
         for (int i=0;i<arrangementListe.size();i++) {
+
             if (typeIdrettListe.get(i).equals(idretterComboBox.getValue())) {
                 arrangementerMedRiktigTypeIdrettListe.add(arrangementListe.get(i));
             }
         }
-
         //legger til alle relevante arrangementer i
         arrangementerComboBox.setItems(arrangementerMedRiktigTypeIdrettListe);
     }
@@ -66,51 +69,54 @@ public class MeldPaaUtoverController {
     private void gaaTilbake(ActionEvent event) {
         Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
-        DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
+        DataHandler.sendTilNyScene(filStiTilLoggetInn, "Arrengementer", 500, 500);
     }
 
     //denne må nok refaktoreres
     private void leggTilUtover() {
         ObservableList<String> heleList  = FXCollections.observableArrayList();
+
         if (!fornavnInput.getText().equals("") && !etternavnInput.getText().equals("") && idretterComboBox.getValue() != null && arrangementerComboBox.getValue() != null) {
             //fyller listen
-            ObservableList<String> heleListen = DataHandler.hentDataHele("src/main/java/gruppeeksamen/arrangementer.csv",heleList);
+            ObservableList<String> heleListenMedArrangementer = DataHandler.hentDataHele(filStiTilArrangementer,heleList);
             //gjør om observablelist til arraylist
-            ArrayList l = new ArrayList<>(heleListen);
+            ArrayList ArrayListMedArrangmenter = new ArrayList<>(heleListenMedArrangementer);
             String utskrift;
             String gammelLinje = "";
             String nyLinje = "";
-            String nyeLagene = "";
-            for (int i=0; i<heleListen.size();i++) {
+            String nyeUtover = "";
+            for (int i=0; i<heleListenMedArrangementer.size();i++) {
                 //Legger til dato, navn på arrangement og type arrangement i array
-                ArrayList lo = (ArrayList) l.get(i);
+                ArrayList nyListeMedAlleArrangementer = (ArrayList) ArrayListMedArrangmenter.get(i);
                 int nyeAntallLag = 0;
                 if (arrangementerComboBox.getValue() != null) {
-                    for (int k=0; k < heleListen.size(); k++) {
-                        //hvis cupnavnet fra listen stemmer med det man har valgt i gui
-                        if (lo.get(0).equals(String.valueOf(arrangementerComboBox.getValue()))) {
-                            //legger til +1 på antall lag
-                            nyeAntallLag = Integer.parseInt((String) lo.get(1)) + 1;
-                            //leger til lag i laglisten
-                            if (lo.get(2).toString().isEmpty()) {
-                                nyeLagene = fornavnInput.getText() + " " + etternavnInput.getText();
-                            } else {
-                                nyeLagene = lo.get(2) + "|" + fornavnInput.getText() + " " + etternavnInput.getText();
+                    for (int k=0; k < heleListenMedArrangementer.size(); k++) {
+                        //hvis aktivitets-navnet fra listen stemmer med det man har valgt i gui
+                        if (nyListeMedAlleArrangementer.get(0).equals(String.valueOf(arrangementerComboBox.getValue()))) {
+                            //legger til +1 på antall utøvere
+                            nyeAntallLag = Integer.parseInt((String) nyListeMedAlleArrangementer.get(1)) + 1;
+                            //leger til utøver i utøverlistenlisten
+                            if (nyListeMedAlleArrangementer.get(2).toString().isEmpty()) {
+                                nyeUtover = fornavnInput.getText() + " " + etternavnInput.getText();
                             }
-                            gammelLinje = lo.get(0) + ";" + lo.get(1) + ";" + lo.get(2) + ";" + lo.get(3) + ";" + lo.get(4);
-                            nyLinje = lo.get(0) + ";" + nyeAntallLag + ";" + nyeLagene + ";" + lo.get(3) + ";" + lo.get(4);
+                            else {
+                                nyeUtover = nyListeMedAlleArrangementer.get(2) + "|" + fornavnInput.getText() + " " + etternavnInput.getText();
+                            }
+                            gammelLinje = nyListeMedAlleArrangementer.get(0) + ";" + nyListeMedAlleArrangementer.get(1) + ";" + nyListeMedAlleArrangementer.get(2) + ";" + nyListeMedAlleArrangementer.get(3) + ";" + nyListeMedAlleArrangementer.get(4);
+                            nyLinje = nyListeMedAlleArrangementer.get(0) + ";" + nyeAntallLag + ";" + nyeUtover + ";" + nyListeMedAlleArrangementer.get(3) + ";" + nyListeMedAlleArrangementer.get(4);
                         }
                     }
                 }
-                utskrift = lo.get(0) + ";" + lo.get(1) + ";" + lo.get(2) + ";" + lo.get(3) + ";" + lo.get(4);
+                utskrift = nyListeMedAlleArrangementer.get(0) + ";" + nyListeMedAlleArrangementer.get(1) + ";" + nyListeMedAlleArrangementer.get(2) + ";" + nyListeMedAlleArrangementer.get(3) + ";" + nyListeMedAlleArrangementer.get(4);
             }
 
-            endreLinjeICSVFil("src/main/java/gruppeeksamen/arrangementer.csv", gammelLinje, nyLinje);
+            endreLinjeICSVFil(filStiTilArrangementer, gammelLinje, nyLinje);
 
             Stage stage = (Stage) meldePaaKnapp.getScene().getWindow();
             stage.close();
-            DataHandler.sendTilNyScene("../../view/loggetInn.fxml", "Arrengementer", 500, 500);
-        } else {
+            DataHandler.sendTilNyScene(filStiTilLoggetInn, "Arrengementer",500, 500);
+        }
+        else {
             MainJavaFX.visAlertFeilmelding("Mangler idrett, cup eller utøver","Må fylle inn en av delene");
         }
     }

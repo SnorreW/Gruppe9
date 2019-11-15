@@ -1,10 +1,10 @@
 package gruppeeksamen.Controller;
 
-import gruppeeksamen.Modell.Utover;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+        import gruppeeksamen.Modell.Utover;
+        import org.junit.jupiter.api.BeforeEach;
+        import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+        import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class NyBrukerControllerTest {
     private Utover nyUtover;

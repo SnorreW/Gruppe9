@@ -13,6 +13,10 @@ public class Utover extends Bruker {
     public Utover() {
     }
 
+    public Utover(String brukenavn, String passord) {
+        super(brukenavn, passord);
+    }
+
     public Utover(String brukenavn, String passord, String navn, String etternavn, int alder) {
         super(brukenavn, passord, navn, etternavn, alder);
     }

@@ -12,15 +12,6 @@ public abstract class Bruker {
         this.mail = mail;
     }
 
-    public Bruker(String brukenavn, String passord, String klubb,String navn, String etternavn, String mail) {
-        this.brukenavn = brukenavn;
-        this.passord = passord;
-        this.klubb = klubb;
-        this.navn = navn;
-        this.etternavn = etternavn;
-        this.mail = mail;
-    }
-
     public Bruker(String klubb, String navn, String etternavn) {
         this.klubb = klubb;
         this.navn = navn;
@@ -35,15 +26,12 @@ public abstract class Bruker {
         this.alder = alder;
     }
 
+    public Bruker(String brukenavn, String passord) {
+        this.brukenavn = brukenavn;
+        this.passord = passord;
+    }
+
     public Bruker() {
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
     }
 
     public String getBrukenavn() {

@@ -127,6 +127,14 @@ public class NyBrukerController {
             //Hvis det ikke var satt noe alder, legg til feilmelding
             feilmelding += "Alder må settes!\n";
         }
+        if (Integer.parseInt(AlderTextField.getText()) < 13) {
+            //Hvis personen ikke er over 13 år får de ikke bruke appen, legg til feilmelding
+            feilmelding += "Du må være over 13 år!\n";
+        }
+        if (Integer.parseInt(AlderTextField.getText()) > 130) {
+            //Hvis personen skriver for høy alder får de ikke bruke appen, legg til feilmelding
+            feilmelding += "Du må skrive inn korrekt alder!\n";
+        }
 
         // Sjekker om vi har noen feilmelding eller ikke
         if (feilmelding.length() == 0) {

@@ -83,22 +83,6 @@ public class DataHandler {
         return dataFraFil;
     }
 
-    public static String[] GetStringArray(ArrayList<String> arr)
-    {
-
-        // declaration and initialise String Array
-        String str[] = new String[arr.size()];
-
-        // ArrayList to Array Conversion
-        for (int j = 0; j < arr.size(); j++) {
-
-            // Assign each value to String array
-            str[j] = arr.get(j);
-        }
-
-        return str;
-    }
-
     public static void sendTilNyScene(String fxml, String tittel, int bredde, int hoyde) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(DataHandler.class.getResource(fxml));

@@ -15,13 +15,30 @@ public class NyBrukerControllerTest {
     }
 
     @Test
-    void name() {
+    void brukernavn() {
+        assertNotNull(nyUtover.getBrukenavn());
+    }
 
+    @Test
+    void passord() {
+        assertNotNull(nyUtover.getPassord());
+    }
+
+    @Test
+    void name() {
+        assertNotNull(nyUtover.getNavn());
+    }
+
+    @Test
+    void etternavn() {
+        assertNotNull(nyUtover.getEtternavn());
     }
 
     @Test
     void alder() {
-        assertNotNull(nyUtover);
+        assertNotNull(nyUtover.getAlder());
+
+
     }
 
 

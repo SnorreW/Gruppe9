@@ -47,7 +47,6 @@ public class NyBrukerController {
             }
             Stage stagen = (Stage) leggTilButton.getScene().getWindow();
             stagen.close();
-            DataHandler.sendTilNyScene("../../view/loggInn.fxml", "Logg Inn", 500, 500);
         }
         else {
             MainJavaFX.visAlertFeilmelding("Mangler Brukernavn, passord, navn, etternavn eller alder","Må fylle inn en av delene");

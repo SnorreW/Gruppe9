@@ -105,7 +105,13 @@ public class ArrangementController {
         } catch (IOException e) {
             System.out.println(e);
         }
+        oppdaterListe(filstiArrangementerCSV, nyUtoverLinje);
+        //oppdaterer listview
+        fyllListen(listeMedUtovereSomErMed, arrangement);
+    }
 
+
+    private void oppdaterListe(String filstiArrangementerCSV, String nyUtoverLinje){
         try {
             //skriver til arrangement filen med en oppdatert liste etter å ha fjernet utøveren
             FileWriter skriver = new FileWriter(filstiArrangementerCSV);
@@ -116,9 +122,6 @@ public class ArrangementController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-        //oppdaterer listview
-        fyllListen(listeMedUtovereSomErMed, arrangement);
     }
 
 }

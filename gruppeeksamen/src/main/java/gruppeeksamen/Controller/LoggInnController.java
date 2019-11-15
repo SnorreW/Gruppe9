@@ -14,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class LoggInnController {
@@ -37,7 +38,7 @@ public class LoggInnController {
     @FXML
     private void initialize() {
         ObservableList<String> listeMedBrukenavn = FXCollections.observableArrayList();
-        utoverListView.setItems(DataHandler.hentDataHele("src/main/java/gruppeeksamen/brukere.csv", listeMedBrukenavn));
+        utoverListView.setItems(DataHandler.hentDataHele(filstiBrukereCSV, listeMedBrukenavn));
     }
 
     @FXML
@@ -62,8 +63,7 @@ public class LoggInnController {
 
     //Når man trykker på logg inn knappen sender den input (brukernav og passord) videre til en sjekk
     @FXML
-    private void sjekkBruker(ActionEvent event) throws IOException {
-        //Sjekker om alle felter er fylt inn
+    private void sjekkBruker(ActionEvent event) throws IOException {        //Sjekker om alle felter er fylt inn
         if (inputBrukernavn.getText().isEmpty() && inputPassord.getText().isEmpty()) {
             MainJavaFX.visAlertFeilmelding("Mangler brukernavn og passord", "Fyll inn brukernavn og passord for å gå videre");
         } else if (inputBrukernavn.getText().isEmpty()) {
@@ -88,7 +88,7 @@ public class LoggInnController {
                 innlogginsFeil = false;
                 Stage stage = (Stage) btnLoggInn.getScene().getWindow();
                 stage.close();
-                DataHandler.sendTilNyScene(filstiLoggetInnFXML, "Arrengementer", 500, 500);
+                DataHandler.sendTilNyScene(filstiLoggetInnFXML, "Arrngementer", 500, 500);
                 break;
             } else {
                 //Hvis brukernavn og passord ikke stemmer overens, blir innloggingsfeil satt til true

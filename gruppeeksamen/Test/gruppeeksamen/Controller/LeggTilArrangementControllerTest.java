@@ -1,5 +1,6 @@
 package gruppeeksamen.Controller;
 
+import javafx.event.ActionEvent;
 import org.junit.jupiter.api.Test;
 
 
@@ -79,5 +80,29 @@ class LeggTilArrangementControllerTest {
         LocalDate dagensDatoLocal = LocalDate.parse(dagensDato);
         datoPaaArrangement = dagensDatoLocal.toString();
         assertFalse(leggTilArrangementController.sjekkOmdagensDatoErMindreEnnDatePicker(datoPaaArrangement));
+    }
+
+    @Test
+    public void faarFalseDersomArrangementPaaSammeDatoAlleredeFinnes() {
+        navnPaaArrangement = "Hafslund cupen";
+        datoPaaArrangement = "2019.10.30";
+        typeIdrettPaaArrangement = "Loping";
+        assertFalse(leggTilArrangementController.arrangementPaaSammeDatoIkkeFinnes(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
+    }
+
+    @Test
+    public void faarTrueDersomArrangementPaaSammeDatoAlleredeIkkeFinnes() {
+        navnPaaArrangement = "Hafslund cupen";
+        datoPaaArrangement = "2019.10.31";
+        typeIdrettPaaArrangement = "Loping";
+        assertTrue(leggTilArrangementController.arrangementPaaSammeDatoIkkeFinnes(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
+    }
+
+    @Test
+    public void faarTrueDersomArrangementIkkeFinnes() {
+        navnPaaArrangement = "Arrangment som ikke finnes";
+        datoPaaArrangement = "2020.10.31";
+        typeIdrettPaaArrangement = "Loping";
+        assertTrue(leggTilArrangementController.arrangementPaaSammeDatoIkkeFinnes(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
     }
 }

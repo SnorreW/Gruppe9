@@ -52,7 +52,7 @@ public class LeggTilArrangementController {
     @FXML
     private void leggTilArrangement(ActionEvent event) {
         //sjekker om alle "forhåndsregler" er gjort for å kunne legge til et arrangement
-        if (sjekkOmAlleInputErFyltUt(arrangementInput.getText(), String.valueOf(datoDatePicker.getValue()), String.valueOf(idrettComboBox.getValue())) && sjekkOmdagensDatoErMindreEnnDatePicker(datoDatePicker.getValue().toString()) && arrangementPaaSammeDatoIkkeFinnes()){
+        if (sjekkOmAlleInputErFyltUt(arrangementInput.getText(), String.valueOf(datoDatePicker.getValue()), String.valueOf(idrettComboBox.getValue())) && sjekkOmdagensDatoErMindreEnnDatePicker(datoDatePicker.getValue().toString()) && arrangementPaaSammeDatoIkkeFinnes(arrangementInput.getText(), String.valueOf(datoDatePicker.getValue()).replace("-","."), String.valueOf(idrettComboBox.getValue()))){
             //lager en ny linje med navnet på arrangementet, antall utøvere (som fra start skal være 0), utøvere (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
             String nyttArrangement = arrangementInput.getText() + ";0"/*antall utøvere*/ + ";" /*utøvere*/ + ";" + datoDatePicker.getValue().toString().replace("-",".") + ";" + idrettComboBox.getValue().toString() + "\n";
             //prøver å legge til arrangementet på sisten av arrangementer.csv
@@ -74,15 +74,16 @@ public class LeggTilArrangementController {
     }
 
     //sjekker slik at man ikke kan legge til arrangement med samme dato (man kan legge til arrangement på forskjellige datoer)
-    private boolean arrangementPaaSammeDatoIkkeFinnes() {
+    public boolean arrangementPaaSammeDatoIkkeFinnes(String arrangement, String dato, String idrett) {
         ObservableList<String> listeMedArrangementer = FXCollections.observableArrayList();
         ObservableList<String> listeMedDatoer = FXCollections.observableArrayList();
         ObservableList<String> listeMedTypeIdretter = FXCollections.observableArrayList();
-        ObservableList fyltListeMedArrangementer = DataHandler.hentDataDel(filStiTilArrangementer, 0,listeMedArrangementer);
-        ObservableList fyltListeMedDatoer = DataHandler.hentDataDel(filStiTilArrangementer, 3,listeMedDatoer);
-        ObservableList fyltListeMedTypeIdretter = DataHandler.hentDataDel(filStiTilArrangementer, 4,listeMedTypeIdretter);
+        String datod = dato.replace("-",".");
+        ObservableList fyltListeMedArrangementer = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 0,listeMedArrangementer);
+        ObservableList fyltListeMedDatoer = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 3,listeMedDatoer);
+        ObservableList fyltListeMedTypeIdretter = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 4,listeMedTypeIdretter);
         for (int i=0;i<fyltListeMedArrangementer.size();i++) {
-            if (fyltListeMedArrangementer.get(i).equals(arrangementInput.getText()) && fyltListeMedDatoer.get(i).equals(datoDatePicker.getValue().toString().replace("-",".")) && fyltListeMedTypeIdretter.get(i).equals(idrettComboBox.getValue().toString())) {
+            if (fyltListeMedArrangementer.get(i).equals(arrangement) && fyltListeMedDatoer.get(i).equals(datod) && fyltListeMedTypeIdretter.get(i).equals(idrett)) {
                 return false;
             }
         }
@@ -115,9 +116,10 @@ public class LeggTilArrangementController {
         }
         return false;
     }
-private void leggTilIdrett(ObservableList<String> liste){
+
+    private void leggTilIdrett(ObservableList<String> liste){
         liste.add("Ski");
         liste.add("Sykkel");
         liste.add("Loping");
-        }
-        }
+    }
+}

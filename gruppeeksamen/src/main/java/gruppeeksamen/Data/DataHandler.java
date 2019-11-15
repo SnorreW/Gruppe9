@@ -65,7 +65,7 @@ public class DataHandler {
 
         return dataFraFil;
     }
-    private static ArrayList<String> lesFraCSVFilDel(File filSomLesesFra, int del) {
+    public static ArrayList<String> lesFraCSVFilDel(File filSomLesesFra, int del) {
         ArrayList<String> dataFraFil = new ArrayList<>();
 
         try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {

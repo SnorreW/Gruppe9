@@ -9,17 +9,17 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SjekkeInputFelter {
+class LeggTilArrangementControllerTest {
     private String navnPaaArrangement;
     private String datoPaaArrangement;
     private String typeIdrettPaaArrangement;
+    private LeggTilArrangementController leggTilArrangementController = new LeggTilArrangementController();
 
     @Test
     public void trueDersomAlleInputFelterErFyltUt() {
         navnPaaArrangement = "Løp";
         datoPaaArrangement = "2020-10-10";
         typeIdrettPaaArrangement = "Ski";
-        LeggTilArrangementController leggTilArrangementController = new LeggTilArrangementController();
         assertTrue(leggTilArrangementController.sjekkOmAlleInputErFyltUt(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
     }
 
@@ -28,7 +28,6 @@ class SjekkeInputFelter {
         navnPaaArrangement = "";
         datoPaaArrangement = null;
         typeIdrettPaaArrangement = null;
-        LeggTilArrangementController leggTilArrangementController = new LeggTilArrangementController();
         assertFalse(leggTilArrangementController.sjekkOmAlleInputErFyltUt(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
     }
 
@@ -37,7 +36,6 @@ class SjekkeInputFelter {
         navnPaaArrangement = "";
         datoPaaArrangement = "2020-10-10";
         typeIdrettPaaArrangement = "Ski";
-        LeggTilArrangementController leggTilArrangementController = new LeggTilArrangementController();
         assertFalse(leggTilArrangementController.sjekkOmAlleInputErFyltUt(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
     }
 
@@ -46,7 +44,6 @@ class SjekkeInputFelter {
         navnPaaArrangement = "Løp";
         datoPaaArrangement = null;
         typeIdrettPaaArrangement = "Ski";
-        LeggTilArrangementController leggTilArrangementController = new LeggTilArrangementController();
         assertFalse(leggTilArrangementController.sjekkOmAlleInputErFyltUt(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
     }
 
@@ -55,7 +52,6 @@ class SjekkeInputFelter {
         navnPaaArrangement = "Løp";
         datoPaaArrangement = "2020-10-10";
         typeIdrettPaaArrangement = null;
-        LeggTilArrangementController leggTilArrangementController = new LeggTilArrangementController();
         assertFalse(leggTilArrangementController.sjekkOmAlleInputErFyltUt(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
     }
 
@@ -63,14 +59,12 @@ class SjekkeInputFelter {
     @Test
     public void faarTrueDersomDatoPaaArrangementErEtterDagensDato() {
         datoPaaArrangement = "2020-11-10";
-        LeggTilArrangementController leggTilArrangementController = new LeggTilArrangementController();
         assertTrue(leggTilArrangementController.sjekkOmdagensDatoErMindreEnnDatePicker(datoPaaArrangement));
     }
 
     @Test
     public void faarFalseDersomDatoPaaArrangementErForDagensDato() {
         datoPaaArrangement = "2010-11-10";
-        LeggTilArrangementController leggTilArrangementController = new LeggTilArrangementController();
         assertFalse(leggTilArrangementController.sjekkOmdagensDatoErMindreEnnDatePicker(datoPaaArrangement));
     }
 
@@ -84,7 +78,6 @@ class SjekkeInputFelter {
         String dagensDato = aar+"-"+maaned+"-"+dag;
         LocalDate dagensDatoLocal = LocalDate.parse(dagensDato);
         datoPaaArrangement = dagensDatoLocal.toString();
-        LeggTilArrangementController leggTilArrangementController = new LeggTilArrangementController();
         assertFalse(leggTilArrangementController.sjekkOmdagensDatoErMindreEnnDatePicker(datoPaaArrangement));
     }
 }

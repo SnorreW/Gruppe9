@@ -47,7 +47,6 @@ public class NyBrukerController {
             }
             Stage stagen = (Stage) leggTilButton.getScene().getWindow();
             stagen.close();
-            DataHandler.sendTilNyScene("../../view/loggInn.fxml", "Logg Inn", 500, 500);
         }
         else {
             MainJavaFX.visAlertFeilmelding("Mangler Brukernavn, passord, navn, etternavn eller alder","Må fylle inn en av delene");
@@ -126,6 +125,14 @@ public class NyBrukerController {
         if (AlderTextField.getText() == null || AlderTextField.getText().length() == 0) {
             //Hvis det ikke var satt noe alder, legg til feilmelding
             feilmelding += "Alder må settes!\n";
+        }
+        if (Integer.parseInt(AlderTextField.getText()) < 13) {
+            //Hvis personen ikke er over 13 år får de ikke bruke appen, legg til feilmelding
+            feilmelding += "Du må være over 13 år!\n";
+        }
+        if (Integer.parseInt(AlderTextField.getText()) > 130) {
+            //Hvis personen skriver for høy alder får de ikke bruke appen, legg til feilmelding
+            feilmelding += "Du må skrive inn korrekt alder!\n";
         }
 
         // Sjekker om vi har noen feilmelding eller ikke

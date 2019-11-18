@@ -38,16 +38,7 @@ public class ArrangementController {
         listeMedUtovere.clear();
         listeMedUtovere = DataHandler.hentDataHele(filstiArrangementerCSV, listeMedUtovere);
         ArrayList listeMedUtoverene = new ArrayList(listeMedUtovere);
-        for (int i = 0; i < listeMedUtovere.size(); i++) {
-            ArrayList arrayListeMedUtoverene = (ArrayList) listeMedUtoverene.get(i);
-            if (arrayListeMedUtoverene.get(0).equals(arrangement)) {
-                String[] utoverene = arrayListeMedUtoverene.get(2).toString().split("\\|");
-                listeMedUtovere.clear();
-                for (int o = 0; o < utoverene.length; o++) {
-                    listeMedUtovere.add(utoverene[o]);
-                }
-            }
-        }
+        hjelpTilOgFylleListe(listeMedUtoverene,arrangement);
         utovereSomErMed.setItems(listeMedUtovere);
     }
 
@@ -66,7 +57,20 @@ public class ArrangementController {
         //Kjører metode som sletter bestemt utøver
         slettBestemtUtoverIArrangement(arrangement, utoverSomSkalSlettes);
     }
+    public void hjelpTilOgFylleListe(ArrayList liste, String arrangement){
+        ArrayList listeMedUtoverene = new ArrayList(liste);
 
+        for (int i = 0; i < listeMedUtovere.size(); i++) {
+            ArrayList arrayListeMedUtoverene = (ArrayList) listeMedUtoverene.get(i);
+            if (arrayListeMedUtoverene.get(0).equals(arrangement)) {
+                String[] utoverene = arrayListeMedUtoverene.get(2).toString().split("\\|");
+                listeMedUtovere.clear();
+                for (int o = 0; o < utoverene.length; o++) {
+                    listeMedUtovere.add(utoverene[o]);
+                }
+            }
+        }
+    }
     private void slettBestemtUtoverIArrangement(String arrangement, String utoverenSomSkalSlettes) {
         File filSomLesesFra = new File(filstiArrangementerCSV);
         String nyUtover = "";

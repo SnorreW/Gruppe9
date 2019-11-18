@@ -18,7 +18,8 @@ public class LoggetInnController {
     private static String stagen = null;
     String filStiTilLeggTilArrangementFXML = "../../view/leggTilArrangement.fxml";
     String filStiTilMeldPaaUtoverFXML = "../../view/meldPaaUtover.fxml";
-    String filstiTilArrangementCsv = "../../view/arrangement.fxml";
+    String filstiTilArrangementFXML = "../../view/arrangement.fxml";
+    private String filstiTilArrangementerCSV = "src/main/java/gruppeeksamen/arrangementer.csv";
 
     @FXML
     private ListView<String> listeMedArrangementer;
@@ -40,18 +41,18 @@ public class LoggetInnController {
                 String scenen = arrangementOgType[0];
                 //setter stagen som blir hentet i arrangement.fxml
                 setStagen(arrangementOgType[0]);
-                DataHandler.sendTilNyScene(filstiTilArrangementCsv,scenen, 500,500);
+                DataHandler.sendTilNyScene(filstiTilArrangementFXML,scenen, 500,500);
             }
         });
         //Fyller listen med elementer den får fra fyllListe metoden
         listeMedArrangementer.setItems(fyllListe());
     }
 
-    private static ObservableList<String> fyllListe() {
+    private ObservableList<String> fyllListe() {
         ObservableList<String> listeSomSkalFylles = FXCollections.observableArrayList();
         ArrayList arrayListeSomSkalBliObservable = new ArrayList();
         //fyller listen med hele arrangementer.csv filen
-        ObservableList<String> listeMedDataFraCSVFil = DataHandler.hentDataHele("src/main/java/gruppeeksamen/arrangementer.csv", listeSomSkalFylles);
+        ObservableList<String> listeMedDataFraCSVFil = DataHandler.hentDataHele(filstiTilArrangementerCSV, listeSomSkalFylles);
         //gjør om observablelist til arraylist
         ArrayList arrayListeMedAltOmEtArrangement = new ArrayList<>(listeMedDataFraCSVFil);
         String utskrift;

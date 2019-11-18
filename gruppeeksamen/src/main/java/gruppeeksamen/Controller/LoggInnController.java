@@ -9,12 +9,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class LoggInnController {
@@ -32,13 +30,9 @@ public class LoggInnController {
     private Button btnLoggInn;
     @FXML
     private Button btnNyUtover;
-    @FXML
-    private ListView<String> utoverListView;
 
     @FXML
     private void initialize() {
-        ObservableList<String> listeMedBrukenavn = FXCollections.observableArrayList();
-        utoverListView.setItems(DataHandler.hentDataHele(filstiBrukereCSV, listeMedBrukenavn));
     }
 
     @FXML
@@ -51,13 +45,11 @@ public class LoggInnController {
 
         //Sjekker om den nye utoveren ble laget
         if(nyUtoverVellyket) {
-            ObservableList<Utover> listeMedBrukenavn = FXCollections.observableArrayList();
             //Henter ut listen med utovere, og legger til den nye utoveren som ble laget
             NyDataHandler.hentUtoverData().add(nyUtover);
             //Setter at den nye utoveren er valgt
             Stage stagen = (Stage) btnNyUtover.getScene().getWindow();
             stagen.close();
-            utoverListView.setItems(DataHandler.hentDataHele(filstiBrukereCSV, listeMedBrukenavn));
         }
     }
 

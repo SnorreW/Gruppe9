@@ -1,6 +1,7 @@
 package gruppeeksamen.Controller;
 
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 
@@ -104,5 +105,28 @@ class LeggTilArrangementControllerTest {
         datoPaaArrangement = "2020.10.31";
         typeIdrettPaaArrangement = "Loping";
         assertTrue(leggTilArrangementController.arrangementPaaSammeDatoIkkeFinnes(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
+    }
+
+    @Test
+    public void faarTrueDersomStringMedForventetArrayErLikArrayFraController() {
+        ObservableList listeForventet = FXCollections.observableArrayList();
+        listeForventet.add("Ski");
+        listeForventet.add("Sykkel");
+        listeForventet.add("Loping");
+        ObservableList listeFraController = FXCollections.observableArrayList();
+        leggTilArrangementController.leggTilIdrett(listeFraController);
+        boolean listeneErLike = listeForventet.sorted().equals(listeFraController.sorted());
+        assertTrue(listeneErLike);
+    }
+
+    @Test
+    public void faarFalseDersomStringMedForventetArrayIkkeErLikArrayFraController() {
+        ObservableList listeForventet = FXCollections.observableArrayList();
+        listeForventet.add("Ski");
+        listeForventet.add("Sykkel");
+        ObservableList listeFraController = FXCollections.observableArrayList();
+        leggTilArrangementController.leggTilIdrett(listeFraController);
+        boolean listeneErIkkeLike = listeForventet.sorted().equals(listeFraController.sorted());
+        assertFalse(listeneErIkkeLike);
     }
 }

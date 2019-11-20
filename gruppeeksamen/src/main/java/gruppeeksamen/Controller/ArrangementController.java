@@ -53,10 +53,13 @@ public class ArrangementController {
     @FXML
     private void slettUtover(ActionEvent event) {
         String arrangement = LoggetInnController.getStagen();
+        System.out.println(arrangement);
         String utoverSomSkalSlettes = listeMedUtovereSomErMed.getSelectionModel().getSelectedItem();
+        System.out.println(utoverSomSkalSlettes);
         //Kjører metode som sletter bestemt utøver
         slettBestemtUtoverIArrangement(arrangement, utoverSomSkalSlettes);
     }
+    //////
     public void hjelpTilOgFylleListe(ArrayList liste, String arrangement){
         ArrayList listeMedUtoverene = new ArrayList(liste);
 
@@ -71,7 +74,7 @@ public class ArrangementController {
             }
         }
     }
-    private void slettBestemtUtoverIArrangement(String arrangement, String utoverenSomSkalSlettes) {
+    public void slettBestemtUtoverIArrangement(String arrangement, String utoverenSomSkalSlettes) {
         File filSomLesesFra = new File(filstiArrangementerCSV);
         String nyUtover = "";
         String nyUtoverLinje = "";
@@ -114,8 +117,8 @@ public class ArrangementController {
         fyllListen(listeMedUtovereSomErMed, arrangement);
     }
 
-
-    private void oppdaterListe(String filstiArrangementerCSV, String nyUtoverLinje){
+    ///////
+    public void oppdaterListe(String filstiArrangementerCSV, String nyUtoverLinje){
         try {
             //skriver til arrangement filen med en oppdatert liste etter å ha fjernet utøveren
             FileWriter skriver = new FileWriter(filstiArrangementerCSV);

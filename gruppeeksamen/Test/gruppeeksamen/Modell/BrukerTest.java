@@ -24,17 +24,17 @@ public class BrukerTest {
         //Given
         String brukernavn = "brukernavn";
         String passord = "passord";
-        String klubb = "klubb";
+        int alder = 15;
         String navn = "navn";
         String etternavn = "etternavn";
 
         //When
-        Bruker bruker = new Utover(brukernavn, passord, klubb, navn, etternavn);
+        Bruker bruker = new Utover(brukernavn, passord, navn, etternavn, alder);
 
         //Then
         Assert.assertEquals(bruker.getBrukenavn(), brukernavn);
         Assert.assertEquals(bruker.getPassord(), passord);
-        Assert.assertEquals(bruker.getKlubb(), klubb);
+        Assert.assertEquals(bruker.getAlder(), alder);
         Assert.assertEquals(bruker.getNavn(), navn);
         Assert.assertEquals(bruker.getEtternavn(), etternavn);
     }

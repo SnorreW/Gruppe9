@@ -19,8 +19,8 @@ import java.time.ZoneId;
 import java.util.Date;
 
 public class LeggTilArrangementController {
-    String filStiTilLoggetInn = "../../View/loggetInn.fxml";
-    String filStiTilArrangementer = "src/main/java/gruppeeksamen/arrangementer.csv";
+    private String filStiTilLoggetInn = "../../View/loggetInn.fxml";
+    private String filStiTilArrangementer = "src/main/java/gruppeeksamen/arrangementer.csv";
 
     @FXML
     private TextField arrangementInput;
@@ -55,10 +55,16 @@ public class LeggTilArrangementController {
     //legger til arrangement
     @FXML
     private void leggTilArrangement(ActionEvent event) {
-        leggeTilArrangementet(arrangementInput.getText(), String.valueOf(datoDatePicker.getValue()), String.valueOf(idrettComboBox.getValue()), filStiTilArrangementer, filStiTilLoggetInn);
+         boolean leggeTil = leggeTilArrangementet(arrangementInput.getText(), String.valueOf(datoDatePicker.getValue()), String.valueOf(idrettComboBox.getValue()), filStiTilArrangementer);
+         if (!leggeTil) {
+             MainJavaFX.visAlertFeilmelding("Mangler arrangement, dato eller idrett","Må fylle inn en av delene");
+         } else {
+             //lukker nåværende vindu
+             goBack(filStiTilLoggetInn);
+         }
     }
 
-    public void leggeTilArrangementet(String arrangement, String dato, String idrett, String filstienTilArrangementene, String filstienTilLoggetInn) {
+    public boolean leggeTilArrangementet(String arrangement, String dato, String idrett, String filstienTilArrangementene) {
         //sjekker om alle "forhåndsregler" er gjort for å kunne legge til et arrangement
         if (sjekkOmAlleInputErFyltUt(arrangement, dato, idrett) && sjekkOmdagensDatoErMindreEnnDatePicker(dato) && arrangementPaaSammeDatoIkkeFinnes(arrangement, dato.replace("-","."), idrett)){
             //lager en ny linje med navnet på arrangementet, antall utøvere (som fra start skal være 0), utøvere (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
@@ -72,29 +78,9 @@ public class LeggTilArrangementController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            //lukker nåværende vindu
-            goBack(filstienTilLoggetInn);
+            return true;
         } else {
-            MainJavaFX.visAlertFeilmelding("Mangler arrangement, dato eller idrett","Må fylle inn en av delene");
-        }
-    }
-
-    public void leggeTilArrangementetTest(String arrangement, String dato, String idrett, String filstienTilArrangementene, String filstienTilLoggetInn) {
-        //sjekker om alle "forhåndsregler" er gjort for å kunne legge til et arrangement
-        if (sjekkOmAlleInputErFyltUt(arrangement, dato, idrett) && sjekkOmdagensDatoErMindreEnnDatePicker(dato) && arrangementPaaSammeDatoIkkeFinnes(arrangement, dato.replace("-","."), idrett)){
-            //lager en ny linje med navnet på arrangementet, antall utøvere (som fra start skal være 0), utøvere (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
-            String nyttArrangement = arrangement + ";0"/*antall utøvere*/ + ";" /*utøvere*/ + ";" + dato.replace("-",".") + ";" + idrett + "\n";
-            //prøver å legge til arrangementet på sisten av arrangementer.csv
-            try {
-                FileWriter filenSomSkalSkrivesTil = new FileWriter(filstienTilArrangementene, true);
-                filenSomSkalSkrivesTil.append(nyttArrangement);
-                filenSomSkalSkrivesTil.flush();
-                filenSomSkalSkrivesTil.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            MainJavaFX.visAlertFeilmelding("Mangler arrangement, dato eller idrett","Må fylle inn en av delene");
+            return false;
         }
     }
 

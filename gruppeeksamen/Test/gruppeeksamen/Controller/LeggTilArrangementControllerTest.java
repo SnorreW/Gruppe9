@@ -1,10 +1,13 @@
 package gruppeeksamen.Controller;
 
+import gruppeeksamen.Data.DataHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -16,6 +19,7 @@ class LeggTilArrangementControllerTest {
     private String datoPaaArrangement;
     private String typeIdrettPaaArrangement;
     private LeggTilArrangementController leggTilArrangementController = new LeggTilArrangementController();
+    private DataHandler dataHandler = new DataHandler();
 
     @Test
     public void trueDersomAlleInputFelterErFyltUt() {
@@ -128,5 +132,65 @@ class LeggTilArrangementControllerTest {
         leggTilArrangementController.leggTilIdrett(listeFraController);
         boolean listeneErIkkeLike = listeForventet.sorted().equals(listeFraController.sorted());
         assertFalse(listeneErIkkeLike);
+    }
+
+    @Test
+    public void faarTrueNaarArrangementBlirLagtTil() throws IOException {
+        String filStiTilArrangementer = "src/main/java/gruppeeksamen/arrangementer.csv";
+        String filStiTilLoggetInn = "../../View/loggetInn.fxml";
+
+        ObservableList listeFor = FXCollections.observableArrayList();
+        dataHandler.hentDataHele(filStiTilArrangementer, listeFor);
+
+        navnPaaArrangement = "Test arrangement";
+        datoPaaArrangement = "2020-10-10";
+        typeIdrettPaaArrangement = "Ski";
+        leggTilArrangementController.leggeTilArrangementetTest(navnPaaArrangement, datoPaaArrangement, typeIdrettPaaArrangement, filStiTilArrangementer, filStiTilLoggetInn);
+
+        ObservableList listeEtter = FXCollections.observableArrayList();
+        dataHandler.hentDataHele(filStiTilArrangementer, listeEtter);
+        assertTrue(listeFor.size() < listeEtter.size());
+
+        //fjernet linjen som er lagt til
+        RandomAccessFile f = new RandomAccessFile(filStiTilArrangementer, "rw");
+        long length = f.length() - 1;
+        byte b;
+        do {
+            length -= 1;
+            f.seek(length);
+            b = f.readByte();
+        } while(b != 10);
+        f.setLength(length+1);
+        f.close();
+    }
+
+    @Test
+    public void faarFalseNaarArrangementBlirLagtTil() throws IOException {
+        String filStiTilArrangementer = "src/main/java/gruppeeksamen/arrangement.csv";
+        String filStiTilLoggetInn = "../../View/loggetInn.fxml";
+
+        ObservableList listeFor = FXCollections.observableArrayList();
+        dataHandler.hentDataHele(filStiTilArrangementer, listeFor);
+
+        navnPaaArrangement = "Test arrangement";
+        datoPaaArrangement = "2020-10-10";
+        typeIdrettPaaArrangement = "Ski";
+        leggTilArrangementController.leggeTilArrangementetTest(navnPaaArrangement, datoPaaArrangement, typeIdrettPaaArrangement, filStiTilArrangementer, filStiTilLoggetInn);
+
+        ObservableList listeEtter = FXCollections.observableArrayList();
+        dataHandler.hentDataHele(filStiTilArrangementer, listeEtter);
+        assertTrue(listeFor.size() < listeEtter.size());
+
+        //fjernet linjen som er lagt til
+        RandomAccessFile f = new RandomAccessFile(filStiTilArrangementer, "rw");
+        long length = f.length() - 1;
+        byte b;
+        do {
+            length -= 1;
+            f.seek(length);
+            b = f.readByte();
+        } while(b != 10);
+        f.setLength(length+1);
+        f.close();
     }
 }

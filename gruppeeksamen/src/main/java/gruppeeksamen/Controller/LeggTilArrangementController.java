@@ -11,7 +11,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,7 +29,7 @@ public class LeggTilArrangementController {
     @FXML
     private ComboBox idrettComboBox;
     @FXML
-    private Button btnLeggTilArrangement, btnGaaTilbake;
+    private Button btnGaaTilbake;
 
     @FXML
     public void initialize() {
@@ -44,25 +43,22 @@ public class LeggTilArrangementController {
     //Går tilbake til forrige vindu
     @FXML
     private void gaaTilbake(ActionEvent event) {
-        Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
-        stage.close();
-        DataHandler.sendTilNyScene(filStiTilArrangementer, "Arrengementer", 500, 500);
-        //metod(btnGaaTilbake, filStiTilArrangementer);
+        goBack(filStiTilLoggetInn);
     }
 
-    private void metod (Button tilbakeKnapp, String filstienTilArrangementene) {
-        Stage stage = (Stage) tilbakeKnapp.getScene().getWindow();
+    private void goBack(String filstienTilLoggetInn) {
+        Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
-        DataHandler.sendTilNyScene(filstienTilArrangementene, "Arrengementer", 500, 500);
+        DataHandler.sendTilNyScene(filstienTilLoggetInn, "Arrengementer", 500, 500);
     }
 
     //legger til arrangement
     @FXML
     private void leggTilArrangement(ActionEvent event) {
-        metoden(arrangementInput.getText(), String.valueOf(datoDatePicker.getValue()), String.valueOf(idrettComboBox.getValue()), filStiTilArrangementer, filStiTilLoggetInn);
+        leggeTilArrangementet(arrangementInput.getText(), String.valueOf(datoDatePicker.getValue()), String.valueOf(idrettComboBox.getValue()), filStiTilArrangementer, filStiTilLoggetInn);
     }
 
-    public void metoden(String arrangement, String dato, String idrett, String filstienTilArrangementene, String filstienTilLoggetInn) {
+    public void leggeTilArrangementet(String arrangement, String dato, String idrett, String filstienTilArrangementene, String filstienTilLoggetInn) {
         //sjekker om alle "forhåndsregler" er gjort for å kunne legge til et arrangement
         if (sjekkOmAlleInputErFyltUt(arrangement, dato, idrett) && sjekkOmdagensDatoErMindreEnnDatePicker(dato) && arrangementPaaSammeDatoIkkeFinnes(arrangement, dato.replace("-","."), idrett)){
             //lager en ny linje med navnet på arrangementet, antall utøvere (som fra start skal være 0), utøvere (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
@@ -77,9 +73,26 @@ public class LeggTilArrangementController {
                 e.printStackTrace();
             }
             //lukker nåværende vindu
-            Stage stagen = (Stage) btnLeggTilArrangement.getScene().getWindow();
-            stagen.close();
-            DataHandler.sendTilNyScene(filstienTilLoggetInn, "Arrengementer", 500, 500);
+            goBack(filstienTilLoggetInn);
+        } else {
+            MainJavaFX.visAlertFeilmelding("Mangler arrangement, dato eller idrett","Må fylle inn en av delene");
+        }
+    }
+
+    public void leggeTilArrangementetTest(String arrangement, String dato, String idrett, String filstienTilArrangementene, String filstienTilLoggetInn) {
+        //sjekker om alle "forhåndsregler" er gjort for å kunne legge til et arrangement
+        if (sjekkOmAlleInputErFyltUt(arrangement, dato, idrett) && sjekkOmdagensDatoErMindreEnnDatePicker(dato) && arrangementPaaSammeDatoIkkeFinnes(arrangement, dato.replace("-","."), idrett)){
+            //lager en ny linje med navnet på arrangementet, antall utøvere (som fra start skal være 0), utøvere (som fra start skal være tom), datoen (åååå.mm.dd), type idrett
+            String nyttArrangement = arrangement + ";0"/*antall utøvere*/ + ";" /*utøvere*/ + ";" + dato.replace("-",".") + ";" + idrett + "\n";
+            //prøver å legge til arrangementet på sisten av arrangementer.csv
+            try {
+                FileWriter filenSomSkalSkrivesTil = new FileWriter(filstienTilArrangementene, true);
+                filenSomSkalSkrivesTil.append(nyttArrangement);
+                filenSomSkalSkrivesTil.flush();
+                filenSomSkalSkrivesTil.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             MainJavaFX.visAlertFeilmelding("Mangler arrangement, dato eller idrett","Må fylle inn en av delene");
         }

@@ -48,7 +48,7 @@ public class NyDataHandler {
         }
     }
 
-    private static ArrayList<Utover> lesFraCSVFil(File filSomLesesFra) {
+    public static ArrayList<Utover> lesFraCSVFil(File filSomLesesFra) {
         ArrayList<Utover> utoverFraFil = new ArrayList<>();
 
         try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {

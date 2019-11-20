@@ -85,7 +85,7 @@ public class NyBrukerController {
         }
     }
 
-    private void lagUtover(){
+    public void lagUtover(){
         nyUtover.setBrukernavn(BrukernavnTextField.getText());
         nyUtover.setPassord(PassordTextField.getText());
         nyUtover.setNavn(NavnTextField.getText());
@@ -101,7 +101,15 @@ public class NyBrukerController {
         dialogStage.close();
     }
 
-    private boolean sjekkOmInputErGyldig() {
+    //sjekker om alle felter er fylt ut
+    public boolean sjekkOmInputErGyldigTest(String brukernavn, String passord, String fornavn, String etternavn, String alder) {
+        if (!brukernavn.isEmpty() && !passord.isEmpty() && !fornavn.isEmpty() && !etternavn.isEmpty() && !alder.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean sjekkOmInputErGyldig() {
         // Lager en string vi fyller opp med feilmeldinger for visning til brukeren
         String feilmelding = "";
 
@@ -147,4 +155,6 @@ public class NyBrukerController {
             return false;
         }
     }
+
+
 }

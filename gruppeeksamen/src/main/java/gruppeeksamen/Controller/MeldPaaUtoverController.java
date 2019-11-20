@@ -53,7 +53,7 @@ public class MeldPaaUtoverController {
     //sender videre til å legge til utøver
     @FXML
     private void sendVidereTilFil(ActionEvent value) {
-        leggTilUtover();
+        leggTilUtover(fornavnInput.getText());
     }
 
     //Går tilbake til forrige vindu
@@ -65,10 +65,10 @@ public class MeldPaaUtoverController {
     }
 
     //denne må nok refaktoreres
-    private void leggTilUtover() {
+    private void leggTilUtover(String fornavn) {
         ObservableList<String> heleList  = FXCollections.observableArrayList();
 
-        if (!fornavnInput.getText().equals("") && !etternavnInput.getText().equals("") && idretterComboBox.getValue() != null && arrangementerComboBox.getValue() != null) {
+        if (!fornavn.equals("") && !etternavnInput.getText().equals("") && idretterComboBox.getValue() != null && arrangementerComboBox.getValue() != null) {
             //fyller listen
             ObservableList<String> heleListenMedArrangementer = DataHandler.hentDataHele(filStiTilArrangementer,heleList);
             leggerTilUtovereIArrangement(heleListenMedArrangementer);

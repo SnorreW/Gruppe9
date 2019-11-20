@@ -57,7 +57,7 @@ public class BrukerTest {
         Assert.assertEquals(bruker.getNavn(), navn);
         Assert.assertEquals(bruker.getEtternavn(), etternavn);
         Assert.assertEquals(bruker.getAlder(), alder);
-        
+
     }
 
 }

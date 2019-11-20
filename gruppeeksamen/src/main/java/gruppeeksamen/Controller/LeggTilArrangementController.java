@@ -90,9 +90,9 @@ public class LeggTilArrangementController {
         ObservableList<String> listeMedDatoer = FXCollections.observableArrayList();
         ObservableList<String> listeMedTypeIdretter = FXCollections.observableArrayList();
         String datod = dato.replace("-",".");
-        ObservableList fyltListeMedArrangementer = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 0,listeMedArrangementer);
-        ObservableList fyltListeMedDatoer = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 3,listeMedDatoer);
-        ObservableList fyltListeMedTypeIdretter = DataHandler.hentDataDel("src/main/java/gruppeeksamen/arrangementer.csv", 4,listeMedTypeIdretter);
+        ObservableList fyltListeMedArrangementer = DataHandler.hentDataDel(filStiTilArrangementer, 0,listeMedArrangementer);
+        ObservableList fyltListeMedDatoer = DataHandler.hentDataDel(filStiTilArrangementer, 3,listeMedDatoer);
+        ObservableList fyltListeMedTypeIdretter = DataHandler.hentDataDel(filStiTilArrangementer, 4,listeMedTypeIdretter);
         for (int i=0;i<fyltListeMedArrangementer.size();i++) {
             if (fyltListeMedArrangementer.get(i).equals(arrangement) && fyltListeMedDatoer.get(i).equals(datod) && fyltListeMedTypeIdretter.get(i).equals(idrett)) {
                 return false;

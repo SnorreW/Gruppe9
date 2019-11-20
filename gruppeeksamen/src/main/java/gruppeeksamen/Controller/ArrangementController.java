@@ -38,16 +38,7 @@ public class ArrangementController {
         listeMedUtovere.clear();
         listeMedUtovere = DataHandler.hentDataHele(filstiArrangementerCSV, listeMedUtovere);
         ArrayList listeMedUtoverene = new ArrayList(listeMedUtovere);
-        for (int i = 0; i < listeMedUtovere.size(); i++) {
-            ArrayList arrayListeMedUtoverene = (ArrayList) listeMedUtoverene.get(i);
-            if (arrayListeMedUtoverene.get(0).equals(arrangement)) {
-                String[] utoverene = arrayListeMedUtoverene.get(2).toString().split("\\|");
-                listeMedUtovere.clear();
-                for (int o = 0; o < utoverene.length; o++) {
-                    listeMedUtovere.add(utoverene[o]);
-                }
-            }
-        }
+        hjelpTilOgFylleListe(listeMedUtoverene,arrangement);
         utovereSomErMed.setItems(listeMedUtovere);
     }
 
@@ -62,12 +53,28 @@ public class ArrangementController {
     @FXML
     private void slettUtover(ActionEvent event) {
         String arrangement = LoggetInnController.getStagen();
+        System.out.println(arrangement);
         String utoverSomSkalSlettes = listeMedUtovereSomErMed.getSelectionModel().getSelectedItem();
+        System.out.println(utoverSomSkalSlettes);
         //Kjører metode som sletter bestemt utøver
         slettBestemtUtoverIArrangement(arrangement, utoverSomSkalSlettes);
     }
+    //////
+    public void hjelpTilOgFylleListe(ArrayList liste, String arrangement){
+        ArrayList listeMedUtoverene = new ArrayList(liste);
 
-    private void slettBestemtUtoverIArrangement(String arrangement, String utoverenSomSkalSlettes) {
+        for (int i = 0; i < listeMedUtovere.size(); i++) {
+            ArrayList arrayListeMedUtoverene = (ArrayList) listeMedUtoverene.get(i);
+            if (arrayListeMedUtoverene.get(0).equals(arrangement)) {
+                String[] utoverene = arrayListeMedUtoverene.get(2).toString().split("\\|");
+                listeMedUtovere.clear();
+                for (int o = 0; o < utoverene.length; o++) {
+                    listeMedUtovere.add(utoverene[o]);
+                }
+            }
+        }
+    }
+    public void slettBestemtUtoverIArrangement(String arrangement, String utoverenSomSkalSlettes) {
         File filSomLesesFra = new File(filstiArrangementerCSV);
         String nyUtover = "";
         String nyUtoverLinje = "";
@@ -110,8 +117,8 @@ public class ArrangementController {
         fyllListen(listeMedUtovereSomErMed, arrangement);
     }
 
-
-    private void oppdaterListe(String filstiArrangementerCSV, String nyUtoverLinje){
+    ///////
+    public void oppdaterListe(String filstiArrangementerCSV, String nyUtoverLinje){
         try {
             //skriver til arrangement filen med en oppdatert liste etter å ha fjernet utøveren
             FileWriter skriver = new FileWriter(filstiArrangementerCSV);

@@ -3,6 +3,7 @@ package gruppeeksamen.Controller;
 import gruppeeksamen.Modell.Arrangementer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ class ArrangementControllerTest {
 
     ArrayList utovere1 = new ArrayList();
 
-    Arrangementer arrangement1 = new Arrangementer("Skitur");
+    //Arrangementer arrangement1 = new Arrangementer("Skitur");
 
     private ArrangementController arrangementController = new ArrangementController();
 
@@ -32,12 +33,20 @@ class ArrangementControllerTest {
     @Test
     public void slettBestemtBruker(){
 
-        ObservableList listeFor = FXCollections.observableArrayList();
-        String arrangement = "Skjeberg cupen";
+        String arrangement = "Tistacupen";
         String utoverSomSkalSlettes ="Ole Gen";
-        int lengdeEtter = 1;
+        int lengdeFor = utovere.size();
+        System.out.println(lengdeFor);
         arrangementController.slettBestemtUtoverIArrangement(arrangement,utoverSomSkalSlettes);
+        int lengdeEtter = arrangementController.listeMedUtovere.size();
+        System.out.println(lengdeEtter);
+        assertTrue(lengdeFor>lengdeEtter);
 
+
+        utovere.add(utoverSomSkalSlettes);
+        arrangementController.hjelpTilOgFylleListe(utovere, "Tistacupen");
+        assertTrue(lengdeFor==lengdeEtter);
+       // MeldPaaUtoverController.
     }
 
     //Tester at listen med utøvere blir fylt

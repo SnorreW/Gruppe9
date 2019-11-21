@@ -1,5 +1,6 @@
 package gruppeeksamen.Controller;
 
+import gruppeeksamen.Data.DataHandler;
 import gruppeeksamen.Modell.Arrangementer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,7 +32,7 @@ class ArrangementControllerTest {
     }
 
     @Test
-    public void slettBestemtBruker() {
+    public void slettBestemtBrukerTrue() {
         String arrangement = "Tistacupen";
         String utoverSomSkalSlettes = "Ole Gen";
         assertTrue(arrangementController.slettBestemtUtoverIArrangement(arrangement,utoverSomSkalSlettes));

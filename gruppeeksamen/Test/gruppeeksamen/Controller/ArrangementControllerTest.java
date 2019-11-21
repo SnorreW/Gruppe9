@@ -28,7 +28,7 @@ class ArrangementControllerTest {
         ArrayList list = new ArrayList();
         list.add("Tistacupen;1;Ole;2019.10.17;Ski");
         list.add("Skjeberg cupen;1;Petter Nor;2019.10.28;Ski");
-        arrangementController.hjelpTilOgFylleListe(list,arrangementSomErValgt);
+        //arrangementController.hjelpTilOgFylleListe(list,arrangementSomErValgt);
     }
 
     @Test

@@ -31,7 +31,6 @@ public class ArrangementController {
         String arrangementSomErValgt = LoggetInnController.getStagen();
         //sender til metode som fyller listview
         fyllListen(listeMedUtovereSomErMed, arrangementSomErValgt);
-
     }
 
     private void fyllListen(ListView<String> utovereSomErMed, String arrangement) {
@@ -39,7 +38,7 @@ public class ArrangementController {
         listeMedUtovere.clear();
         listeMedUtovere = DataHandler.hentDataHele(filstiArrangementerCSV, listeMedUtovere);
         ArrayList arrayListSomSkalFylleListen = new ArrayList(listeMedUtovere);
-        hjelpTilOgFylleListe(arrayListSomSkalFylleListen,arrangement);
+        hjelpTilOgFylleListe(arrayListSomSkalFylleListen, arrangement);
         utovereSomErMed.setItems(listeMedUtovere);
     }
 
@@ -64,13 +63,10 @@ public class ArrangementController {
             MainJavaFX.visAlertFeilmelding("Feil", "Feil");
         }
     }
-    //////
+
     public void hjelpTilOgFylleListe(ArrayList liste, String arrangement) {
-
-        ArrayList listeMedUtoverene = new ArrayList(liste);
-
-        for (int i = 0; i < listeMedUtovere.size(); i++) {
-            ArrayList arrayListeMedUtoverene = (ArrayList) listeMedUtoverene.get(i);
+        for (int i = 0; i < liste.size(); i++) {
+            ArrayList arrayListeMedUtoverene = (ArrayList) liste.get(i);
             if (arrayListeMedUtoverene.get(0).equals(arrangement)) {
                 String[] utoverene = arrayListeMedUtoverene.get(2).toString().split("\\|");
                 listeMedUtovere.clear();

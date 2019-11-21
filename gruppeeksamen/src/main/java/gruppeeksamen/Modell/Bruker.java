@@ -83,15 +83,15 @@ public abstract class Bruker {
     }
 
     //Sjekk at loggin info er riktig
-    public static boolean sjekkAtBrukerInputErRiktig(String brukernavn, String passord){
+    public static boolean sjekkAtBrukerInputErFylt(String brukernavn, String passord){
         boolean godkjent = false;
         if (brukernavn == null|| brukernavn == "" && passord == null||passord == "") {
-            //MainJavaFX.visAlertFeilmelding("Mangler brukernavn og passord", "Fyll inn brukernavn og passord for å gå videre");
+            godkjent = false;
         } else if (brukernavn == null|| brukernavn == "") {
-            //MainJavaFX.visAlertFeilmelding("Mangler brukernavn", "Fyll inn brukernavn for å gå videre");
+
             godkjent = false;
         } else if (passord == null||passord == "") {
-            // MainJavaFX.visAlertFeilmelding("Mangler passord", "Fyll inn passord for å gå videre");
+
             godkjent = false;
         } else {
             godkjent = true;
@@ -99,6 +99,7 @@ public abstract class Bruker {
         }
         return godkjent;
     }
+
 
     @Override
     public String toString() {

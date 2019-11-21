@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
 public class LoggInnController {
     private static ObservableList<String> listeBrukenavn = FXCollections.observableArrayList();
     private static ObservableList<String> listePassord = FXCollections.observableArrayList();
@@ -45,7 +46,7 @@ public class LoggInnController {
         boolean nyUtoverVellyket = MainJavaFX.getInstance().visNyUtoverDialog(nyUtover);
 
         //Sjekker om den nye utoveren ble laget
-        if(nyUtoverVellyket) {
+        if (nyUtoverVellyket) {
             //Henter ut listen med utovere, og legger til den nye utoveren som ble laget
             NyDataHandler.hentUtoverData().add(nyUtover);
             //Setter at den nye utoveren er valgt
@@ -59,11 +60,11 @@ public class LoggInnController {
     private void sjekkBruker(ActionEvent event) throws IOException {        //Sjekker om alle felter er fylt inn
         String brukernavn = inputBrukernavn.getText();
         String passord = inputPassord.getText();
-        if (Bruker.sjekkAtBrukerInputErRiktig(brukernavn, passord)== false) {
+        if (Bruker.sjekkAtBrukerInputErFylt(brukernavn, passord) == false) {
             MainJavaFX.visAlertFeilmelding("Mangler brukernavn", "Fyll inn brukernavn for å gå videre");
         } else {
             //Hvis alle felter er fylt inn sendes den videre til neste sjekk
-            gaarGjennomListe(inputBrukernavn.getText(),inputPassord.getText(), event);
+            gaarGjennomListe(inputBrukernavn.getText(), inputPassord.getText(), event);
         }
     }
 
@@ -73,8 +74,10 @@ public class LoggInnController {
         ObservableList<String> brukernavnListe = DataHandler.hentDataDel(filstiBrukereCSV, 0/*Brukernavn*/, listeBrukenavn);
         ObservableList<String> passordListe = DataHandler.hentDataDel(filstiBrukereCSV, 1/*Passord*/, listePassord);
         //Går gjennom listene for å sjekke om brukernavn og passord stemmer med hverandre
+
         for (int i = 0; i < brukernavnListe.size(); i++) {
-            if (brukernavnListe.get(i).equals(brukernavn) && passordListe.get(i).equals(passord)) {
+
+            if (brukernavnOgpassordSjekk(brukernavn, passord, brukernavnListe.get(i), passordListe.get(i)) == false) {
                 //Hvis brukernavn og passord stemmer overens, blir innloggingsFeil satt til false
                 innlogginsFeil = false;
                 Stage stage = (Stage) btnLoggInn.getScene().getWindow();
@@ -85,11 +88,24 @@ public class LoggInnController {
                 //Hvis brukernavn og passord ikke stemmer overens, blir innloggingsfeil satt til true
                 innlogginsFeil = true;
             }
+
         }
         //Hvis innloggingsfeil ble satt til true under iftesten over, blir brukeren sendt til neste vindu
         if (innlogginsFeil) {
             MainJavaFX.visAlertFeilmelding("Feil ved innlogging", "Brukernavn eller passord er feil.");
         }
         return innlogginsFeil;
+    }
+
+    public static boolean brukernavnOgpassordSjekk(String brukernavn, String passord, String listeBrukenavn, String listePassord) {
+        //boolean godkjent;
+        if (listeBrukenavn.equals(brukernavn) && listePassord.equals(passord)) {
+            //Hvis brukernavn og passord stemmer overens, blir innloggingsFeil satt til false
+            return false;
+        } else {
+            //Hvis brukernavn og passord ikke stemmer overens, blir innloggingsfeil satt til true
+            return true;
+        }
+
     }
 }

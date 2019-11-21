@@ -16,9 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ArrangementController {
-    public static ObservableList<String> listeMedUtovere = FXCollections.observableArrayList();
-    String filstiArrangementerCSV = "src/main/java/gruppeeksamen/arrangementer.csv";
-    String filstiLoggetInnFXML = "../../view/loggetInn.fxml";
+    private static ObservableList<String> listeMedUtovere = FXCollections.observableArrayList();
+    private String filstiArrangementerCSV = "src/main/java/gruppeeksamen/arrangementer.csv";
+    private String filstiLoggetInnFXML = "../../view/loggetInn.fxml";
 
     @FXML
     private ListView<String> listeMedUtovereSomErMed;
@@ -54,9 +54,7 @@ public class ArrangementController {
     @FXML
     private void slettUtover(ActionEvent event) {
         String arrangement = LoggetInnController.getStagen();
-        System.out.println(arrangement);
         String utoverSomSkalSlettes = listeMedUtovereSomErMed.getSelectionModel().getSelectedItem();
-        System.out.println(utoverSomSkalSlettes);
         //Kjører metode som sletter bestemt utøver
         boolean metode = slettBestemtUtoverIArrangement(arrangement, utoverSomSkalSlettes);
         if (metode) {
@@ -67,7 +65,8 @@ public class ArrangementController {
         }
     }
     //////
-    public void hjelpTilOgFylleListe(ArrayList liste, String arrangement){
+    public void hjelpTilOgFylleListe(ArrayList liste, String arrangement) {
+
         ArrayList listeMedUtoverene = new ArrayList(liste);
 
         for (int i = 0; i < listeMedUtovere.size(); i++) {

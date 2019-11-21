@@ -16,8 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NyDataHandlerTest {
     private NyDataHandler nyDataHandler = new NyDataHandler();
-    private ObservableList test1  = FXCollections.observableArrayList();
-    private ObservableList test2  = FXCollections.observableArrayList();
 
     @Test
     public void girTrueHvisFilstiErUlik() {
@@ -31,11 +29,12 @@ public class NyDataHandlerTest {
     public void hentUtoverDataTrue(){
         Utover enUtover = NyDataHandler.hentUtoverData().get(0);
 
-        assertEquals(enUtover.getBrukenavn(), "Sandnes");
-        assertEquals(enUtover.getPassord(), "admin2");
-        assertEquals(enUtover.getNavn(), "Aleksander");
-        assertEquals(enUtover.getEtternavn(), "Sandnes");
-        assertEquals(enUtover.getAlder(), 20);
+
+        assertEquals(enUtover.getBrukenavn(), "admin1");
+        assertEquals(enUtover.getPassord(), "admin4");
+        assertEquals(enUtover.getNavn(), "Admin");
+        assertEquals(enUtover.getEtternavn(), "Admin");
+        assertEquals(enUtover.getAlder(), 0);
     }
 
     @Test
@@ -57,9 +56,9 @@ public class NyDataHandlerTest {
 
         NyDataHandler.skrivTilCSVFil(utovere, new File("src/main/java/gruppeeksamen/brukere.csv"));
 
-        assertTrue(utovere.size() > testliste.size());
-
         Utover utover = NyDataHandler.hentUtoverData().get(6);
+
+        assertTrue(utovere.size() > testliste.size());
 
         assertEquals(utover.getBrukenavn(), "Sandnes");
         assertEquals(utover.getPassord(), "admin3");

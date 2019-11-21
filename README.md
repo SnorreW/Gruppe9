@@ -32,3 +32,5 @@ Vi har brukt følgende programmer til å lage programmet vårt:
 
 ## Skrevet av
 * Aleksander Pleym Sandnes
+
+Se også en [liste](https://github.com/SnorreW/Gruppe9/blob/heisannAlleSammen/Contributing.mb) av alle som har vært med på dette prosjektet

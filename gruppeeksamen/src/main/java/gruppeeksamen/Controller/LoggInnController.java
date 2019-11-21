@@ -20,8 +20,10 @@ public class LoggInnController {
     private static ObservableList<String> listeBrukenavn = FXCollections.observableArrayList();
     private static ObservableList<String> listePassord = FXCollections.observableArrayList();
     private boolean innlogginsFeil = false;
-    private String filstiBrukereCSV = "src/main/java/gruppeeksamen/brukere.csv";
-    private String filstiLoggetInnFXML = "../../view/loggetInn.fxml";
+    String filstiBrukereCSV = "src/main/java/gruppeeksamen/brukere.csv";
+    String filstiLoggetInnFXML = "../../view/loggetInn.fxml";
+    String filStiTilOpprettUtoverFXML = "../../view/nyBrukerVindu.fxml";
+    String filStiTilLoggInnFXML = "../../view/loggInn.fxml";
 
     @FXML
     private TextField inputBrukernavn;
@@ -31,27 +33,33 @@ public class LoggInnController {
     private Button btnLoggInn;
     @FXML
     private Button btnNyUtover;
+    @FXML
+    private Button btnAvbryt;
 
     @FXML
     private void initialize() {
     }
 
     @FXML
+    public void btnAvbryt(ActionEvent actionEvent) {
+        //Lukker nåværende vindu og sender til ny utover vindu
+        Stage stage = (Stage) btnAvbryt.getScene().getWindow();
+        stage.close();
+        DataHandler.sendTilNyScene(filStiTilLoggInnFXML, "Logg Inn", 500, 500);
+    }
+
+    @FXML
     public void btnNyUtoverClicked(ActionEvent actionEvent) {
+        //Lukker nåværende vindu og sender til ny utover vindu
+        Stage stage = (Stage) btnNyUtover.getScene().getWindow();
+        stage.close();
+        DataHandler.sendTilNyScene(filStiTilOpprettUtoverFXML, "Legg Til Ny Bruker", 500, 250);
         //Oppretter og instansierer et nytt brukerobjekt
         Utover nyUtover = new Utover();
 
-        //Viser det nye vinduet, og sender objektet inn for å fylles med data, får tilbake true/false ettersom hvordan det gikk
-        boolean nyUtoverVellyket = MainJavaFX.getInstance().visNyUtoverDialog(nyUtover);
-
-        //Sjekker om den nye utoveren ble laget
-        if (nyUtoverVellyket) {
-            //Henter ut listen med utovere, og legger til den nye utoveren som ble laget
-            NyDataHandler.hentUtoverData().add(nyUtover);
-            //Setter at den nye utoveren er valgt
-            Stage stagen = (Stage) btnNyUtover.getScene().getWindow();
-            stagen.close();
-        }
+        NyDataHandler.hentUtoverData().add(nyUtover);
+        Stage stagen = (Stage) btnNyUtover.getScene().getWindow();
+        stagen.close();
     }
 
     //Når man trykker på logg inn knappen sender den input (brukernavn og passord) videre til en sjekk

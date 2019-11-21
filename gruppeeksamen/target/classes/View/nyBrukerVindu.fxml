@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="261.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppeeksamen.Controller.NyBrukerController">
+<AnchorPane prefHeight="261.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppeeksamen.Controller.NyBrukerController">
     <children>
         <GridPane AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <columnConstraints>
@@ -21,6 +21,7 @@
                 <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="65.0" minHeight="4.0" prefHeight="31.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="43.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
+            <RowConstraints />
             </rowConstraints>
             <children>
                 <Label text="Brukernavn" />
@@ -34,10 +35,10 @@
                 <TextField fx:id="EtternavnTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="AlderTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
-        </GridPane >
-        <HBox alignment="BOTTOM_RIGHT" layoutX="351.0" layoutY="125.0" prefHeight="40.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" >
-            <children >
-                <Button mnemonicParsing="false" onAction="#avbrytValgt" text="Avbryt" />
+        </GridPane>
+        <HBox alignment="BOTTOM_RIGHT" layoutX="351.0" layoutY="125.0" prefHeight="40.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+            <children>
+                <Button fx:id="btnAvbryt" mnemonicParsing="false" onAction="#btnAvbryt" text="Avbryt" />
                 <Button fx:id="leggTilButton" mnemonicParsing="false" onAction="#leggTilUtover" text="Legg Til Utover" />
             </children>
         </HBox>

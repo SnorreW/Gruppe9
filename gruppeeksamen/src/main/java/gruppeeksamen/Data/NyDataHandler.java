@@ -14,8 +14,6 @@ public class NyDataHandler {
         //Definerer filen vi skal skrive til
         File kilden = new File("src/main/java/gruppeeksamen/brukere.csv");
 
-        //Når jeg inkluderer denne delen så blir listen på venstresiden overskrevet med ingenting.
-
         //Skriver listen til den spesifiserte filen
         skrivTilCSVFil(utoverTilFil, kilden);
 
@@ -26,7 +24,7 @@ public class NyDataHandler {
         return FXCollections.observableArrayList(utoverFraFil);
     }
 
-    private static void skrivTilCSVFil(ArrayList<Utover> utovere, File filSOmSkrivesTil) {
+    public static void skrivTilCSVFil(ArrayList<Utover> utovere, File filSOmSkrivesTil) {
         try (BufferedWriter bufretSkriver = new BufferedWriter(new FileWriter(filSOmSkrivesTil,true))) {
             //Går gjennom alle utovere i listen
             for(Utover enUtover: utovere) {

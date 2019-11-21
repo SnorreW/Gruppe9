@@ -24,8 +24,8 @@ public class MeldPaaUtoverController {
     @FXML
     private Button meldePaaKnapp, btnGaaTilbake;
 
-    String filStiTilArrangementer = "src/main/java/gruppeeksamen/arrangementer.csv";
-    String filStiTilLoggetInn = "../../View/loggetInn.fxml";
+    private String filStiTilArrangementer = "src/main/java/gruppeeksamen/arrangementer.csv";
+    private String filStiTilLoggetInn = "../../View/loggetInn.fxml";
 
     @FXML
     public void initialize() {
@@ -39,15 +39,21 @@ public class MeldPaaUtoverController {
     //oppdaterer combobox med arrangementer som er av typen valgt i første combobox
     @FXML
     private void oppdaterCup(ActionEvent value) {
+        ObservableList fyllNyttArrangement = leggTilArrangement(idretterComboBox.getValue());
+        arrangementerComboBox.setItems(fyllNyttArrangement);
+    }
+
+    public ObservableList leggTilArrangement(String idrett) {
         ObservableList<String> arrangementListe  = FXCollections.observableArrayList();
         ObservableList<String> arrangementerMedRiktigTypeIdrettListe  = FXCollections.observableArrayList();
         ObservableList<String> typeIdrettListe  = FXCollections.observableArrayList();
         //fyller typeListe og typeIdrettlisteListe
         DataHandler.hentDataDel(filStiTilArrangementer, 4/*CupNavn*/, typeIdrettListe);
         DataHandler.hentDataDel(filStiTilArrangementer, 0/*CupNavn*/, arrangementListe);
-
         //Fyller inn arrangementer
-        fyllNyttArrangement(arrangementListe, arrangementerMedRiktigTypeIdrettListe, typeIdrettListe);
+        ObservableList fyllNyttArrangement = fyllNyttArrangement(arrangementListe, arrangementerMedRiktigTypeIdrettListe, typeIdrettListe, idrett);
+        //legger til alle relevante arrangementer i combobox
+        return fyllNyttArrangement;
     }
 
     //sender videre til å legge til utøver
@@ -88,17 +94,16 @@ public class MeldPaaUtoverController {
         liste.add("Loping");
     }
 
-    private void fyllNyttArrangement(ObservableList<String> arrListe, ObservableList<String> riktigIdrett,ObservableList<String> typeIdrettListe ){
-
+    public ObservableList<String> fyllNyttArrangement(ObservableList<String> arrListe, ObservableList<String> riktigIdrett, ObservableList<String> typeIdrettListe, String idrett){
         for (int i=0;i<arrListe.size();i++) {
 
-            if (typeIdrettListe.get(i).equals(idretterComboBox.getValue())) {
+            if (typeIdrettListe.get(i).equals(idrett)) {
                 riktigIdrett.add(arrListe.get(i));
             }
         }
-        //legger til alle relevante arrangementer i
-        arrangementerComboBox.setItems(riktigIdrett);
+        return riktigIdrett;
     }
+
     private void leggerTilUtovereIArrangement(ObservableList<String> heleListenMedArrangementer){
         ArrayList ArrayListMedArrangmenter = new ArrayList<>(heleListenMedArrangementer);
         String gammelLinje = "";
@@ -113,7 +118,7 @@ public class MeldPaaUtoverController {
                     //hvis aktivitets-navnet fra listen stemmer med det man har valgt i gui
                     if (nyListeMedAlleArrangementer.get(0).equals(String.valueOf(arrangementerComboBox.getValue()))) {
                         //legger til +1 på antall utøvere
-                        nyeAntallLag = Integer.parseInt((String) nyListeMedAlleArrangementer.get(1)) + 1;
+                        nyeAntallLag = Integer.parseInt(String.valueOf(nyListeMedAlleArrangementer.get(1))) + 1;
                         //leger til utøver i utøverlistenlisten
                         if (nyListeMedAlleArrangementer.get(2).toString().isEmpty()) {
                             nyeUtover = fornavnInput.getText() + " " + etternavnInput.getText();
@@ -140,7 +145,7 @@ public class MeldPaaUtoverController {
             String linjen;
             while( (linjeSomSkalBliDeler = bufretLeser.readLine()) != null ){
                 String[] deler = linjeSomSkalBliDeler.split(";");
-                linjen = deler[0] + ";" + deler[1] + ";" + deler[2] + ";" + deler[3] + ";" + deler[4];
+                linjen = deler[0] + ";" + (deler[1]) + ";" + deler[2] + ";" + deler[3] + ";" + deler[4];
                 if (linjen.equals(gammelLinje)) {
                     nyFil.append(nylinje).append("\n");
                 } else {

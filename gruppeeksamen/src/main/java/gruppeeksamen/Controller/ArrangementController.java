@@ -1,6 +1,7 @@
 package gruppeeksamen.Controller;
 
 import gruppeeksamen.Data.DataHandler;
+import gruppeeksamen.MainJavaFX;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,9 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ArrangementController {
-    public static ObservableList<String> listeMedUtovere = FXCollections.observableArrayList();
-    String filstiArrangementerCSV = "src/main/java/gruppeeksamen/arrangementer.csv";
-    String filstiLoggetInnFXML = "../../view/loggetInn.fxml";
+    private static ObservableList<String> listeMedUtovere = FXCollections.observableArrayList();
+    private String filstiArrangementerCSV = "src/main/java/gruppeeksamen/arrangementer.csv";
+    private String filstiLoggetInnFXML = "../../view/loggetInn.fxml";
 
     @FXML
     private ListView<String> listeMedUtovereSomErMed;
@@ -53,14 +54,19 @@ public class ArrangementController {
     @FXML
     private void slettUtover(ActionEvent event) {
         String arrangement = LoggetInnController.getStagen();
-        System.out.println(arrangement);
         String utoverSomSkalSlettes = listeMedUtovereSomErMed.getSelectionModel().getSelectedItem();
-        System.out.println(utoverSomSkalSlettes);
         //Kjører metode som sletter bestemt utøver
-        slettBestemtUtoverIArrangement(arrangement, utoverSomSkalSlettes);
+        boolean metode = slettBestemtUtoverIArrangement(arrangement, utoverSomSkalSlettes);
+        if (metode) {
+            //oppdaterer listview
+            fyllListen(listeMedUtovereSomErMed, arrangement);
+        } else {
+            MainJavaFX.visAlertFeilmelding("Feil", "Feil");
+        }
     }
     //////
-    public void hjelpTilOgFylleListe(ArrayList liste, String arrangement){
+    public void hjelpTilOgFylleListe(ArrayList liste, String arrangement) {
+
         ArrayList listeMedUtoverene = new ArrayList(liste);
 
         for (int i = 0; i < listeMedUtovere.size(); i++) {
@@ -74,7 +80,7 @@ public class ArrangementController {
             }
         }
     }
-    public void slettBestemtUtoverIArrangement(String arrangement, String utoverenSomSkalSlettes) {
+    public boolean slettBestemtUtoverIArrangement(String arrangement, String utoverenSomSkalSlettes) {
         File filSomLesesFra = new File(filstiArrangementerCSV);
         String nyUtover = "";
         String nyUtoverLinje = "";
@@ -98,7 +104,11 @@ public class ArrangementController {
                     nyUtover = Arrays.toString(utoverene);
                     nyUtover = nyUtover.substring(1, nyUtover.length()-1).replace(", ", "|");
                     //setter antall utøvere i arrangementet til det den var minus en
-                    antallUtovere = Integer.parseInt(deler[1]) - 1;
+                    if (Integer.parseInt(deler[1]) <= 0) {
+                        antallUtovere = 0;
+                    } else {
+                        antallUtovere = Integer.parseInt(deler[1]) - 1;
+                    }
                     //legger til den nye linjen
                     nyUtoverLinje += deler[0] + ";" + antallUtovere + ";" + nyUtover + ";" + deler[3] + ";" + deler[4] + "\n";
                 } else {
@@ -107,13 +117,12 @@ public class ArrangementController {
                 }
 
             }
-
+            oppdaterListe(filstiArrangementerCSV, nyUtoverLinje);
+            return true;
         } catch (IOException e) {
             System.out.println(e);
+            return false;
         }
-        oppdaterListe(filstiArrangementerCSV, nyUtoverLinje);
-        //oppdaterer listview
-        fyllListen(listeMedUtovereSomErMed, arrangement);
     }
 
     ///////

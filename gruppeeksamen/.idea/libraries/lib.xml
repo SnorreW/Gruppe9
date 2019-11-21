@@ -5,7 +5,7 @@
       <root url="file://$PATH_TO_FX$" />
       <root url="file://$PATH_TO_FX$" />
       <root url="file://$PATH_TO_FX$" />
-      <root url="file://C:/Program Files/Java/javafx-sdk-11.0.2/lib" />
+      <root url="file://$PATH_TO_FX$" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
@@ -13,11 +13,9 @@
       <root url="file://$PATH_TO_FX$" />
       <root url="file://$PATH_TO_FX$" />
       <root url="file://$PATH_TO_FX$" />
-      <root url="file://C:/Program Files/Java/javafx-sdk-11.0.2/lib" />
+      <root url="file://$PATH_TO_FX$" />
     </SOURCES>
-    <jarDirectory url="file://C:/Program Files/Java/javafx-sdk-11.0.2/lib" recursive="false" />
     <jarDirectory url="file://$PATH_TO_FX$" recursive="false" />
-    <jarDirectory url="file://C:/Program Files/Java/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
     <jarDirectory url="file://$PATH_TO_FX$" recursive="false" type="SOURCES" />
   </library>
 </component>

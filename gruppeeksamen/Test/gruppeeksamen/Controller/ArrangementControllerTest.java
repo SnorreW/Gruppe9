@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrangementControllerTest {
-
     ArrayList utovere = new ArrayList();
 
     ArrayList utovere1 = new ArrayList();
@@ -20,6 +19,7 @@ class ArrangementControllerTest {
     //Arrangementer arrangement1 = new Arrangementer("Skitur");
 
     private ArrangementController arrangementController = new ArrangementController();
+    private MeldPaaUtoverController meldPaaUtoverController = new MeldPaaUtoverController();
 
     @Test
     private void sjekkHjelpOgfylleListe(){
@@ -35,6 +35,10 @@ class ArrangementControllerTest {
     public void slettBestemtBrukerTrue() {
         String arrangement = "Tistacupen";
         String utoverSomSkalSlettes = "Ole Gen";
+        String fornavn = "Ole";
+        String etternavn = "Gen";
+        String idrett = "Ski";
+        meldPaaUtoverController.leggTilUtover(fornavn, etternavn, idrett, arrangement);
         assertTrue(arrangementController.slettBestemtUtoverIArrangement(arrangement,utoverSomSkalSlettes));
     }
 

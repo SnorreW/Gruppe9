@@ -23,4 +23,15 @@ class MeldPaaUtoverControllerTest {
         ObservableList faktisk = meldPaaUtoverController.leggTilArrangement(idrett);
         assertEquals(forventet, faktisk);
     }
+
+    @Test
+    public void falsse() {
+        ObservableList<String> forventetListe  = FXCollections.observableArrayList();
+        ObservableList<String> faktiskListe  = FXCollections.observableArrayList();
+        forventetListe.add("Ski");
+        forventetListe.add("Sykkel");
+        forventetListe.add("Loping");
+        meldPaaUtoverController.leggTilIdrett(faktiskListe);
+        assertEquals(forventetListe, faktiskListe);
+    }
 }

@@ -177,4 +177,15 @@ class LeggTilArrangementControllerTest {
         boolean testen = leggTilArrangementController.leggeTilArrangementet(navnPaaArrangement, datoPaaArrangement, typeIdrettPaaArrangement, filStiTilArrangementer);
         assertFalse(testen);
     }
+
+    //Krav:
+    @Test
+    public void faarFalseDersomFilstiErFeil() {
+        navnPaaArrangement = "Tistacupen";
+        datoPaaArrangement = "2019-10-17";
+        typeIdrettPaaArrangement = "Ski";
+        String filStiTilArrangementer = "src/main/java/gruppeeksamen/arrangementer.cv";
+        boolean testen = leggTilArrangementController.leggeTilArrangementet(navnPaaArrangement, datoPaaArrangement, typeIdrettPaaArrangement, filStiTilArrangementer);
+        assertFalse(testen);
+    }
 }

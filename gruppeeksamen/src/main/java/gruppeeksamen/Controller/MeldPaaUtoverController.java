@@ -59,7 +59,14 @@ public class MeldPaaUtoverController {
     //sender videre til å legge til utøver
     @FXML
     private void sendVidereTilFil(ActionEvent value) {
-        leggTilUtover(fornavnInput.getText());
+        boolean tja = leggTilUtover(fornavnInput.getText(), etternavnInput.getText(), idretterComboBox.getValue(), arrangementerComboBox.getValue());
+        if (tja) {
+            Stage stage = (Stage) meldePaaKnapp.getScene().getWindow();
+            stage.close();
+            DataHandler.sendTilNyScene(filStiTilLoggetInn, "Arrengementer",500, 500);
+        } else {
+            MainJavaFX.visAlertFeilmelding("Mangler idrett, cup eller utøver","Må fylle inn en av delene");
+        }
     }
 
     //Går tilbake til forrige vindu
@@ -70,25 +77,21 @@ public class MeldPaaUtoverController {
         DataHandler.sendTilNyScene(filStiTilLoggetInn, "Arrengementer", 500, 500);
     }
 
-    //denne må nok refaktoreres
-    private void leggTilUtover(String fornavn) {
+    public boolean leggTilUtover(String fornavn, String etternavn, String idrett, String arrangement) {
         ObservableList<String> heleList  = FXCollections.observableArrayList();
 
-        if (!fornavn.equals("") && !etternavnInput.getText().equals("") && idretterComboBox.getValue() != null && arrangementerComboBox.getValue() != null) {
+        if (!fornavn.equals("") && !etternavn.equals("") && idrett != null && arrangement != null) {
             //fyller listen
             ObservableList<String> heleListenMedArrangementer = DataHandler.hentDataHele(filStiTilArrangementer,heleList);
-            leggerTilUtovereIArrangement(heleListenMedArrangementer);
-
-            Stage stage = (Stage) meldePaaKnapp.getScene().getWindow();
-            stage.close();
-            DataHandler.sendTilNyScene(filStiTilLoggetInn, "Arrengementer",500, 500);
+            leggerTilUtovereIArrangement(heleListenMedArrangementer, fornavn, etternavn, arrangement);
+            return true;
         }
         else {
-            MainJavaFX.visAlertFeilmelding("Mangler idrett, cup eller utøver","Må fylle inn en av delene");
+            return false;
         }
     }
 
-    private void leggTilIdrett(ObservableList<String> liste){
+    public void leggTilIdrett(ObservableList<String> liste){
         liste.add("Ski");
         liste.add("Sykkel");
         liste.add("Loping");
@@ -104,7 +107,7 @@ public class MeldPaaUtoverController {
         return riktigIdrett;
     }
 
-    private void leggerTilUtovereIArrangement(ObservableList<String> heleListenMedArrangementer){
+    private void leggerTilUtovereIArrangement(ObservableList<String> heleListenMedArrangementer, String fornavn, String etternavn, String arrangement){
         ArrayList ArrayListMedArrangmenter = new ArrayList<>(heleListenMedArrangementer);
         String gammelLinje = "";
         String nyLinje = "";
@@ -113,18 +116,18 @@ public class MeldPaaUtoverController {
             //Legger til dato, navn på arrangement og type arrangement i array
             ArrayList nyListeMedAlleArrangementer = (ArrayList) ArrayListMedArrangmenter.get(i);
             int nyeAntallLag = 0;
-            if (arrangementerComboBox.getValue() != null) {
+            if (arrangement != null) {
                 for (int k=0; k < heleListenMedArrangementer.size(); k++) {
                     //hvis aktivitets-navnet fra listen stemmer med det man har valgt i gui
-                    if (nyListeMedAlleArrangementer.get(0).equals(String.valueOf(arrangementerComboBox.getValue()))) {
+                    if (nyListeMedAlleArrangementer.get(0).equals(arrangement)) {
                         //legger til +1 på antall utøvere
                         nyeAntallLag = Integer.parseInt(String.valueOf(nyListeMedAlleArrangementer.get(1))) + 1;
                         //leger til utøver i utøverlistenlisten
                         if (nyListeMedAlleArrangementer.get(2).toString().isEmpty()) {
-                            nyeUtover = fornavnInput.getText() + " " + etternavnInput.getText();
+                            nyeUtover = fornavn + " " + etternavn;
                         }
                         else {
-                            nyeUtover = nyListeMedAlleArrangementer.get(2) + "|" + fornavnInput.getText() + " " + etternavnInput.getText();
+                            nyeUtover = nyListeMedAlleArrangementer.get(2) + "|" + fornavn + " " + etternavn;
                         }
                         gammelLinje = nyListeMedAlleArrangementer.get(0) + ";" + nyListeMedAlleArrangementer.get(1) + ";" + nyListeMedAlleArrangementer.get(2) + ";" + nyListeMedAlleArrangementer.get(3) + ";" + nyListeMedAlleArrangementer.get(4);
                         nyLinje = nyListeMedAlleArrangementer.get(0) + ";" + nyeAntallLag + ";" + nyeUtover + ";" + nyListeMedAlleArrangementer.get(3) + ";" + nyListeMedAlleArrangementer.get(4);

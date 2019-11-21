@@ -138,7 +138,6 @@ public class MeldPaaUtoverController {
         endreLinjeICSVFil(filStiTilArrangementer, gammelLinje, nyLinje);
     }
 
-    //komentar kommer
     private static void endreLinjeICSVFil(String filenSomLesesFra, String gammelLinje, String nylinje) {
         File filSomLesesFra = new File(filenSomLesesFra);
         StringBuilder nyFil = new StringBuilder();

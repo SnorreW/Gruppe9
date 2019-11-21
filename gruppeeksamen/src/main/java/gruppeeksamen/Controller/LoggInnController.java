@@ -20,8 +20,8 @@ public class LoggInnController {
     private static ObservableList<String> listeBrukenavn = FXCollections.observableArrayList();
     private static ObservableList<String> listePassord = FXCollections.observableArrayList();
     private boolean innlogginsFeil = false;
-    String filstiBrukereCSV = "src/main/java/gruppeeksamen/brukere.csv";
-    String filstiLoggetInnFXML = "../../view/loggetInn.fxml";
+    private String filstiBrukereCSV = "src/main/java/gruppeeksamen/brukere.csv";
+    private String filstiLoggetInnFXML = "../../view/loggetInn.fxml";
 
     @FXML
     private TextField inputBrukernavn;

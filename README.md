@@ -30,4 +30,7 @@ Vi har brukt følgende programmer til å lage programmet vårt:
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [Javafx](https://openjfx.io/) - Rich Client Applications
 
+## Skrevet av
+* Aleksander Pleym Sandnes
 
+Se også en [liste](https://github.com/SnorreW/Gruppe9/blob/heisannAlleSammen/Contributing.mb) av alle som har vært med på dette prosjektet

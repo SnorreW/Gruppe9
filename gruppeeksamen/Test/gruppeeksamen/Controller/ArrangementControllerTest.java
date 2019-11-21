@@ -44,14 +44,6 @@ class ArrangementControllerTest {
 
     //Tester at listen med utøvere blir fylt
     @Test
-    public void TestHjelpTilogFylleListeMetode() {
-        arrangementController.hjelpTilOgFylleListe(utovere, "Skitur");
-        utovere.add("Mateusz");
-        arrangementController.hjelpTilOgFylleListe(utovere, "Skitur");
-
-        assertEquals(utovere, utovere);
-    }
-    @Test
     public void TestHjelpTilOgFylleListeFalse() {
 
         arrangementController.hjelpTilOgFylleListe(utovere, "Skitur");

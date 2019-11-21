@@ -1,6 +1,7 @@
 package gruppeeksamen.Controller;
 
 import gruppeeksamen.Data.DataHandler;
+import gruppeeksamen.Modell.Arrangementer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +14,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static gruppeeksamen.Modell.Arrangementer.minimumAntallUtovere;
 
 public class ArrangementController {
     public static ObservableList<String> listeMedUtovere = FXCollections.observableArrayList();
@@ -78,7 +81,7 @@ public class ArrangementController {
         File filSomLesesFra = new File(filstiArrangementerCSV);
         String nyUtover = "";
         String nyUtoverLinje = "";
-        int antallUtovere;
+        int antallUtovere = 0;
 
         //leser fra listen
         try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {
@@ -98,8 +101,9 @@ public class ArrangementController {
                     nyUtover = Arrays.toString(utoverene);
                     nyUtover = nyUtover.substring(1, nyUtover.length()-1).replace(", ", "|");
                     //setter antall utøvere i arrangementet til det den var minus en
-                    antallUtovere = Integer.parseInt(deler[1]) - 1;
-                    //legger til den nye linjen
+
+                   minimumAntallUtovere((Integer.parseInt(deler[1])));
+
                     nyUtoverLinje += deler[0] + ";" + antallUtovere + ";" + nyUtover + ";" + deler[3] + ";" + deler[4] + "\n";
 
                 } else {

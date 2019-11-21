@@ -75,7 +75,7 @@ class ArrangementControllerTest {
         arrangementController.hjelpTilOgFylleListe(utovere1, "Skitur");
         utovere1.add("Mateusz");
 
-        assertTrue(utovere == utovere1, "Listene er like");
+        assertTrue(utovere.size() == utovere1.size(), "Listene er like");
     }
 
     //Tester at CSV fil er riktig

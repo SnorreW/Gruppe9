@@ -55,7 +55,7 @@ public class LoggInnController {
         }
     }
 
-    //Når man trykker på logg inn knappen sender den input (brukernav og passord) videre til en sjekk
+    //Når man trykker på logg inn knappen sender den input (brukernavn og passord) videre til en sjekk
     @FXML
     private void sjekkBruker(ActionEvent event) throws IOException {        //Sjekker om alle felter er fylt inn
         String brukernavn = inputBrukernavn.getText();

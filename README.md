@@ -1,7 +1,7 @@
 # Gruppe 9 Gruppeeksamen
 En paragraf med prosjektbeskrivelse skal her.
 
-# Hvordan komme i gang
+## Hvordan komme i gang
 Disse instruksjonene vil gi deg en kjørende kopi av prosjektet på din lokale maskin.
 
 # Før du laster ned

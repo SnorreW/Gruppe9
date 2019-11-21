@@ -5,7 +5,9 @@ En paragraf med prosjektbeskrivelse skal her.
 Disse instruksjonene vil gi deg en kjørende kopi av prosjektet på din lokale maskin.
 
 ## Før du laster ned
-Følgende programvare på innstalleres før programmet kjøres for første gang.
+Følgende programvare må innstalleres før programmet kjøres for første gang:
+
+* [Javafx](https://openjfx.io/) - Rich Client Applications
 
 ## Hvordan kjøre testene
 Forklar hvordan man kjører de automatiske testene
@@ -14,5 +16,6 @@ Forklar hvordan man kjører de automatiske testene
 Vi har brukt følgende programmer til å lage programmet vårt: 
 
 * [Maven](https://maven.apache.org/) - Dependency Management
+* [Javafx](https://openjfx.io/) - Rich Client Applications
 
 

@@ -17,8 +17,6 @@ public class Arrangementer implements Comparable<Arrangementer> {
 
     //Antall utovere i ett arrangement må være 0 eller mer.
     public static int minimumAntallUtovere(int faktiskAntall){
-        //int antallUtovereIArrangementet;
-
         if (faktiskAntall <= 0) {
             return 0;
         } else {

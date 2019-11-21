@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 public class LoggetInnController {
     private static String stagen = null;
-    String filStiTilLeggTilArrangementFXML = "../../view/leggTilArrangement.fxml";
-    String filStiTilMeldPaaUtoverFXML = "../../view/meldPaaUtover.fxml";
-    String filstiTilArrangementFXML = "../../view/arrangement.fxml";
+    private String filStiTilLeggTilArrangementFXML = "../../view/leggTilArrangement.fxml";
+    private String filStiTilMeldPaaUtoverFXML = "../../view/meldPaaUtover.fxml";
+    private String filstiTilArrangementFXML = "../../view/arrangement.fxml";
     private String filstiTilArrangementerCSV = "src/main/java/gruppeeksamen/arrangementer.csv";
 
     @FXML

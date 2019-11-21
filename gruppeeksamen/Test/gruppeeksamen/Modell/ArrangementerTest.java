@@ -8,5 +8,6 @@ class ArrangementerTest {
 
     @Test
     void getNavn() {
+
     }
 }

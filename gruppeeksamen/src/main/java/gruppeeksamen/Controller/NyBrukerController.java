@@ -27,28 +27,35 @@ public class NyBrukerController {
 
     @FXML
     private void initialize() {
+        //Setter leggTilButton til defaultknapp
         leggTilButton.setDefaultButton(true);
     }
 
     @FXML
     public void leggTilUtover(ActionEvent event) {
+        //Sjekker om input er gyldig først
         if(sjekkOmInputErGyldig()) {
+            //Hvis input er gyldig så hentes teksten fra alle input felter og lages om til en string seperert med ;
             String linje = BrukernavnTextField.getText() + ";" + PassordTextField.getText() + ";" + NavnTextField.getText() + ";" +
                     EtternavnTextField.getText() + ";" + Integer.parseInt(AlderTextField.getText()) + "\n";
 
+            //Skriver til filen brukere.csv
             try {
                 FileWriter file = new FileWriter("src/main/java/gruppeeksamen/brukere.csv", true);
                 file.append(linje);
                 file.flush();
                 file.close();
             }
+            //Skriver feilmeldig hvis det oppstår en feil
             catch (IOException e) {
                 e.printStackTrace();
             }
+            //Lukker vinduet
             Stage stagen = (Stage) leggTilButton.getScene().getWindow();
             stagen.close();
         }
         else {
+            //Feilmelding
             MainJavaFX.visAlertFeilmelding("Mangler Brukernavn, passord, navn, etternavn eller alder","Må fylle inn en av delene");
         }
     }
@@ -56,6 +63,7 @@ public class NyBrukerController {
     public void setNyUtover(Utover nyUtover) {
         this.nyUtover = nyUtover;
 
+        //Hvis utover ikke er null så oppretter vi en utover
         if (nyUtover != null) {
 
             BrukernavnTextField.setText(nyUtover.getBrukenavn());

@@ -2,7 +2,7 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>C:\Users\Aleksander\Documents\kurs\SE - OPPG\Gruppe69\Gruppe9\gruppeeksamen\out\artifacts\JavaFX_Sample_jar\gruppeeksamen.jar</jar>
+  <jar>C:\Users\Aleksander\Documents\kurs\SE - OPPG\Gruppe69\Gruppe9\gruppeeksamen\out\artifacts\filen\gruppeeksamen.jar</jar>
   <outfile>C:\Users\Aleksander\Documents\kurs\SE - OPPG\Gruppe69\Gruppe9\gruppeeksamen\filen.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>

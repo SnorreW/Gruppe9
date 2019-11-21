@@ -67,15 +67,12 @@ public class DataHandler {
     }
     public static ArrayList<String> lesFraCSVFilDel(File filSomLesesFra, int del) {
         ArrayList<String> dataFraFil = new ArrayList<>();
-
         try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {
             String linje;
             while( (linje = bufretLeser.readLine()) != null ){
                 String[] deler = linje.split(";");
-
                 dataFraFil.add(deler[del]);
             }
-
         } catch (IOException e) {
             System.out.println(e);
         }

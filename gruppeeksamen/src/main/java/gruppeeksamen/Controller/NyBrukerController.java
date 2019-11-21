@@ -21,16 +21,27 @@ public class NyBrukerController {
     private Button okButton;
     @FXML
     private Button leggTilButton;
+    @FXML
+    private Button btnAvbryt;
 
     private Stage dialogStage;
     private String feilmelding = "";
     private Utover nyUtover;
     private static boolean okClicked = false;
+    private String filStiTilLoggInnFXML = "../../view/loggInn.fxml";
 
     @FXML
     private void initialize() {
         //Setter leggTilButton til defaultknapp
         leggTilButton.setDefaultButton(true);
+    }
+
+    @FXML
+    public void btnAvbryt(ActionEvent actionEvent) {
+        //Lukker nåværende vindu og sender til ny utover vindu
+        Stage stage = (Stage) btnAvbryt.getScene().getWindow();
+        stage.close();
+        DataHandler.sendTilNyScene(filStiTilLoggInnFXML, "Logg Inn", 500, 500);
     }
 
     @FXML
@@ -55,6 +66,8 @@ public class NyBrukerController {
             //Lukker vinduet
             Stage stagen = (Stage) leggTilButton.getScene().getWindow();
             stagen.close();
+            DataHandler.sendTilNyScene(filStiTilLoggInnFXML, "Logg Inn", 500, 500);
+
         }
         else {
             // Skriv info til feilmeldingslabel som blir vist til brukeren
@@ -83,6 +96,14 @@ public class NyBrukerController {
         return okClicked;
     }
 
+    public void lagUtover(){
+        nyUtover.setBrukernavn(BrukernavnTextField.getText());
+        nyUtover.setPassord(PassordTextField.getText());
+        nyUtover.setNavn(NavnTextField.getText());
+        nyUtover.setEtternavn(EtternavnTextField.getText());
+        nyUtover.setAlder(Integer.parseInt(AlderTextField.getText()));
+    }
+
     @FXML
     private void avbrytValgt() {
         // Henter ut en referanse til Stage (vinduet) ved hjelp av en av komponentene vi har i grensesnittet
@@ -90,7 +111,7 @@ public class NyBrukerController {
         // Lukker vinduet uten å gjøre noe mer (okClicked er fortsatt false)
         dialogStage.close();
     }
-
+    
     public boolean sjekkOmInputErGyldig(String brukernavn, String passord, String fornavn, String etternavn, String alder) {
         feilmelding = "";
 

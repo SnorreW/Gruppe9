@@ -107,7 +107,7 @@ class LeggTilArrangementControllerTest {
     @Test
     public void faarTrueDersomArrangementPaaSammeDatoAlleredeIkkeFinnes() {
         navnPaaArrangement = "Hafslund cupen";
-        datoPaaArrangement = "2019.10.31";
+        datoPaaArrangement = "2022.10.31";
         typeIdrettPaaArrangement = "Loping";
         assertTrue(leggTilArrangementController.arrangementPaaSammeDatoIkkeFinnes(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
     }

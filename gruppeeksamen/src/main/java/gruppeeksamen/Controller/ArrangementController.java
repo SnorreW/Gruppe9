@@ -55,8 +55,8 @@ public class ArrangementController {
         String arrangement = LoggetInnController.getStagen();
         String utoverSomSkalSlettes = listeMedUtovereSomErMed.getSelectionModel().getSelectedItem();
         //Kjører metode som sletter bestemt utøver
-        boolean metode = slettBestemtUtoverIArrangement(arrangement, utoverSomSkalSlettes);
-        if (metode) {
+        boolean slettetUtover = slettBestemtUtoverIArrangement(arrangement, utoverSomSkalSlettes);
+        if (slettetUtover) {
             //oppdaterer listview
             fyllListen(listeMedUtovereSomErMed, arrangement);
         } else {
@@ -76,6 +76,7 @@ public class ArrangementController {
             }
         }
     }
+
     public boolean slettBestemtUtoverIArrangement(String arrangement, String utoverenSomSkalSlettes) {
         File filSomLesesFra = new File(filstiArrangementerCSV);
         String nyUtover = "";
@@ -121,7 +122,6 @@ public class ArrangementController {
         }
     }
 
-    ///////
     public void oppdaterListe(String filstiArrangementerCSV, String nyUtoverLinje){
         try {
             //skriver til arrangement filen med en oppdatert liste etter å ha fjernet utøveren

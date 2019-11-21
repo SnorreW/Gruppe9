@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
 public class LoggInnController {
     private static ObservableList<String> listeBrukenavn = FXCollections.observableArrayList();
     private static ObservableList<String> listePassord = FXCollections.observableArrayList();

@@ -43,13 +43,9 @@ public class LeggTilArrangementController {
     //Går tilbake til forrige vindu
     @FXML
     private void gaaTilbake(ActionEvent event) {
-        goBack(filStiTilLoggetInn);
-    }
-
-    private void goBack(String filstienTilLoggetInn) {
         Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
         stage.close();
-        DataHandler.sendTilNyScene(filstienTilLoggetInn, "Arrengementer", 500, 500);
+        DataHandler.sendTilNyScene(filStiTilLoggetInn, "Arrengementer", 500, 500);
     }
 
     //legger til arrangement
@@ -60,7 +56,9 @@ public class LeggTilArrangementController {
              MainJavaFX.visAlertFeilmelding("Mangler arrangement, dato eller idrett","Må fylle inn en av delene");
          } else {
              //lukker nåværende vindu
-             goBack(filStiTilLoggetInn);
+             Stage stage = (Stage) btnGaaTilbake.getScene().getWindow();
+             stage.close();
+             DataHandler.sendTilNyScene(filStiTilLoggetInn, "Arrengementer", 500, 500);
          }
     }
 

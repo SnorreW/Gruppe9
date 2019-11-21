@@ -48,7 +48,7 @@ public class LoggetInnController {
         listeMedArrangementer.setItems(fyllListe());
     }
 
-    private ObservableList<String> fyllListe() {
+    public ObservableList<String> fyllListe() {
         ObservableList<String> listeSomSkalFylles = FXCollections.observableArrayList();
         ArrayList arrayListeSomSkalBliObservable = new ArrayList();
         //fyller listen med hele arrangementer.csv filen

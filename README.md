@@ -13,6 +13,6 @@ Forklar hvordan man kjører de automatiske testene
 ## Laget med
 Vi har brukt følgende programmer til å lage programmet vårt: 
 
-* Maven
+* [Maven](https://maven.apache.org/) - Dependency Management
 
 

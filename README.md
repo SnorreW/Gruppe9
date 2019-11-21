@@ -4,13 +4,15 @@ En paragraf med prosjektbeskrivelse skal her.
 ## Hvordan komme i gang
 Disse instruksjonene vil gi deg en kjørende kopi av prosjektet på din lokale maskin.
 
-# Før du laster ned
+## Før du laster ned
 Følgende programvare på innstalleres før programmet kjøres for første gang.
 
-# Hvordan kjøre testene
+## Hvordan kjøre testene
 Forklar hvordan man kjører de automatiske testene
 
-# Laget med
-Følgende programmer
+## Laget med
+Vi har brukt følgende programmer til å lage programmet vårt: 
+
+* Maven
 
 

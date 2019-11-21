@@ -23,6 +23,5 @@ public class NyDataHandlerTest {
     public void gir() {
         Utover enUtover = NyDataHandler.hentUtoverData().get(0);
 
-
     }
 }

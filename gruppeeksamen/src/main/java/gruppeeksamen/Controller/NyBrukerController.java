@@ -2,6 +2,7 @@ package gruppeeksamen.Controller;
 
 import gruppeeksamen.Data.DataHandler;
 import gruppeeksamen.MainJavaFX;
+import gruppeeksamen.Modell.Bruker;
 import gruppeeksamen.Modell.Utover;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ public class NyBrukerController {
     private Button btnAvbryt;
 
     private Stage dialogStage;
+    private String feilmelding = "";
     private Utover nyUtover;
     private static boolean okClicked = false;
     private String filStiTilLoggInnFXML = "../../view/loggInn.fxml";
@@ -45,7 +47,7 @@ public class NyBrukerController {
     @FXML
     public void leggTilUtover(ActionEvent event) {
         //Sjekker om input er gyldig først
-        if(sjekkOmInputErGyldig()) {
+        if(sjekkOmInputErGyldig(String.valueOf(BrukernavnTextField.getText()), String.valueOf(PassordTextField.getText()), String.valueOf(NavnTextField.getText()), String.valueOf(EtternavnTextField.getText()), String.valueOf(AlderTextField.getText()))) {
             //Hvis input er gyldig så hentes teksten fra alle input felter og lages om til en string seperert med ;
             String linje = BrukernavnTextField.getText() + ";" + PassordTextField.getText() + ";" + NavnTextField.getText() + ";" +
                     EtternavnTextField.getText() + ";" + Integer.parseInt(AlderTextField.getText()) + "\n";
@@ -68,6 +70,8 @@ public class NyBrukerController {
 
         }
         else {
+            // Skriv info til feilmeldingslabel som blir vist til brukeren
+            feilmeldingLabel.setText("Vennligs rett følgende feil:\n" + feilmelding);
             //Feilmelding
             MainJavaFX.visAlertFeilmelding("Mangler Brukernavn, passord, navn, etternavn eller alder","Må fylle inn en av delene");
         }
@@ -107,37 +111,36 @@ public class NyBrukerController {
         // Lukker vinduet uten å gjøre noe mer (okClicked er fortsatt false)
         dialogStage.close();
     }
-
-    public boolean sjekkOmInputErGyldig() {
-        // Lager en string vi fyller opp med feilmeldinger for visning til brukeren
-        String feilmelding = "";
+    
+    public boolean sjekkOmInputErGyldig(String brukernavn, String passord, String fornavn, String etternavn, String alder) {
+        feilmelding = "";
 
         // Sjekker om det er noe innhold i brukernavnTekstFeltet
-        if (BrukernavnTextField.getText() == null || BrukernavnTextField.getText().length() == 0) {
+        if (brukernavn.equals("") || brukernavn.length() == 0) {
             // Hvis det ikke var satt noen brukernavn, legg til feilmelding
             feilmelding += "Brukernavn må settes!\n";
         }
-        if (PassordTextField.getText() == null || PassordTextField.getText().length() == 0) {
+        if (passord.equals("") || passord.length() == 0) {
             //Hvis det ikke var satt noe passord, legg til feilmelding
             feilmelding += "Passord må settes!\n";
         }
-        if (NavnTextField.getText() == null || NavnTextField.getText().length() == 0) {
+        if (fornavn.equals("") || fornavn.length() == 0) {
             //Hvis det ikke var satt noe fornavn, legg til feilmelding
             feilmelding += "Fornavn må settes!\n";
         }
-        if (EtternavnTextField.getText() == null || EtternavnTextField.getText().length() == 0) {
+        if (etternavn.equals("") || etternavn.length() == 0) {
             //Hvis det ikke var satt noe etternavn, legg til feilmelding
             feilmelding += "Etternavn må settes!\n";
         }
-        if (AlderTextField.getText() == null || AlderTextField.getText().length() == 0) {
+        if (Integer.valueOf(alder) == 0) {
             //Hvis det ikke var satt noe alder, legg til feilmelding
             feilmelding += "Alder må settes!\n";
         }
-        if (Integer.parseInt(AlderTextField.getText()) < 13) {
+        if (Integer.valueOf(alder) < 13) {
             //Hvis personen ikke er over 13 år får de ikke bruke appen, legg til feilmelding
             feilmelding += "Du må være over 13 år!\n";
         }
-        if (Integer.parseInt(AlderTextField.getText()) > 130) {
+        if (Integer.valueOf(alder) > 130) {
             //Hvis personen skriver for høy alder får de ikke bruke appen, legg til feilmelding
             feilmelding += "Du må skrive inn korrekt alder!\n";
         }
@@ -148,8 +151,6 @@ public class NyBrukerController {
             return true;
         }
         else {
-            // Skriv info til feilmeldingslabel som blir vist til brukeren
-            feilmeldingLabel.setText("Vennligs rett følgende feil:\n" + feilmelding);
             // Returner false, som sier at input ikke er gyldig
             return false;
         }

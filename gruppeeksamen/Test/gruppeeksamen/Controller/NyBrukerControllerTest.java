@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
         fornavn = "Aleksander";
         etternavn = "Sandnes";
         alder = "20";
-        assertTrue(nyBrukerController.sjekkOmInputErGyldigTest(brukernavn, passord, fornavn, etternavn, alder));
+        assertTrue(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
     @Test
@@ -34,8 +34,8 @@ import static org.junit.jupiter.api.Assertions.*;
         passord = "";
         fornavn = "";
         etternavn = "";
-        alder = "";
-        assertFalse(nyBrukerController.sjekkOmInputErGyldigTest(brukernavn, passord, fornavn, etternavn, alder));
+        alder = "0";
+        assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
     @Test
@@ -45,7 +45,7 @@ import static org.junit.jupiter.api.Assertions.*;
         fornavn = "Aleksander";
         etternavn = "Sandnes";
         alder = "20";
-        assertFalse(nyBrukerController.sjekkOmInputErGyldigTest(brukernavn, passord, fornavn, etternavn, alder));
+        assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
     @Test
@@ -55,7 +55,7 @@ import static org.junit.jupiter.api.Assertions.*;
         fornavn = "Aleksander";
         etternavn = "Sandnes";
         alder = "20";
-        assertFalse(nyBrukerController.sjekkOmInputErGyldigTest(brukernavn, passord, fornavn, etternavn, alder));
+        assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
     @Test
@@ -65,7 +65,7 @@ import static org.junit.jupiter.api.Assertions.*;
         fornavn = "";
         etternavn = "Sandnes";
         alder = "20";
-        assertFalse(nyBrukerController.sjekkOmInputErGyldigTest(brukernavn, passord, fornavn, etternavn, alder));
+        assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
     @Test
@@ -75,7 +75,7 @@ import static org.junit.jupiter.api.Assertions.*;
         fornavn = "Aleksander";
         etternavn = "";
         alder = "20";
-        assertFalse(nyBrukerController.sjekkOmInputErGyldigTest(brukernavn, passord, fornavn, etternavn, alder));
+        assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
     @Test
@@ -84,8 +84,18 @@ import static org.junit.jupiter.api.Assertions.*;
         passord = "Aleksander123";
         fornavn = "Aleksander";
         etternavn = "Sandnes";
-        alder = "";
-        assertFalse(nyBrukerController.sjekkOmInputErGyldigTest(brukernavn, passord, fornavn, etternavn, alder));
+        alder = "0";
+        assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
+    }
+
+    @Test
+    public void falseDersomAlderErMerEnn130Aar() {
+        brukernavn = "Aleksander";
+        passord = "Aleksander123";
+        fornavn = "Aleksander";
+        etternavn = "Sandnes";
+        alder = "150";
+        assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
     @Test

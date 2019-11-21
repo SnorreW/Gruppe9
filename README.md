@@ -30,4 +30,5 @@ Vi har brukt følgende programmer til å lage programmet vårt:
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [Javafx](https://openjfx.io/) - Rich Client Applications
 
-
+## Skrevet av
+* Aleksander Pleym Sandnes

@@ -26,27 +26,15 @@ class ArrangementControllerTest {
         String arrangementSomErValgt = "Tistacupen";
         ArrayList list = new ArrayList();
         list.add("Tistacupen;1;Ole;2019.10.17;Ski");
-        list.add("Skjeberg cupen;1;PEtter Nor;2019.10.28;Ski");
+        list.add("Skjeberg cupen;1;Petter Nor;2019.10.28;Ski");
         arrangementController.hjelpTilOgFylleListe(list,arrangementSomErValgt);
     }
 
     @Test
-    public void slettBestemtBruker(){
-
+    public void slettBestemtBruker() {
         String arrangement = "Tistacupen";
-        String utoverSomSkalSlettes ="Ole Gen";
-        int lengdeFor = utovere.size();
-        System.out.println(lengdeFor);
-        arrangementController.slettBestemtUtoverIArrangement(arrangement,utoverSomSkalSlettes);
-        int lengdeEtter = arrangementController.listeMedUtovere.size();
-        System.out.println(lengdeEtter);
-        assertTrue(lengdeFor>lengdeEtter);
-
-
-        utovere.add(utoverSomSkalSlettes);
-        arrangementController.hjelpTilOgFylleListe(utovere, "Tistacupen");
-        assertTrue(lengdeFor==lengdeEtter);
-       // MeldPaaUtoverController.
+        String utoverSomSkalSlettes = "Ole Gen";
+        assertTrue(arrangementController.slettBestemtUtoverIArrangement(arrangement,utoverSomSkalSlettes));
     }
 
     //Tester at listen med utøvere blir fylt
@@ -69,13 +57,12 @@ class ArrangementControllerTest {
     }
     @Test
     public void TestHjelpTilOgFylleListeTrue() {
-
         arrangementController.hjelpTilOgFylleListe(utovere, "Skitur");
         utovere.add("Mateusz");
         arrangementController.hjelpTilOgFylleListe(utovere1, "Skitur");
         utovere1.add("Mateusz");
 
-        assertTrue(utovere.size() == utovere1.size(), "Listene er like");
+        assertEquals(utovere, utovere1);
     }
 
     //Tester at CSV fil er riktig

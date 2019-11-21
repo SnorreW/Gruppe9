@@ -4,10 +4,7 @@ import gruppeeksamen.Data.DataHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
-import org.junit.runners.model.InitializationError;
 
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.time.LocalDate;

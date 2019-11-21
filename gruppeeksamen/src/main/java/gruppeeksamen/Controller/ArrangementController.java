@@ -1,7 +1,7 @@
 package gruppeeksamen.Controller;
 
 import gruppeeksamen.Data.DataHandler;
-import gruppeeksamen.Modell.Arrangementer;
+import gruppeeksamen.MainJavaFX;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,8 +14,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static gruppeeksamen.Modell.Arrangementer.minimumAntallUtovere;
 
 public class ArrangementController {
     public static ObservableList<String> listeMedUtovere = FXCollections.observableArrayList();
@@ -60,7 +58,13 @@ public class ArrangementController {
         String utoverSomSkalSlettes = listeMedUtovereSomErMed.getSelectionModel().getSelectedItem();
         System.out.println(utoverSomSkalSlettes);
         //Kjører metode som sletter bestemt utøver
-        slettBestemtUtoverIArrangement(arrangement, utoverSomSkalSlettes);
+        boolean metode = slettBestemtUtoverIArrangement(arrangement, utoverSomSkalSlettes);
+        if (metode) {
+            //oppdaterer listview
+            fyllListen(listeMedUtovereSomErMed, arrangement);
+        } else {
+            MainJavaFX.visAlertFeilmelding("Feil", "Feil");
+        }
     }
     //////
     public void hjelpTilOgFylleListe(ArrayList liste, String arrangement){
@@ -77,11 +81,11 @@ public class ArrangementController {
             }
         }
     }
-    public void slettBestemtUtoverIArrangement(String arrangement, String utoverenSomSkalSlettes) {
+    public boolean slettBestemtUtoverIArrangement(String arrangement, String utoverenSomSkalSlettes) {
         File filSomLesesFra = new File(filstiArrangementerCSV);
         String nyUtover = "";
         String nyUtoverLinje = "";
-        int antallUtovere = 0;
+        int antallUtovere;
 
         //leser fra listen
         try (BufferedReader bufretLeser = new BufferedReader(new FileReader(filSomLesesFra))) {
@@ -101,24 +105,25 @@ public class ArrangementController {
                     nyUtover = Arrays.toString(utoverene);
                     nyUtover = nyUtover.substring(1, nyUtover.length()-1).replace(", ", "|");
                     //setter antall utøvere i arrangementet til det den var minus en
-
-                   minimumAntallUtovere((Integer.parseInt(deler[1])));
-
+                    if (Integer.parseInt(deler[1]) <= 0) {
+                        antallUtovere = 0;
+                    } else {
+                        antallUtovere = Integer.parseInt(deler[1]) - 1;
+                    }
+                    //legger til den nye linjen
                     nyUtoverLinje += deler[0] + ";" + antallUtovere + ";" + nyUtover + ";" + deler[3] + ";" + deler[4] + "\n";
-
                 } else {
                     //hvis if statmenten ikke stemmer, legg til linje som var fra før
                     nyUtoverLinje += deler[0] + ";" + deler[1] + ";" + deler[2] + ";" + deler[3] + ";" + deler[4] + "\n";
                 }
 
             }
-
+            oppdaterListe(filstiArrangementerCSV, nyUtoverLinje);
+            return true;
         } catch (IOException e) {
             System.out.println(e);
+            return false;
         }
-        oppdaterListe(filstiArrangementerCSV, nyUtoverLinje);
-        //oppdaterer listview
-        fyllListen(listeMedUtovereSomErMed, arrangement);
     }
 
     ///////

@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ArrangementController {
-    private static ObservableList<String> listeMedUtovere = FXCollections.observableArrayList();
+    public static ObservableList<String> listeMedUtovere = FXCollections.observableArrayList();
     String filstiArrangementerCSV = "src/main/java/gruppeeksamen/arrangementer.csv";
     String filstiLoggetInnFXML = "../../view/loggetInn.fxml";
 
@@ -37,8 +37,8 @@ public class ArrangementController {
         //Tømmer listen, før den fyller listen med utøvere som er med i arrangementet
         listeMedUtovere.clear();
         listeMedUtovere = DataHandler.hentDataHele(filstiArrangementerCSV, listeMedUtovere);
-        ArrayList listeMedUtoverene = new ArrayList(listeMedUtovere);
-        hjelpTilOgFylleListe(listeMedUtoverene,arrangement);
+        ArrayList arrayListSomSkalFylleListen = new ArrayList(listeMedUtovere);
+        hjelpTilOgFylleListe(arrayListSomSkalFylleListen,arrangement);
         utovereSomErMed.setItems(listeMedUtovere);
     }
 

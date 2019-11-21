@@ -1,16 +1,9 @@
 package gruppeeksamen.Modell;
 
 public abstract class Bruker {
-    private String brukenavn, passord, klubb, navn, etternavn, mail;
+    private String brukenavn, passord, klubb, navn, etternavn;
     private int alder;
 
-    public Bruker(String brukenavn, String passord, String navn, String etternavn, String mail) {
-        this.brukenavn = brukenavn;
-        this.passord = passord;
-        this.navn = navn;
-        this.etternavn = etternavn;
-        this.mail = mail;
-    }
 
     public Bruker(String klubb, String navn, String etternavn) {
         this.klubb = klubb;
@@ -24,6 +17,13 @@ public abstract class Bruker {
         this.navn = navn;
         this.etternavn = etternavn;
         this.alder = alder;
+    }
+    public Bruker(String brukenavn, String passord, String klubb, String navn, String etternavn) {
+        this.brukenavn = brukenavn;
+        this.passord = passord;
+        this.klubb = klubb;
+        this.navn = navn;
+        this.etternavn = etternavn;
     }
 
     public Bruker(String brukenavn, String passord) {
@@ -80,6 +80,24 @@ public abstract class Bruker {
 
     public void setAlder(int alder) {
         this.alder = alder;
+    }
+
+    //Sjekk at loggin info er riktig
+    public static boolean sjekkAtBrukerInputErRiktig(String brukernavn, String passord){
+        boolean godkjent = false;
+        if (brukernavn == null|| brukernavn == "" && passord == null||passord == "") {
+            //MainJavaFX.visAlertFeilmelding("Mangler brukernavn og passord", "Fyll inn brukernavn og passord for å gå videre");
+        } else if (brukernavn == null|| brukernavn == "") {
+            //MainJavaFX.visAlertFeilmelding("Mangler brukernavn", "Fyll inn brukernavn for å gå videre");
+            godkjent = false;
+        } else if (passord == null||passord == "") {
+            // MainJavaFX.visAlertFeilmelding("Mangler passord", "Fyll inn passord for å gå videre");
+            godkjent = false;
+        } else {
+            godkjent = true;
+
+        }
+        return godkjent;
     }
 
     @Override

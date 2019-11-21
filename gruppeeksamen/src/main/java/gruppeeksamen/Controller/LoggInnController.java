@@ -3,6 +3,7 @@ package gruppeeksamen.Controller;
 import gruppeeksamen.Data.DataHandler;
 import gruppeeksamen.Data.NyDataHandler;
 import gruppeeksamen.MainJavaFX;
+import gruppeeksamen.Modell.Bruker;
 import gruppeeksamen.Modell.Utover;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,12 +57,10 @@ public class LoggInnController {
     //Når man trykker på logg inn knappen sender den input (brukernav og passord) videre til en sjekk
     @FXML
     private void sjekkBruker(ActionEvent event) throws IOException {        //Sjekker om alle felter er fylt inn
-        if (inputBrukernavn.getText().isEmpty() && inputPassord.getText().isEmpty()) {
-            MainJavaFX.visAlertFeilmelding("Mangler brukernavn og passord", "Fyll inn brukernavn og passord for å gå videre");
-        } else if (inputBrukernavn.getText().isEmpty()) {
+        String brukernavn = inputBrukernavn.getText();
+        String passord = inputPassord.getText();
+        if (Bruker.sjekkAtBrukerInputErRiktig(brukernavn, passord)== false) {
             MainJavaFX.visAlertFeilmelding("Mangler brukernavn", "Fyll inn brukernavn for å gå videre");
-        } else if (inputPassord.getText().isEmpty()) {
-            MainJavaFX.visAlertFeilmelding("Mangler passord", "Fyll inn passord for å gå videre");
         } else {
             //Hvis alle felter er fylt inn sendes den videre til neste sjekk
             gaarGjennomListe(inputBrukernavn.getText(),inputPassord.getText(), event);

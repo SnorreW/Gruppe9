@@ -1,9 +1,34 @@
 package gruppeeksamen.Modell;
 
+import gruppeeksamen.Controller.LoggInnController;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import static gruppeeksamen.Modell.Bruker.sjekkAtBrukerInputErRiktig;
+
 public class BrukerTest {
+
+    String brukernavn;
+    String passord;
+    @Test
+    public void sjekkAtInputErFyltUTest(){
+        brukernavn = "";
+        passord = "";
+        Assert.assertFalse(sjekkAtBrukerInputErRiktig(brukernavn,passord));
+
+        brukernavn ="hei";
+        passord = "";
+        Assert.assertFalse(sjekkAtBrukerInputErRiktig(brukernavn,passord));
+
+        brukernavn ="";
+        passord = "hei";
+        Assert.assertFalse(sjekkAtBrukerInputErRiktig(brukernavn,passord));
+
+        brukernavn ="hei";
+        passord = "hei";
+        Assert.assertTrue(sjekkAtBrukerInputErRiktig(brukernavn,passord));
+
+    }
 
     @Test
     public void navnTest() {

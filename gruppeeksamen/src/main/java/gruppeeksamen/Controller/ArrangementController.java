@@ -101,7 +101,6 @@ public class ArrangementController {
                     antallUtovere = Integer.parseInt(deler[1]) - 1;
                     //legger til den nye linjen
                     nyUtoverLinje += deler[0] + ";" + antallUtovere + ";" + nyUtover + ";" + deler[3] + ";" + deler[4] + "\n";
-
                 } else {
                     //hvis if statmenten ikke stemmer, legg til linje som var fra før
                     nyUtoverLinje += deler[0] + ";" + deler[1] + ";" + deler[2] + ";" + deler[3] + ";" + deler[4] + "\n";

@@ -69,7 +69,6 @@ class ArrangementControllerTest {
     }
     @Test
     public void TestHjelpTilOgFylleListeTrue() {
-
         arrangementController.hjelpTilOgFylleListe(utovere, "Skitur");
         utovere.add("Mateusz");
         arrangementController.hjelpTilOgFylleListe(utovere1, "Skitur");

@@ -35,17 +35,21 @@ public class LoggetInnController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 Stage stagen = (Stage) leggTilArrangement.getScene().getWindow();
                 stagen.close();
-                //Lager en string som består kun av navnet på arrangementet
-                String[] datoArrangementOgType = newValue.split(": ");
-                String[] arrangementOgType = datoArrangementOgType[1].split(" \\(");
-                String scenen = arrangementOgType[0];
-                //setter stagen som blir hentet i arrangement.fxml
-                setStagen(arrangementOgType[0]);
+                String scenen = setSceneen(newValue);
                 DataHandler.sendTilNyScene(filstiTilArrangementFXML,scenen, 500,500);
             }
         });
         //Fyller listen med elementer den får fra fyllListe metoden
         listeMedArrangementer.setItems(fyllListe());
+    }
+
+    public String setSceneen(String scene) {
+        //Lager en string som består kun av navnet på arrangementet
+        String[] datoArrangementOgType = scene.split(": ");
+        String[] arrangementOgType = datoArrangementOgType[1].split(" \\(");
+        String scenen = arrangementOgType[0];
+        setStagen(arrangementOgType[0]);
+        return scenen;
     }
 
     public ObservableList<String> fyllListe() {
@@ -97,7 +101,7 @@ public class LoggetInnController {
         return stagen;
     }
 
-    public void setStagen(String stagen) {
+    private void setStagen(String stagen) {
         this.stagen = stagen;
     }
 }

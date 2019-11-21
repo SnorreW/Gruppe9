@@ -64,7 +64,7 @@ public class ArrangementController {
             MainJavaFX.visAlertFeilmelding("Feil", "Feil");
         }
     }
-    //////
+
     public void hjelpTilOgFylleListe(ArrayList liste, String arrangement) {
 
         ArrayList listeMedUtoverene = new ArrayList(liste);
@@ -126,7 +126,6 @@ public class ArrangementController {
         }
     }
 
-    ///////
     public void oppdaterListe(String filstiArrangementerCSV, String nyUtoverLinje){
         try {
             //skriver til arrangement filen med en oppdatert liste etter å ha fjernet utøveren

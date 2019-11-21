@@ -15,6 +15,15 @@ public class Arrangementer implements Comparable<Arrangementer> {
         this.navn = navn;
     }
 
+    //Antall utovere i ett arrangement må være 0 eller mer.
+    public static int minimumAntallUtovere(int faktiskAntall){
+        if (faktiskAntall <= 0) {
+            return 0;
+        } else {
+            return faktiskAntall - 1;
+        }
+    }
+
     @Override
     public String toString() {
         return navn;

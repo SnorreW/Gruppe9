@@ -20,15 +20,26 @@ public class NyBrukerController {
     private Button okButton;
     @FXML
     private Button leggTilButton;
+    @FXML
+    private Button btnAvbryt;
 
     private Stage dialogStage;
     private Utover nyUtover;
     private static boolean okClicked = false;
+    private String filStiTilLoggInnFXML = "../../view/loggInn.fxml";
 
     @FXML
     private void initialize() {
         //Setter leggTilButton til defaultknapp
         leggTilButton.setDefaultButton(true);
+    }
+
+    @FXML
+    public void btnAvbryt(ActionEvent actionEvent) {
+        //Lukker nåværende vindu og sender til ny utover vindu
+        Stage stage = (Stage) btnAvbryt.getScene().getWindow();
+        stage.close();
+        DataHandler.sendTilNyScene(filStiTilLoggInnFXML, "Logg Inn", 500, 500);
     }
 
     @FXML
@@ -53,6 +64,8 @@ public class NyBrukerController {
             //Lukker vinduet
             Stage stagen = (Stage) leggTilButton.getScene().getWindow();
             stagen.close();
+            DataHandler.sendTilNyScene(filStiTilLoggInnFXML, "Logg Inn", 500, 500);
+
         }
         else {
             //Feilmelding
@@ -79,20 +92,6 @@ public class NyBrukerController {
         return okClicked;
     }
 
-    @FXML
-    private void okValgt() {
-        if (sjekkOmInputErGyldig()) {
-            // Hvis de er det, fyller vi opp utoverobjektet vårt med den nye dataen fra feltene
-            lagUtover();
-            // Setter at vi avsluttet ved å trykke OK
-            okClicked = true;
-            // Henter ut en referanse til Stage (vinduet) ved hjelp av en av komponentene vi har i grensesnittet
-            dialogStage = (Stage)okButton.getScene().getWindow();
-            // Lukker vinduet
-            dialogStage.close();
-        }
-    }
-
     public void lagUtover(){
         nyUtover.setBrukernavn(BrukernavnTextField.getText());
         nyUtover.setPassord(PassordTextField.getText());
@@ -107,14 +106,6 @@ public class NyBrukerController {
         dialogStage = (Stage)okButton.getScene().getWindow();
         // Lukker vinduet uten å gjøre noe mer (okClicked er fortsatt false)
         dialogStage.close();
-    }
-
-    //sjekker om alle felter er fylt ut
-    public boolean sjekkOmInputErGyldigTest(String brukernavn, String passord, String fornavn, String etternavn, String alder) {
-        if (!brukernavn.isEmpty() && !passord.isEmpty() && !fornavn.isEmpty() && !etternavn.isEmpty() && !alder.isEmpty()) {
-            return true;
-        }
-        return false;
     }
 
     public boolean sjekkOmInputErGyldig() {

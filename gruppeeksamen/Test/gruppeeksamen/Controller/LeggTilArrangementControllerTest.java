@@ -80,7 +80,7 @@ class LeggTilArrangementControllerTest {
         assertFalse(leggTilArrangementController.sjekkOmdagensDatoErMindreEnnDatePicker(datoPaaArrangement));
     }
 
-    //Krav:
+    //Krav: 7.1.2.1
     @Test
     public void faarFalseDersomDatoPaaArrangementErSammeDagensDato() {
         Date iDag = new Date();
@@ -94,7 +94,7 @@ class LeggTilArrangementControllerTest {
         assertFalse(leggTilArrangementController.sjekkOmdagensDatoErMindreEnnDatePicker(datoPaaArrangement));
     }
 
-    //Krav:
+    //Krav: 7.1.2.2
     @Test
     public void faarFalseDersomArrangementPaaSammeDatoAlleredeFinnes() {
         navnPaaArrangement = "Hafslund cupen";
@@ -103,7 +103,7 @@ class LeggTilArrangementControllerTest {
         assertFalse(leggTilArrangementController.arrangementPaaSammeDatoIkkeFinnes(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
     }
 
-    //Krav:
+    //Krav: 7.1.2.2
     @Test
     public void faarTrueDersomArrangementPaaSammeDatoAlleredeIkkeFinnes() {
         navnPaaArrangement = "Hafslund cupen";
@@ -112,7 +112,7 @@ class LeggTilArrangementControllerTest {
         assertTrue(leggTilArrangementController.arrangementPaaSammeDatoIkkeFinnes(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
     }
 
-    //Krav:
+    //Krav: 7.1.2.2
     @Test
     public void faarTrueDersomArrangementIkkeFinnes() {
         navnPaaArrangement = "Arrangment som ikke finnes";
@@ -121,7 +121,7 @@ class LeggTilArrangementControllerTest {
         assertTrue(leggTilArrangementController.arrangementPaaSammeDatoIkkeFinnes(navnPaaArrangement,datoPaaArrangement,typeIdrettPaaArrangement));
     }
 
-    //Krav:
+    //Krav: 7.1.3
     @Test
     public void faarTrueDersomStringMedForventetArrayErLikArrayFraController() {
         ObservableList listeForventet = FXCollections.observableArrayList();
@@ -134,7 +134,7 @@ class LeggTilArrangementControllerTest {
         assertTrue(listeneErLike);
     }
 
-    //Krav:
+    //Krav: 7.1.3
     @Test
     public void faarFalseDersomStringMedForventetArrayIkkeErLikArrayFraController() {
         ObservableList listeForventet = FXCollections.observableArrayList();
@@ -146,7 +146,7 @@ class LeggTilArrangementControllerTest {
         assertFalse(listeneErIkkeLike);
     }
 
-    //Krav:
+    //Krav: 7.1
     @Test
     public void faarTrueDersomLeggeTilArrangementErSuksess() throws IOException {
         navnPaaArrangement = "Test arrangement";
@@ -168,7 +168,7 @@ class LeggTilArrangementControllerTest {
         f.close();
     }
 
-    //Krav:
+    //Krav: 7.1
     @Test
     public void faarFalseDersomLeggeTilArrangementErIkkeErSuksess() {
         navnPaaArrangement = "Tistacupen";
@@ -178,7 +178,7 @@ class LeggTilArrangementControllerTest {
         assertFalse(testen);
     }
 
-    //Krav:
+    //Krav: 7.1
     @Test
     public void faarFalseDersomFilstiErFeil() {
         navnPaaArrangement = "Tistacupen";

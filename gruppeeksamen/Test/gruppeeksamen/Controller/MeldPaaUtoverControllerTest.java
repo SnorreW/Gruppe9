@@ -11,6 +11,7 @@ class MeldPaaUtoverControllerTest {
     private String filStiTilArrangementer = "src/main/java/gruppeeksamen/arrangementer.csv";
     private MeldPaaUtoverController meldPaaUtoverController = new MeldPaaUtoverController();
 
+    //Krav: 6.3
     @Test
     public void faarTrueNaarManFyllerUtRiktigICombobox() {
         ObservableList<String> arrangementListe  = FXCollections.observableArrayList();
@@ -24,8 +25,9 @@ class MeldPaaUtoverControllerTest {
         assertEquals(forventet, faktisk);
     }
 
+    //Krav: 6.6
     @Test
-    public void falsse() {
+    public void fylleComboboxMedRiktigeArrangementerFraIdrett() {
         ObservableList<String> forventetListe  = FXCollections.observableArrayList();
         ObservableList<String> faktiskListe  = FXCollections.observableArrayList();
         forventetListe.add("Ski");

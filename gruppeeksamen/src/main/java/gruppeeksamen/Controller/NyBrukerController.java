@@ -2,7 +2,6 @@ package gruppeeksamen.Controller;
 
 import gruppeeksamen.Data.DataHandler;
 import gruppeeksamen.MainJavaFX;
-import gruppeeksamen.Modell.Bruker;
 import gruppeeksamen.Modell.Utover;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,13 +17,10 @@ public class NyBrukerController {
     @FXML
     private Label feilmeldingLabel;
     @FXML
-    private Button okButton;
-    @FXML
     private Button leggTilButton;
     @FXML
     private Button btnAvbryt;
 
-    private Stage dialogStage;
     private String feilmelding = "";
     private Utover nyUtover;
     private static boolean okClicked = false;
@@ -95,22 +91,6 @@ public class NyBrukerController {
         // Mulighet til å hente ut om vi avsluttet ved hjelp av OK eller ikke
         return okClicked;
     }
-
-    public void lagUtover(){
-        nyUtover.setBrukernavn(BrukernavnTextField.getText());
-        nyUtover.setPassord(PassordTextField.getText());
-        nyUtover.setNavn(NavnTextField.getText());
-        nyUtover.setEtternavn(EtternavnTextField.getText());
-        nyUtover.setAlder(Integer.parseInt(AlderTextField.getText()));
-    }
-
-    @FXML
-    private void avbrytValgt() {
-        // Henter ut en referanse til Stage (vinduet) ved hjelp av en av komponentene vi har i grensesnittet
-        dialogStage = (Stage)okButton.getScene().getWindow();
-        // Lukker vinduet uten å gjøre noe mer (okClicked er fortsatt false)
-        dialogStage.close();
-    }
     
     public boolean sjekkOmInputErGyldig(String brukernavn, String passord, String fornavn, String etternavn, String alder) {
         feilmelding = "";
@@ -155,6 +135,4 @@ public class NyBrukerController {
             return false;
         }
     }
-
-
 }

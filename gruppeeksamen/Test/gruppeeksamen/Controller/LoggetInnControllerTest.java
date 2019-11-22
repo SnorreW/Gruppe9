@@ -13,6 +13,7 @@ class LoggetInnControllerTest {
     private LoggetInnController loggetInnController = new LoggetInnController();
     private String filStiTilArrangementer = "src/main/java/gruppeeksamen/arrangementer.csv";
 
+    //Krav: 6.6
     @Test
     public void faarTrueDersomListeneErLike() {
         ObservableList listeForventet = FXCollections.observableArrayList();
@@ -22,10 +23,11 @@ class LoggetInnControllerTest {
             ArrayList listeForventet1 = (ArrayList) listeForventet.get(i);
             listeForventet2.add(listeForventet1.get(3) + ": " + listeForventet1.get(0) + " (" + listeForventet1.get(4) + ")");
         }
-        boolean ikkeLikeLister = (listeForventet2.equals(loggetInnController.fyllListe()));
-        assertTrue(ikkeLikeLister);
+        boolean likeLister = (listeForventet2.equals(loggetInnController.fyllListe()));
+        assertTrue(likeLister);
     }
 
+    //Krav: 6.6
     @Test
     public void faarFalseDersomListeneIkkeErLike() {
         ObservableList listeForventet = FXCollections.observableArrayList();

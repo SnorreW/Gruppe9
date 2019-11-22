@@ -1,6 +1,5 @@
 package gruppeeksamen.Controller;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,9 +11,9 @@ class LoggInnControllerTest {
     String brukernavn2;
     String passord2;
 
+    //Krav: 1.1
     @Test
     public void sjekkPassordOgBrukernavnTestTrue(){
-
         brukernavn = "hei";
         brukernavn2 = "hei";
         passord = "hei";
@@ -22,9 +21,9 @@ class LoggInnControllerTest {
         assertFalse(LoggInnController.brukernavnOgpassordSjekk(brukernavn,passord,brukernavn2,passord2));
     }
 
+    //Krav: 1.1
     @Test
     public void sjekkPassordOgBrukernavnTestFeilBrukernavnFalse(){
-
         brukernavn = "hei";
         brukernavn2 = "he";
         passord = "hei";
@@ -32,9 +31,9 @@ class LoggInnControllerTest {
         assertTrue(LoggInnController.brukernavnOgpassordSjekk(brukernavn,passord,brukernavn2,passord2));
     }
 
+    //Krav: 1.1
     @Test
     public void sjekkPassordOgBrukernavnTestFeilPassordfalse(){
-
         brukernavn = "hei";
         brukernavn2 = "hei";
         passord = "hei";

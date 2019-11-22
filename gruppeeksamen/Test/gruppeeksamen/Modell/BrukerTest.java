@@ -1,6 +1,5 @@
 package gruppeeksamen.Modell;
 
-import gruppeeksamen.Controller.LoggInnController;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +9,7 @@ public class BrukerTest {
 
     String brukernavn;
     String passord;
+    
     @Test
     public void sjekkAtInputErFyltUTest(){
         brukernavn = "";
@@ -27,7 +27,6 @@ public class BrukerTest {
         brukernavn ="hei";
         passord = "hei";
         Assert.assertTrue(sjekkAtBrukerInputErFylt(brukernavn,passord));
-
     }
 
     @Test

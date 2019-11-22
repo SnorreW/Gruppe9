@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="261.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppeeksamen.Controller.NyBrukerController">
+<AnchorPane prefHeight="261.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppeeksamen.Controller.NyBrukerController">
     <children>
         <GridPane AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <columnConstraints>
@@ -33,7 +33,7 @@
                 <TextField fx:id="PassordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="NavnTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="EtternavnTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <TextField fx:id="AlderTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextField fx:id="AlderTextField" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
         </GridPane>
         <HBox alignment="BOTTOM_RIGHT" layoutX="351.0" layoutY="125.0" prefHeight="40.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">

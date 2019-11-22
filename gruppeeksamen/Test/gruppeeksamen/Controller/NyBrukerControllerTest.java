@@ -2,9 +2,6 @@ package gruppeeksamen.Controller;
 
 import gruppeeksamen.Data.NyDataHandler;
 import gruppeeksamen.Modell.Utover;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,6 +15,7 @@ public class NyBrukerControllerTest {
     private String etternavn;
     private String alder;
 
+    //Krav: 3.1.2, 3.1.3, 3.1.4, 3.1.5
     @Test
     public void trueDersomAlleInputFelterErFyltUt() {
         brukernavn = "Aleksander";
@@ -28,6 +26,7 @@ public class NyBrukerControllerTest {
         assertTrue(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
+    //Krav: 3.1.2, 3.1.3, 3.1.4, 3.1.5
     @Test
     public void falseDersomAlleInputFelterIkkeErFyltUt() {
         brukernavn = "";
@@ -38,6 +37,7 @@ public class NyBrukerControllerTest {
         assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
+    //Krav: 3.1.2, 3.1.3, 3.1.4, 3.1.5
     @Test
     public void falseDersomBrukernavnIkkeErFyltUt() {
         brukernavn = "";
@@ -48,6 +48,7 @@ public class NyBrukerControllerTest {
         assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
+    //Krav: 3.1.2, 3.1.3, 3.1.4, 3.1.5
     @Test
     public void falseDersomPassordIkkeErFyltUt() {
         brukernavn = "Aleksander";
@@ -58,6 +59,7 @@ public class NyBrukerControllerTest {
         assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
+    //Krav: 3.1.2, 3.1.3, 3.1.4, 3.1.5
     @Test
     public void falseDersomFornavnIkkeErFyltUt() {
         brukernavn = "Aleksander";
@@ -68,6 +70,7 @@ public class NyBrukerControllerTest {
         assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
+    //Krav: 3.1.2, 3.1.3, 3.1.4, 3.1.5
     @Test
     public void falseDersomEtternavnIkkeErFyltUt() {
         brukernavn = "Aleksander";
@@ -78,6 +81,7 @@ public class NyBrukerControllerTest {
         assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
+    //Krav: 3.1.2, 3.1.3, 3.1.4, 3.1.5
     @Test
     public void falseDersomAlderIkkeErFyltUt() {
         brukernavn = "Aleksander";
@@ -88,6 +92,7 @@ public class NyBrukerControllerTest {
         assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
+    //Krav: 3.1.2, 3.1.3, 3.1.4, 3.1.5
     @Test
     public void falseDersomAlderErMerEnn130Aar() {
         brukernavn = "Aleksander";
@@ -98,15 +103,15 @@ public class NyBrukerControllerTest {
         assertFalse(nyBrukerController.sjekkOmInputErGyldig(brukernavn, passord, fornavn, etternavn, alder));
     }
 
+    //Krav: 3.1.2, 3.1.3, 3.1.4, 3.1.5
     @Test
     public void sjekkBrukerData() {
         Utover enUtover = NyDataHandler.hentUtoverData().get(0);
 
-        assertEquals(enUtover.getBrukenavn(), "Sandnes");
-        assertEquals(enUtover.getPassord(), "admin2");
-        assertEquals(enUtover.getNavn(), "Aleksander");
-        assertEquals(enUtover.getEtternavn(), "Sandnes");
-        assertEquals(enUtover.getAlder(), 20);
-
+        assertEquals(enUtover.getBrukenavn(), "admin1");
+        assertEquals(enUtover.getPassord(), "admin4");
+        assertEquals(enUtover.getNavn(), "Admin");
+        assertEquals(enUtover.getEtternavn(), "Admin");
+        assertEquals(enUtover.getAlder(), 0);
     }
 }

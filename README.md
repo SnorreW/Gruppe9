@@ -7,9 +7,10 @@ Disse instruksjonene vil gi deg en kjørende kopi av prosjektet på din lokale m
 1. Last ned JavaFX, følg instruksjonen under hva du må laste ned. 
 2. Last ned en kopi av prosjektet fra Github.
 3. Start intellij.
-4. Trykk på "edit config" oppe i høyre hjørne i intellij.
-5. Legg til en konfigurasjon med MainJavaFX som hovedklasse. Pass på å sett VM-options før du trykker på "Apply" og deretter "Ok".
-6. Trykk på "Play" knappen. En grønn pil i høyre hjørne av intellij.
+4. Åpne mappen "gruppe9/gruppeeksamen".
+5. Trykk på "edit config" oppe i høyre hjørne i intellij.
+6. Legg til en konfigurasjon med MainJavaFX som hovedklasse. Pass på å sett VM-options før du trykker på "Apply" og deretter "Ok".
+7. Trykk på "Play" knappen. En grønn pil i høyre hjørne av intellij.
 
 ## Hva du må laste ned
 Følgende programvare må innstalleres før programmet kjøres for første gang:

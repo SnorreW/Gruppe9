@@ -34,7 +34,8 @@ Vi har brukt følgende programmer til å lage programmet vårt:
 Ofte når vi får problemer så viser det seg å være javafx som er grunnen. Ofte kan VM options forsvinne fra intellij og må bli lagt til på nytt. 
 
 Da er det denne du må legge inn for windows: --module-path "\path\to\javafx-sdk-13\lib" --add-modules javafx.controls,javafx.fxml.
-Og så er det denne du må legge inn hvis du har linux/mac: --module-path /path/to/javafx-sdk-13/lib --add-modules javafx.controls,javafx.fxml.
+
+Så er det denne du må legge inn hvis du har linux/mac: --module-path /path/to/javafx-sdk-13/lib --add-modules javafx.controls,javafx.fxml.
 
 ## Skrevet av
 * Aleksander Pleym Sandnes

@@ -41,4 +41,4 @@ Så er det denne du må legge inn hvis du har linux/mac: --module-path /path/to/
 ## Skrevet av
 * Aleksander Pleym Sandnes
 
-Se også en [liste](https://github.com/SnorreW/Gruppe9/blob/heisannAlleSammen/Contributing.mb) av alle som har vært med på dette prosjektet
+Se også en [liste](https://github.com/SnorreW/Gruppe9/blob/master/CONTRIBUTING.mb) av alle som har vært med på dette prosjektet
